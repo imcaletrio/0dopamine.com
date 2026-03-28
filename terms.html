@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>0D — Términos de uso</title>
+  <meta name="description" content="Términos y condiciones de uso de 0Dopamine (0D)." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1C1C1E;
+      --blue:   #2C2C2E;
+      --blue-l: #48484A;
+      --blue-p: #E8E8EA;
+      --sky:    #F8F7F4;
+      --white:  #FFFFFF;
+      --fog:    #AEAEB2;
+      --slate:  #636366;
+      --green:  #34C759;
+      --red:    #FF3B30;
+      --amber:  #FF9500;
+      --accent: #5856D6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #E5E5EA;
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-size: 1.2rem; font-weight: 700; color: var(--navy);
+      letter-spacing: .5px; text-decoration: none;
+    }
+    .nav-cta {
+      background: var(--blue); color: #fff;
+      text-decoration: none; padding: 8px 20px;
+      border-radius: 10px; font-size: .875rem; font-weight: 600;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--blue-l); }
+
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .content h1 {
+      font-size: 2rem; font-weight: 800; margin-bottom: 8px;
+    }
+    .content .date {
+      color: var(--fog); font-size: .875rem; margin-bottom: 40px;
+    }
+    .content h2 {
+      font-size: 1.25rem; font-weight: 700; margin-top: 36px; margin-bottom: 12px;
+      color: var(--navy);
+    }
+    .content p, .content li {
+      font-size: .95rem; color: var(--slate); margin-bottom: 12px;
+    }
+    .content ul {
+      padding-left: 20px; margin-bottom: 12px;
+    }
+    .content li { margin-bottom: 6px; }
+    .content a { color: var(--accent); }
+    .content strong { color: var(--navy); }
+
+    .lang-toggle {
+      display: inline-flex; gap: 8px; margin-bottom: 32px;
+    }
+    .lang-toggle a {
+      padding: 6px 14px; border-radius: 8px;
+      font-size: .8rem; font-weight: 600;
+      text-decoration: none; color: var(--slate);
+      border: 1.5px solid #E5E5EA;
+      transition: background .15s;
+    }
+    .lang-toggle a.active {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+    .lang-toggle a:hover:not(.active) { background: var(--sky); }
+
+    .lang-es, .lang-en { display: none; }
+    .lang-es.visible, .lang-en.visible { display: block; }
+
+    footer {
+      background: var(--navy); color: rgba(255,255,255,.4);
+      text-align: center; padding: 32px 24px;
+      font-size: .8rem;
+    }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">0D</a>
+    <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">Descargar</a>
+  </nav>
+
+  <div class="content">
+    <h1>Términos de uso</h1>
+    <p class="date">Última actualización: 28 de marzo de 2026</p>
+
+    <div class="lang-toggle">
+      <a href="#" class="active" id="btn-es" onclick="showLang('es');return false;">Español</a>
+      <a href="#" id="btn-en" onclick="showLang('en');return false;">English</a>
+    </div>
+
+    <!-- ═══ ESPAÑOL ═══ -->
+    <div class="lang-es visible" id="lang-es">
+
+      <h2>1. Aceptación de los términos</h2>
+      <p>Al descargar, instalar o usar <strong>0Dopamine</strong> (en adelante "0D" o "la app"), aceptas estos términos de uso. Si no estás de acuerdo, desinstala la app.</p>
+
+      <h2>2. Descripción del servicio</h2>
+      <p>0D es una herramienta de bienestar digital que permite al usuario bloquear apps y contenido de vídeo corto en su dispositivo Android. La app funciona como una ayuda para la autorregulación, no como un sistema de control parental ni como un software de seguridad.</p>
+
+      <h2>3. Uso de la app</h2>
+      <ul>
+        <li>La app se proporciona <strong>"tal cual" (as-is)</strong> sin garantías de ningún tipo, ni expresas ni implícitas.</li>
+        <li>No garantizamos que la app bloquee el 100% del contenido en todas las circunstancias. Las actualizaciones de apps de terceros (YouTube, Instagram, etc.) pueden afectar temporalmente a la detección.</li>
+        <li>El usuario es responsable de la configuración de la app y de los permisos que concede.</li>
+        <li>No nos hacemos responsables de pérdidas de productividad, datos u oportunidades derivadas del uso o mal funcionamiento de la app.</li>
+      </ul>
+
+      <h2>4. Servicio de Accesibilidad</h2>
+      <p>0D requiere un Servicio de Accesibilidad de Android para funcionar. Este servicio se usa exclusivamente para detectar la app en primer plano y el contenido de vídeo corto. El uso de este permiso está sujeto a nuestra <a href="privacy.html">Política de privacidad</a>.</p>
+
+      <h2>5. Suscripciones y compras</h2>
+      <ul>
+        <li>0D ofrece una versión gratuita con funcionalidad limitada y una versión Premium de pago.</li>
+        <li>Las suscripciones se gestionan a través de <strong>Google Play</strong>. Los términos de pago, renovación y cancelación están sujetos a las <a href="https://play.google.com/intl/es/about/play-terms/" target="_blank">condiciones de Google Play</a>.</li>
+        <li>Puedes cancelar tu suscripción en cualquier momento desde Google Play Store > Suscripciones.</li>
+        <li>Las compras de por vida (lifetime) son pagos únicos no reembolsables, salvo lo dispuesto por la legislación aplicable.</li>
+      </ul>
+
+      <h2>6. Versión beta</h2>
+      <p>Durante el periodo de beta, todas las funciones Premium están disponibles de forma gratuita. Nos reservamos el derecho de activar la monetización en cualquier momento con previo aviso dentro de la app.</p>
+
+      <h2>7. Propiedad intelectual</h2>
+      <p>0D y todo su contenido (código, diseño, marca, textos) son propiedad de 0Dopamine. No se concede ninguna licencia sobre la propiedad intelectual salvo el derecho de uso personal de la app.</p>
+
+      <h2>8. Limitación de responsabilidad</h2>
+      <p>En la máxima medida permitida por la ley, 0Dopamine no será responsable de daños directos, indirectos, incidentales, especiales o consecuentes derivados del uso de la app.</p>
+
+      <h2>9. Modificaciones</h2>
+      <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios se publicarán en esta página. El uso continuado de la app tras la publicación de los cambios constituye la aceptación de los nuevos términos.</p>
+
+      <h2>10. Legislación aplicable</h2>
+      <p>Estos términos se rigen por la legislación española. Cualquier disputa se someterá a los tribunales competentes de España.</p>
+
+      <h2>11. Contacto</h2>
+      <p>Para cualquier consulta sobre estos términos:</p>
+      <p><a href="mailto:hola@zerodopamine.app">hola@zerodopamine.app</a></p>
+    </div>
+
+    <!-- ═══ ENGLISH ═══ -->
+    <div class="lang-en" id="lang-en">
+
+      <h2>1. Acceptance of terms</h2>
+      <p>By downloading, installing or using <strong>0Dopamine</strong> (hereinafter "0D" or "the app"), you agree to these terms of use. If you do not agree, please uninstall the app.</p>
+
+      <h2>2. Service description</h2>
+      <p>0D is a digital wellbeing tool that allows users to block apps and short-form video content on their Android device. The app works as a self-regulation aid, not as a parental control system or security software.</p>
+
+      <h2>3. Use of the app</h2>
+      <ul>
+        <li>The app is provided <strong>"as-is"</strong> without warranties of any kind, either express or implied.</li>
+        <li>We do not guarantee that the app will block 100% of content in all circumstances. Updates to third-party apps (YouTube, Instagram, etc.) may temporarily affect detection.</li>
+        <li>The user is responsible for the app configuration and the permissions they grant.</li>
+        <li>We are not liable for any loss of productivity, data or opportunities arising from the use or malfunction of the app.</li>
+      </ul>
+
+      <h2>4. Accessibility Service</h2>
+      <p>0D requires an Android Accessibility Service to function. This service is used exclusively to detect the foreground app and short-form video content. The use of this permission is subject to our <a href="privacy.html">Privacy Policy</a>.</p>
+
+      <h2>5. Subscriptions and purchases</h2>
+      <ul>
+        <li>0D offers a free version with limited features and a paid Premium version.</li>
+        <li>Subscriptions are managed through <strong>Google Play</strong>. Payment, renewal and cancellation terms are subject to <a href="https://play.google.com/intl/en/about/play-terms/" target="_blank">Google Play's terms</a>.</li>
+        <li>You can cancel your subscription at any time from Google Play Store > Subscriptions.</li>
+        <li>Lifetime purchases are one-time non-refundable payments, except as required by applicable law.</li>
+      </ul>
+
+      <h2>6. Beta version</h2>
+      <p>During the beta period, all Premium features are available for free. We reserve the right to enable monetization at any time with prior notice within the app.</p>
+
+      <h2>7. Intellectual property</h2>
+      <p>0D and all its content (code, design, branding, text) are the property of 0Dopamine. No license to intellectual property is granted other than the right to personal use of the app.</p>
+
+      <h2>8. Limitation of liability</h2>
+      <p>To the maximum extent permitted by law, 0Dopamine shall not be liable for any direct, indirect, incidental, special or consequential damages arising from the use of the app.</p>
+
+      <h2>9. Modifications</h2>
+      <p>We reserve the right to modify these terms at any time. Changes will be posted on this page. Continued use of the app after changes are posted constitutes acceptance of the new terms.</p>
+
+      <h2>10. Governing law</h2>
+      <p>These terms are governed by Spanish law. Any dispute shall be submitted to the competent courts of Spain.</p>
+
+      <h2>11. Contact</h2>
+      <p>For any questions about these terms:</p>
+      <p><a href="mailto:hola@zerodopamine.app">hola@zerodopamine.app</a></p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2025 0D &middot; Hecho con &hearts; para recuperar el tiempo libre</p>
+    <p style="margin-top:8px">
+      <a href="mailto:hola@zerodopamine.app">Contacto</a>
+      &nbsp;&middot;&nbsp;
+      <a href="privacy.html">Política de privacidad</a>
+      &nbsp;&middot;&nbsp;
+      <a href="terms.html">Términos de uso</a>
+    </p>
+  </footer>
+
+  <script>
+    function showLang(lang) {
+      document.getElementById('lang-es').classList.toggle('visible', lang === 'es');
+      document.getElementById('lang-en').classList.toggle('visible', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>0D — Recupera tu tiempo</title>
+  <meta name="description" content="0D bloquea las apps que te distraen y te ayuda a recuperar el control de tu tiempo. Disponible para Android." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1C1C1E;
+      --blue:   #2C2C2E;
+      --blue-l: #48484A;
+      --blue-p: #E8E8EA;
+      --sky:    #F8F7F4;
+      --white:  #FFFFFF;
+      --fog:    #AEAEB2;
+      --slate:  #636366;
+      --green:  #34C759;
+      --red:    #FF3B30;
+      --amber:  #FF9500;
+      --accent: #5856D6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #E5E5EA;
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-size: 1.2rem; font-weight: 700; color: var(--navy);
+      letter-spacing: .5px; text-decoration: none;
+    }
+    .nav-cta {
+      background: var(--blue); color: #fff;
+      text-decoration: none; padding: 8px 20px;
+      border-radius: 10px; font-size: .875rem; font-weight: 600;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--blue-l); }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(160deg, var(--sky) 0%, #F2F1EE 100%);
+      text-align: center;
+      padding: 100px 24px 80px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: #EBEAFB; color: var(--accent);
+      font-size: .75rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; padding: 5px 14px;
+      border-radius: 100px; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 800; line-height: 1.15;
+      color: var(--navy); margin-bottom: 20px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 1.125rem; color: var(--slate);
+      max-width: 540px; margin: 0 auto 36px;
+    }
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--blue); color: #fff;
+      padding: 14px 28px; border-radius: 14px;
+      font-size: 1rem; font-weight: 700; text-decoration: none;
+      transition: transform .15s, background .2s;
+    }
+    .btn-primary:hover { background: var(--blue-l); transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #fff; color: var(--navy);
+      border: 1.5px solid #E5E5EA;
+      padding: 14px 28px; border-radius: 14px;
+      font-size: 1rem; font-weight: 600; text-decoration: none;
+      transition: transform .15s;
+    }
+    .btn-secondary:hover { transform: translateY(-2px); }
+
+    /* ── Phone mockup ── */
+    .mockup-wrap { margin-top: 60px; display: flex; justify-content: center; }
+    .phone {
+      width: 260px; aspect-ratio: 9/19;
+      background: var(--navy); border-radius: 40px;
+      box-shadow: 0 40px 80px rgba(21,37,51,.25);
+      padding: 16px;
+      display: flex; flex-direction: column; gap: 10px;
+      position: relative; overflow: hidden;
+    }
+    .phone::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 28px;
+      background: var(--navy); border-radius: 0 0 18px 18px;
+      z-index: 2;
+    }
+    .phone-bar {
+      background: rgba(255,255,255,.08); border-radius: 12px;
+      padding: 10px 12px;
+    }
+    .phone-card {
+      background: rgba(255,255,255,.06); border-radius: 16px;
+      padding: 12px; display: flex; align-items: center; gap: 10px;
+    }
+    .phone-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(88,86,214,.3); flex-shrink: 0;
+    }
+    .phone-text { flex: 1; }
+    .phone-text .pt { height: 8px; background: rgba(255,255,255,.5); border-radius: 4px; margin-bottom: 5px; width: 60%; }
+    .phone-text .ps { height: 6px; background: #EBEAFB; border-radius: 4px; width: 40%; opacity: .6; }
+    .phone-toggle {
+      width: 34px; height: 20px; background: var(--green);
+      border-radius: 10px; position: relative; flex-shrink: 0;
+    }
+    .phone-toggle::after {
+      content: ''; position: absolute;
+      width: 16px; height: 16px; background: #fff; border-radius: 50%;
+      top: 2px; right: 2px;
+    }
+
+    /* ── Features ── */
+    .features {
+      padding: 80px 24px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .section-label {
+      text-align: center;
+      font-size: .75rem; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      text-align: center;
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 800; color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      text-align: center; color: var(--slate);
+      max-width: 520px; margin: 0 auto 56px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--sky); border-radius: 24px;
+      padding: 28px 24px;
+    }
+    .feature-icon {
+      font-size: 2rem; margin-bottom: 14px;
+    }
+    .feature-card h3 {
+      font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; color: var(--navy);
+    }
+    .feature-card p { font-size: .9rem; color: var(--slate); }
+
+    /* ── How it works ── */
+    .how {
+      background: var(--sky);
+      padding: 80px 24px;
+    }
+    .steps {
+      max-width: 760px; margin: 0 auto;
+      display: grid; gap: 24px;
+    }
+    .step {
+      background: var(--white); border-radius: 20px;
+      padding: 24px; display: flex; gap: 20px; align-items: flex-start;
+    }
+    .step-num {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--blue); color: #fff;
+      font-weight: 800; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .step p { font-size: .875rem; color: var(--slate); }
+
+    /* ── Supported apps ── */
+    .apps-section { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
+    .app-pills {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-top: 36px;
+    }
+    .pill {
+      background: var(--sky); border: 1.5px solid #E5E5EA;
+      border-radius: 100px; padding: 8px 18px;
+      font-size: .875rem; font-weight: 600; color: var(--slate);
+    }
+
+    /* ── Pricing ── */
+    .pricing { padding: 80px 24px; background: var(--sky); }
+    .pricing-grid {
+      max-width: 760px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    @media (max-width: 560px) { .pricing-grid { grid-template-columns: 1fr; } }
+    .plan {
+      background: var(--white); border-radius: 24px;
+      padding: 32px 24px;
+    }
+    .plan.featured {
+      background: var(--blue); color: #fff;
+    }
+    .plan-name {
+      font-size: .75rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 10px;
+      opacity: .7;
+    }
+    .plan-price {
+      font-size: 2.5rem; font-weight: 800; margin-bottom: 4px;
+    }
+    .plan-price sup { font-size: 1.2rem; vertical-align: super; }
+    .plan-period { font-size: .875rem; opacity: .6; margin-bottom: 24px; }
+    .plan ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .plan li { font-size: .9rem; display: flex; gap: 8px; align-items: flex-start; }
+    .plan li::before { content: '✓'; font-weight: 800; color: var(--green); flex-shrink: 0; }
+    .plan.featured li::before { color: rgba(255,255,255,.8); }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 100px 24px;
+      background: linear-gradient(160deg, var(--navy) 0%, #2C2C2E 100%);
+      color: #fff;
+    }
+    .cta-section h2 {
+      font-size: clamp(1.75rem, 5vw, 2.75rem);
+      font-weight: 800; margin-bottom: 16px;
+    }
+    .cta-section p { color: rgba(255,255,255,.65); margin-bottom: 36px; font-size: 1.05rem; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,.4);
+      text-align: center; padding: 32px 24px;
+      font-size: .8rem;
+    }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-logo" href="#">0D</a>
+    <a class="nav-cta" href="#download">Descargar gratis</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">Para Android</div>
+    <h1>Recupera el control<br>de tu <span>tiempo libre</span></h1>
+    <p>0D bloquea las apps que te distraen cuando más lo necesitas. Sin rodeos, sin trucos, solo fuerza de voluntad asistida.</p>
+    <div class="hero-actions">
+      <a id="download" class="btn-primary" href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">
+        ▶ Descargar en Google Play
+      </a>
+      <a class="btn-secondary" href="#features">Ver funciones</a>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="mockup-wrap">
+      <div class="phone">
+        <div class="phone-bar" style="height:28px;margin-top:12px;"></div>
+        <div class="phone-card">
+          <div class="phone-icon"></div>
+          <div class="phone-text"><div class="pt"></div><div class="ps"></div></div>
+          <div class="phone-toggle"></div>
+        </div>
+        <div class="phone-card" style="opacity:.7">
+          <div class="phone-icon" style="background:rgba(213,68,68,.3)"></div>
+          <div class="phone-text"><div class="pt"></div><div class="ps" style="background:rgba(213,68,68,.3)"></div></div>
+          <div class="phone-toggle" style="background:#4A6175"></div>
+        </div>
+        <div class="phone-card">
+          <div class="phone-icon" style="background:rgba(61,170,114,.3)"></div>
+          <div class="phone-text"><div class="pt"></div><div class="ps" style="background:rgba(61,170,114,.3)"></div></div>
+          <div class="phone-toggle"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="section-label">Funciones</div>
+    <h2 class="section-title">Todo lo que necesitas para desconectar</h2>
+    <p class="section-sub">Diseñado para ser efectivo sin ser invasivo. Tú eliges las reglas.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⏸</div>
+        <h3>Pausa consciente</h3>
+        <p>Antes de abrir una app bloqueada, una animación de respiración te da unos segundos para reconsiderarlo.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎬</div>
+        <h3>Bloqueo de Shorts y Reels</h3>
+        <p>Usa YouTube o Instagram con normalidad, pero bloquea solo la sección de vídeos cortos. Sin sacrificar la app entera.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🕒</div>
+        <h3>Horario automático</h3>
+        <p>Define las horas en las que quieres bloquear cada app. Por las noches, en el trabajo o cuando tú decidas.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Límite diario</h3>
+        <p>Establece cuántos minutos al día puedes usar cada app. Cuando se acaban, se bloquea automáticamente.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧘</div>
+        <h3>Mindfulness integrado</h3>
+        <p>En lugar de un bloqueo seco, muestra un ejercicio de respiración 4-7-8 que te ayuda a desengancharte con calma.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Bloqueo total</h3>
+        <p>Cuando necesitas concentración máxima, bloquea la app por completo con un mensaje motivacional tuyo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how">
+    <div class="section-label">Cómo funciona</div>
+    <h2 class="section-title" style="text-align:center">En 3 pasos</h2>
+    <p class="section-sub" style="text-align:center;max-width:500px;margin:0 auto 48px">No hace falta configuración complicada.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Añade una app</h3>
+          <p>Selecciona la app que quieres controlar desde la lista de aplicaciones instaladas en tu móvil.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Elige el modo de bloqueo</h3>
+          <p>Pausa, horario, límite diario, mindfulness o bloqueo total. También puedes bloquear solo Shorts y Reels.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>0D hace el resto</h3>
+          <p>Activa la regla y listo. Cada vez que intentes abrir la app, 0D aplicará la restricción que hayas definido.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Supported apps -->
+  <section class="apps-section">
+    <div class="section-label">Compatibilidad</div>
+    <h2 class="section-title">Apps soportadas</h2>
+    <p class="section-sub">Bloqueo de Shorts / Reels / Spotlight disponible para:</p>
+    <div class="app-pills">
+      <span class="pill">YouTube Shorts</span>
+      <span class="pill">Instagram Reels</span>
+      <span class="pill">Facebook Reels</span>
+      <span class="pill">Snapchat Spotlight</span>
+      <span class="pill">WhatsApp Estados</span>
+      <span class="pill">TikTok</span>
+      <span class="pill">X · Vídeos</span>
+      <span class="pill">LinkedIn Vídeos</span>
+      <span class="pill">Pinterest Idea Pins</span>
+    </div>
+    <p style="text-align:center;margin-top:20px;color:var(--fog);font-size:.85rem">
+      Cualquier otra app puede bloquearse de forma completa.
+    </p>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing">
+    <div class="section-label">Precios</div>
+    <h2 class="section-title">Simple y honesto</h2>
+    <p class="section-sub">Empieza gratis. Mejora cuando quieras.</p>
+    <div class="pricing-grid">
+      <div class="plan">
+        <div class="plan-name">Gratuito</div>
+        <div class="plan-price">0€</div>
+        <div class="plan-period">Para siempre</div>
+        <ul>
+          <li>1 app bloqueada</li>
+          <li>Modo Pausa consciente</li>
+          <li>Sin límite de tiempo</li>
+        </ul>
+      </div>
+      <div class="plan featured">
+        <div class="plan-name">Premium</div>
+        <div class="plan-price"><sup>€</sup>0,99</div>
+        <div class="plan-period">al mes · cancela cuando quieras</div>
+        <ul>
+          <li>Apps ilimitadas</li>
+          <li>Todos los modos de bloqueo</li>
+          <li>Bloqueo de Shorts y Reels</li>
+          <li>Horario y límite diario</li>
+          <li>Mindfulness integrado</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>¿Cuánto tiempo perdiste hoy<br>en el móvil?</h2>
+    <p>Empieza ahora. Es gratis y tarda 2 minutos en configurarse.</p>
+    <a class="btn-primary" style="display:inline-flex;margin:0 auto"
+       href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">
+      ▶ Descargar en Google Play
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 0D · Hecho con 💙 para recuperar el tiempo libre</p>
+    <p style="margin-top:8px">
+      <a href="mailto:hola@zerodopamine.app">Contacto</a>
+      &nbsp;&middot;&nbsp;
+      <a href="privacy.html">Política de privacidad</a>
+      &nbsp;&middot;&nbsp;
+      <a href="terms.html">Términos de uso</a>
+    </p>
+  </footer>
+
+</body>
+</html>

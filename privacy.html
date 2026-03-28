@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>0D — Política de privacidad</title>
+  <meta name="description" content="Política de privacidad de 0Dopamine (0D). Todos tus datos se almacenan localmente en tu dispositivo." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1C1C1E;
+      --blue:   #2C2C2E;
+      --blue-l: #48484A;
+      --blue-p: #E8E8EA;
+      --sky:    #F8F7F4;
+      --white:  #FFFFFF;
+      --fog:    #AEAEB2;
+      --slate:  #636366;
+      --green:  #34C759;
+      --red:    #FF3B30;
+      --amber:  #FF9500;
+      --accent: #5856D6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #E5E5EA;
+      padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-size: 1.2rem; font-weight: 700; color: var(--navy);
+      letter-spacing: .5px; text-decoration: none;
+    }
+    .nav-cta {
+      background: var(--blue); color: #fff;
+      text-decoration: none; padding: 8px 20px;
+      border-radius: 10px; font-size: .875rem; font-weight: 600;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--blue-l); }
+
+    .content {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .content h1 {
+      font-size: 2rem; font-weight: 800; margin-bottom: 8px;
+    }
+    .content .date {
+      color: var(--fog); font-size: .875rem; margin-bottom: 40px;
+    }
+    .content h2 {
+      font-size: 1.25rem; font-weight: 700; margin-top: 36px; margin-bottom: 12px;
+      color: var(--navy);
+    }
+    .content p, .content li {
+      font-size: .95rem; color: var(--slate); margin-bottom: 12px;
+    }
+    .content ul {
+      padding-left: 20px; margin-bottom: 12px;
+    }
+    .content li { margin-bottom: 6px; }
+    .content a { color: var(--accent); }
+    .content strong { color: var(--navy); }
+
+    .lang-toggle {
+      display: inline-flex; gap: 8px; margin-bottom: 32px;
+    }
+    .lang-toggle a {
+      padding: 6px 14px; border-radius: 8px;
+      font-size: .8rem; font-weight: 600;
+      text-decoration: none; color: var(--slate);
+      border: 1.5px solid #E5E5EA;
+      transition: background .15s;
+    }
+    .lang-toggle a.active {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+    .lang-toggle a:hover:not(.active) { background: var(--sky); }
+
+    .lang-es, .lang-en { display: none; }
+    .lang-es.visible, .lang-en.visible { display: block; }
+
+    footer {
+      background: var(--navy); color: rgba(255,255,255,.4);
+      text-align: center; padding: 32px 24px;
+      font-size: .8rem;
+    }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">0D</a>
+    <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">Descargar</a>
+  </nav>
+
+  <div class="content">
+    <h1>Política de privacidad</h1>
+    <p class="date">Última actualización: 28 de marzo de 2026</p>
+
+    <div class="lang-toggle">
+      <a href="#" class="active" id="btn-es" onclick="showLang('es');return false;">Español</a>
+      <a href="#" id="btn-en" onclick="showLang('en');return false;">English</a>
+    </div>
+
+    <!-- ═══ ESPAÑOL ═══ -->
+    <div class="lang-es visible" id="lang-es">
+
+      <h2>1. Información general</h2>
+      <p><strong>0Dopamine</strong> (en adelante "0D", "la app" o "nosotros") es una aplicación de bienestar digital para Android desarrollada por 0Dopamine. Esta política explica qué datos recoge la app, cómo los usa y qué derechos tienes sobre ellos.</p>
+      <p>Nombre del paquete: <code>com.zerodopamine</code></p>
+
+      <h2>2. Datos que recopilamos</h2>
+      <p><strong>Todos los datos de 0D se almacenan exclusivamente en tu dispositivo.</strong> No tenemos servidores, no creamos cuentas de usuario y no enviamos ningún dato a internet (salvo los SDKs de terceros descritos en la sección 6).</p>
+      <p>Los datos almacenados localmente incluyen:</p>
+      <ul>
+        <li><strong>Configuración de bloqueo:</strong> las apps que has bloqueado, sus modos de bloqueo, horarios y límites. Se almacenan en una base de datos local (Room/SQLite).</li>
+        <li><strong>Preferencias:</strong> tema, color de acento, idioma y ajustes generales. Se almacenan en DataStore (almacenamiento local de preferencias).</li>
+        <li><strong>Estadísticas de uso:</strong> la app consulta el tiempo de uso de las apps bloqueadas a través del sistema Android (UsageStatsManager) para calcular límites diarios. Esta información se lee bajo demanda y no se almacena de forma permanente.</li>
+      </ul>
+
+      <h2>3. Servicio de Accesibilidad</h2>
+      <p>0D utiliza un <strong>Servicio de Accesibilidad</strong> de Android para detectar qué app está en primer plano y, dentro de apps compatibles, identificar secciones de contenido de vídeo corto (Shorts, Reels, Stories). Este servicio:</p>
+      <ul>
+        <li>Solo observa el nombre de la actividad en primer plano y los identificadores de vistas (IDs de elementos de la interfaz).</li>
+        <li><strong>No lee, almacena ni transmite</strong> el contenido de otras apps (mensajes, fotos, texto, contraseñas, etc.).</li>
+        <li>Se usa exclusivamente con el propósito de bienestar digital: determinar si el usuario está accediendo a contenido que ha decidido bloquear.</li>
+      </ul>
+
+      <h2>4. Permisos</h2>
+      <p>La app solicita los siguientes permisos del sistema:</p>
+      <ul>
+        <li><strong>Servicio de Accesibilidad</strong> — detectar la app en primer plano y el contenido de vídeo corto.</li>
+        <li><strong>Mostrar sobre otras apps (SYSTEM_ALERT_WINDOW)</strong> — mostrar la pantalla de bloqueo o pausa encima de la app bloqueada.</li>
+        <li><strong>Acceso al uso de apps (PACKAGE_USAGE_STATS)</strong> — consultar el tiempo de uso para el modo de límite diario.</li>
+        <li><strong>Consultar apps instaladas (QUERY_ALL_PACKAGES)</strong> — mostrar la lista de apps instaladas para que el usuario pueda seleccionar cuáles bloquear.</li>
+      </ul>
+
+      <h2>5. Datos que NO recopilamos</h2>
+      <ul>
+        <li>No recopilamos datos personales identificables (nombre, email, teléfono).</li>
+        <li>No creamos perfiles de usuario.</li>
+        <li>No tenemos servidores ni bases de datos remotas.</li>
+        <li>No compartimos datos con terceros (salvo lo indicado en la sección 6).</li>
+        <li>No usamos analytics, telemetría ni rastreo.</li>
+      </ul>
+
+      <h2>6. SDKs de terceros</h2>
+      <p>La app integra los siguientes SDKs que pueden recopilar datos según sus propias políticas de privacidad:</p>
+      <ul>
+        <li><strong>Google AdMob</strong> — cuando se activen los anuncios, este SDK puede recopilar identificadores de dispositivo, datos de interacción con anuncios y otra información según la <a href="https://policies.google.com/privacy" target="_blank">Política de privacidad de Google</a>.</li>
+        <li><strong>Google Play Billing</strong> — gestiona las compras y suscripciones dentro de la app. Los datos de pago son procesados por Google Play según sus propias políticas.</li>
+      </ul>
+
+      <h2>7. Almacenamiento y eliminación</h2>
+      <p>Todos los datos de la app se almacenan en el almacenamiento interno de tu dispositivo Android. <strong>Desinstalar la app elimina automáticamente todos los datos.</strong> También puedes borrar los datos desde Ajustes del sistema > Aplicaciones > 0Dopamine > Almacenamiento > Borrar datos.</p>
+
+      <h2>8. Menores de edad</h2>
+      <p>0D no está dirigida a menores de 13 años. No recopilamos intencionadamente información de niños. Si eres padre o tutor y crees que tu hijo ha proporcionado datos personales, contáctanos para que podamos tomar las medidas necesarias.</p>
+
+      <h2>9. Cambios en esta política</h2>
+      <p>Podemos actualizar esta política periódicamente. Los cambios se publicarán en esta página con una nueva fecha de actualización. Te recomendamos revisar esta política de forma ocasional.</p>
+
+      <h2>10. Contacto</h2>
+      <p>Si tienes preguntas sobre esta política de privacidad, puedes contactarnos en:</p>
+      <p><a href="mailto:hola@zerodopamine.app">hola@zerodopamine.app</a></p>
+    </div>
+
+    <!-- ═══ ENGLISH ═══ -->
+    <div class="lang-en" id="lang-en">
+
+      <h2>1. Overview</h2>
+      <p><strong>0Dopamine</strong> (hereinafter "0D", "the app" or "we") is a digital wellbeing application for Android developed by 0Dopamine. This policy explains what data the app collects, how it uses it, and what rights you have over it.</p>
+      <p>Package name: <code>com.zerodopamine</code></p>
+
+      <h2>2. Data we collect</h2>
+      <p><strong>All 0D data is stored exclusively on your device.</strong> We do not operate servers, create user accounts, or send any data to the internet (except for the third-party SDKs described in section 6).</p>
+      <p>Locally stored data includes:</p>
+      <ul>
+        <li><strong>Block configuration:</strong> the apps you have blocked, their block modes, schedules and limits. Stored in a local database (Room/SQLite).</li>
+        <li><strong>Preferences:</strong> theme, accent color, language and general settings. Stored in DataStore (local preference storage).</li>
+        <li><strong>Usage statistics:</strong> the app queries the usage time of blocked apps through the Android system (UsageStatsManager) to calculate daily limits. This information is read on demand and is not permanently stored.</li>
+      </ul>
+
+      <h2>3. Accessibility Service</h2>
+      <p>0D uses an Android <strong>Accessibility Service</strong> to detect which app is in the foreground and, within supported apps, identify short-form video content sections (Shorts, Reels, Stories). This service:</p>
+      <ul>
+        <li>Only observes the foreground activity name and view identifiers (UI element IDs).</li>
+        <li><strong>Does not read, store, or transmit</strong> the content of other apps (messages, photos, text, passwords, etc.).</li>
+        <li>Is used exclusively for digital wellbeing purposes: determining whether the user is accessing content they have chosen to block.</li>
+      </ul>
+
+      <h2>4. Permissions</h2>
+      <p>The app requests the following system permissions:</p>
+      <ul>
+        <li><strong>Accessibility Service</strong> — detect the foreground app and short-form video content.</li>
+        <li><strong>Display over other apps (SYSTEM_ALERT_WINDOW)</strong> — show the block or pause screen over the blocked app.</li>
+        <li><strong>Usage access (PACKAGE_USAGE_STATS)</strong> — query usage time for daily limit mode.</li>
+        <li><strong>Query installed apps (QUERY_ALL_PACKAGES)</strong> — display the list of installed apps so the user can select which ones to block.</li>
+      </ul>
+
+      <h2>5. Data we do NOT collect</h2>
+      <ul>
+        <li>We do not collect personally identifiable information (name, email, phone).</li>
+        <li>We do not create user profiles.</li>
+        <li>We do not operate servers or remote databases.</li>
+        <li>We do not share data with third parties (except as noted in section 6).</li>
+        <li>We do not use analytics, telemetry, or tracking.</li>
+      </ul>
+
+      <h2>6. Third-party SDKs</h2>
+      <p>The app integrates the following SDKs that may collect data according to their own privacy policies:</p>
+      <ul>
+        <li><strong>Google AdMob</strong> — when ads are enabled, this SDK may collect device identifiers, ad interaction data and other information per <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</li>
+        <li><strong>Google Play Billing</strong> — handles in-app purchases and subscriptions. Payment data is processed by Google Play under its own policies.</li>
+      </ul>
+
+      <h2>7. Storage and deletion</h2>
+      <p>All app data is stored in your Android device's internal storage. <strong>Uninstalling the app automatically deletes all data.</strong> You can also clear data from System Settings > Apps > 0Dopamine > Storage > Clear data.</p>
+
+      <h2>8. Children</h2>
+      <p>0D is not directed at children under 13 years of age. We do not knowingly collect information from children. If you are a parent or guardian and believe your child has provided personal data, please contact us so we can take appropriate action.</p>
+
+      <h2>9. Changes to this policy</h2>
+      <p>We may update this policy periodically. Changes will be posted on this page with a new update date. We recommend reviewing this policy occasionally.</p>
+
+      <h2>10. Contact</h2>
+      <p>If you have questions about this privacy policy, you can reach us at:</p>
+      <p><a href="mailto:hola@zerodopamine.app">hola@zerodopamine.app</a></p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2025 0D &middot; Hecho con &hearts; para recuperar el tiempo libre</p>
+    <p style="margin-top:8px">
+      <a href="mailto:hola@zerodopamine.app">Contacto</a>
+      &nbsp;&middot;&nbsp;
+      <a href="privacy.html">Política de privacidad</a>
+      &nbsp;&middot;&nbsp;
+      <a href="terms.html">Términos de uso</a>
+    </p>
+  </footer>
+
+  <script>
+    function showLang(lang) {
+      document.getElementById('lang-es').classList.toggle('visible', lang === 'es');
+      document.getElementById('lang-en').classList.toggle('visible', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+  </script>
+
+</body>
+</html>
