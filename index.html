@@ -204,15 +204,15 @@
     .apps-section { padding: 80px 24px; max-width: 100%; margin: 0 auto; overflow: hidden; }
     .carousel-track {
       display: flex; gap: 24px;
-      animation: scroll-left 30s linear infinite;
       width: max-content;
       margin-top: 40px;
+      will-change: transform;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
     }
-    .carousel-track:hover { animation-play-state: paused; }
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    .carousel-track.dragging { cursor: grabbing; }
+    .carousel-track.dragging .app-card { pointer-events: none; }
     .app-card {
       flex-shrink: 0;
       display: flex; flex-direction: column; align-items: center; gap: 10px;
@@ -538,6 +538,105 @@
       <a href="terms.html">Términos de uso</a>
     </p>
   </footer>
+
+  <script>
+  (function() {
+    const track = document.querySelector('.carousel-track');
+    if (!track) return;
+
+    // Measure half-width (duplicate set) for seamless wrap
+    const cards = track.children;
+    const half = track.scrollWidth / 2;
+
+    // State
+    let pos = 0;               // current translateX
+    let speed = -0.5;          // px per frame (negative = scroll left)
+    let baseSpeed = -0.5;
+    let isDragging = false;
+    let startX = 0;
+    let dragStartPos = 0;
+    let lastX = 0;
+    let velocity = 0;
+    let rafId = null;
+
+    function wrap() {
+      if (pos <= -half) pos += half;
+      if (pos >= 0) pos -= half;
+    }
+
+    function animate() {
+      if (!isDragging) {
+        pos += speed;
+        // Decay drag velocity back to base speed
+        if (Math.abs(speed - baseSpeed) > 0.05) {
+          speed += (baseSpeed - speed) * 0.03;
+        } else {
+          speed = baseSpeed;
+        }
+      }
+      wrap();
+      track.style.transform = 'translateX(' + pos + 'px)';
+      rafId = requestAnimationFrame(animate);
+    }
+
+    // Mouse events
+    track.addEventListener('mousedown', function(e) {
+      isDragging = true;
+      track.classList.add('dragging');
+      startX = e.clientX;
+      lastX = e.clientX;
+      dragStartPos = pos;
+      velocity = 0;
+    });
+
+    window.addEventListener('mousemove', function(e) {
+      if (!isDragging) return;
+      var dx = e.clientX - lastX;
+      velocity = dx;
+      lastX = e.clientX;
+      pos = dragStartPos + (e.clientX - startX);
+    });
+
+    window.addEventListener('mouseup', function() {
+      if (!isDragging) return;
+      isDragging = false;
+      track.classList.remove('dragging');
+      // Fling: use drag velocity as initial speed, then decay to base
+      speed = velocity * 0.8;
+      if (Math.abs(speed) < 0.5) speed = baseSpeed;
+    });
+
+    // Touch events
+    track.addEventListener('touchstart', function(e) {
+      isDragging = true;
+      track.classList.add('dragging');
+      startX = e.touches[0].clientX;
+      lastX = startX;
+      dragStartPos = pos;
+      velocity = 0;
+    }, { passive: true });
+
+    track.addEventListener('touchmove', function(e) {
+      if (!isDragging) return;
+      var tx = e.touches[0].clientX;
+      var dx = tx - lastX;
+      velocity = dx;
+      lastX = tx;
+      pos = dragStartPos + (tx - startX);
+    }, { passive: true });
+
+    track.addEventListener('touchend', function() {
+      if (!isDragging) return;
+      isDragging = false;
+      track.classList.remove('dragging');
+      speed = velocity * 0.8;
+      if (Math.abs(speed) < 0.5) speed = baseSpeed;
+    });
+
+    // Start animation
+    rafId = requestAnimationFrame(animate);
+  })();
+  </script>
 
 </body>
 </html>
