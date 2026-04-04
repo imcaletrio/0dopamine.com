@@ -13,8 +13,8 @@
       --blue:   #2C2C2E;
       --blue-l: #48484A;
       --blue-p: #E8E8EA;
-      --sky:    #F8F7F4;
-      --white:  #FFFFFF;
+      --sky:    #FAF9F6;
+      --white:  #FAF9F6;  /* Ivory/cream — matches app background */
       --fog:    #AEAEB2;
       --slate:  #636366;
       --green:  #34C759;
@@ -35,7 +35,7 @@
 
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,.92);
+      background: rgba(250,249,246,.92);  /* Ivory with transparency */
       backdrop-filter: blur(12px);
       border-bottom: 1px solid #E5E5EA;
       padding: 0 24px;
@@ -116,7 +116,7 @@
 
   <div class="content">
     <h1>Política de privacidad</h1>
-    <p class="date">Última actualización: 28 de marzo de 2026</p>
+    <p class="date">Última actualización: 3 de abril de 2026</p>
 
     <div class="lang-toggle">
       <a href="#" class="active" id="btn-es" onclick="showLang('es');return false;">Español</a>
@@ -131,13 +131,21 @@
       <p>Nombre del paquete: <code>com.zerodopamine</code></p>
 
       <h2>2. Datos que recopilamos</h2>
-      <p><strong>Todos los datos de 0D se almacenan exclusivamente en tu dispositivo.</strong> No tenemos servidores, no creamos cuentas de usuario y no enviamos ningún dato a internet (salvo los SDKs de terceros descritos en la sección 6).</p>
+      <p><strong>La mayoría de los datos de 0D se almacenan exclusivamente en tu dispositivo.</strong> No enviamos datos de uso de apps a internet (salvo los SDKs de terceros descritos en la sección 6).</p>
       <p>Los datos almacenados localmente incluyen:</p>
       <ul>
         <li><strong>Configuración de bloqueo:</strong> las apps que has bloqueado, sus modos de bloqueo, horarios y límites. Se almacenan en una base de datos local (Room/SQLite).</li>
         <li><strong>Preferencias:</strong> tema, color de acento, idioma y ajustes generales. Se almacenan en DataStore (almacenamiento local de preferencias).</li>
         <li><strong>Estadísticas de uso:</strong> la app consulta el tiempo de uso de las apps bloqueadas a través del sistema Android (UsageStatsManager) para calcular límites diarios. Esta información se lee bajo demanda y no se almacena de forma permanente.</li>
       </ul>
+      <p><strong>Cuenta de usuario (opcional):</strong> si decides verificar tu email, 0D utiliza <strong>Firebase Authentication</strong> (servicio de Google) para gestionar el inicio de sesión sin contraseña mediante un enlace mágico enviado a tu correo. Los datos almacenados en Firebase incluyen:</p>
+      <ul>
+        <li>Tu dirección de email.</li>
+        <li>Un identificador de dispositivo para limitar el acceso a un dispositivo por cuenta.</li>
+        <li>Tu código de referido (si lo generas) y si has canjeado algún código.</li>
+        <li>Marcas de tiempo de creación y último acceso.</li>
+      </ul>
+      <p>Estos datos se almacenan en <strong>Firebase Firestore</strong> (infraestructura de Google) y están sujetos a la <a href="https://firebase.google.com/support/privacy" target="_blank">política de privacidad de Firebase</a>. La verificación de email es completamente opcional y la app funciona sin ella.</p>
 
       <h2>3. Servicio de Accesibilidad</h2>
       <p>0D utiliza un <strong>Servicio de Accesibilidad</strong> de Android para detectar qué app está en primer plano y, dentro de apps compatibles, identificar secciones de contenido de vídeo corto (Shorts, Reels, Stories). Este servicio:</p>
@@ -158,16 +166,16 @@
 
       <h2>5. Datos que NO recopilamos</h2>
       <ul>
-        <li>No recopilamos datos personales identificables (nombre, email, teléfono).</li>
-        <li>No creamos perfiles de usuario.</li>
-        <li>No tenemos servidores ni bases de datos remotas.</li>
+        <li>No recopilamos tu nombre, número de teléfono ni otros datos personales más allá del email (solo si verificas tu cuenta voluntariamente).</li>
         <li>No compartimos datos con terceros (salvo lo indicado en la sección 6).</li>
         <li>No usamos analytics, telemetría ni rastreo.</li>
+        <li>No leemos ni almacenamos el contenido de otras apps (mensajes, fotos, contraseñas).</li>
       </ul>
 
       <h2>6. SDKs de terceros</h2>
       <p>La app integra los siguientes SDKs que pueden recopilar datos según sus propias políticas de privacidad:</p>
       <ul>
+        <li><strong>Firebase Authentication y Firestore</strong> — gestionan el inicio de sesión sin contraseña y el almacenamiento del perfil de usuario (email, dispositivo activo, código de referido). Datos procesados según la <a href="https://firebase.google.com/support/privacy" target="_blank">Política de privacidad de Firebase</a>.</li>
         <li><strong>Google AdMob</strong> — cuando se activen los anuncios, este SDK puede recopilar identificadores de dispositivo, datos de interacción con anuncios y otra información según la <a href="https://policies.google.com/privacy" target="_blank">Política de privacidad de Google</a>.</li>
         <li><strong>Google Play Billing</strong> — gestiona las compras y suscripciones dentro de la app. Los datos de pago son procesados por Google Play según sus propias políticas.</li>
       </ul>
@@ -194,13 +202,21 @@
       <p>Package name: <code>com.zerodopamine</code></p>
 
       <h2>2. Data we collect</h2>
-      <p><strong>All 0D data is stored exclusively on your device.</strong> We do not operate servers, create user accounts, or send any data to the internet (except for the third-party SDKs described in section 6).</p>
+      <p><strong>Most 0D data is stored exclusively on your device.</strong> We do not send app usage data to the internet (except for the third-party SDKs described in section 6).</p>
       <p>Locally stored data includes:</p>
       <ul>
         <li><strong>Block configuration:</strong> the apps you have blocked, their block modes, schedules and limits. Stored in a local database (Room/SQLite).</li>
         <li><strong>Preferences:</strong> theme, accent color, language and general settings. Stored in DataStore (local preference storage).</li>
         <li><strong>Usage statistics:</strong> the app queries the usage time of blocked apps through the Android system (UsageStatsManager) to calculate daily limits. This information is read on demand and is not permanently stored.</li>
       </ul>
+      <p><strong>User account (optional):</strong> if you choose to verify your email, 0D uses <strong>Firebase Authentication</strong> (a Google service) to manage passwordless sign-in via a magic link sent to your email. Data stored in Firebase includes:</p>
+      <ul>
+        <li>Your email address.</li>
+        <li>A device identifier to limit access to one device per account.</li>
+        <li>Your referral code (if generated) and whether you have redeemed a code.</li>
+        <li>Creation and last login timestamps.</li>
+      </ul>
+      <p>This data is stored in <strong>Firebase Firestore</strong> (Google infrastructure) and is subject to the <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase privacy policy</a>. Email verification is entirely optional and the app works without it.</p>
 
       <h2>3. Accessibility Service</h2>
       <p>0D uses an Android <strong>Accessibility Service</strong> to detect which app is in the foreground and, within supported apps, identify short-form video content sections (Shorts, Reels, Stories). This service:</p>
@@ -221,16 +237,16 @@
 
       <h2>5. Data we do NOT collect</h2>
       <ul>
-        <li>We do not collect personally identifiable information (name, email, phone).</li>
-        <li>We do not create user profiles.</li>
-        <li>We do not operate servers or remote databases.</li>
+        <li>We do not collect your name, phone number, or personal data beyond your email (only if you voluntarily verify your account).</li>
         <li>We do not share data with third parties (except as noted in section 6).</li>
         <li>We do not use analytics, telemetry, or tracking.</li>
+        <li>We do not read or store the content of other apps (messages, photos, passwords).</li>
       </ul>
 
       <h2>6. Third-party SDKs</h2>
       <p>The app integrates the following SDKs that may collect data according to their own privacy policies:</p>
       <ul>
+        <li><strong>Firebase Authentication and Firestore</strong> — manage passwordless sign-in and user profile storage (email, active device, referral code). Data processed per the <a href="https://firebase.google.com/support/privacy" target="_blank">Firebase Privacy Policy</a>.</li>
         <li><strong>Google AdMob</strong> — when ads are enabled, this SDK may collect device identifiers, ad interaction data and other information per <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</li>
         <li><strong>Google Play Billing</strong> — handles in-app purchases and subscriptions. Payment data is processed by Google Play under its own policies.</li>
       </ul>
@@ -252,7 +268,7 @@
   </div>
 
   <footer>
-    <p>&copy; 2025 0D &middot; Hecho con &hearts; para recuperar el tiempo libre</p>
+    <p>&copy; 2026 0D &middot; Hecho con &hearts; para recuperar el tiempo libre</p>
     <p style="margin-top:8px">
       <a href="mailto:hola@zerodopamine.app">Contacto</a>
       &nbsp;&middot;&nbsp;

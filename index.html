@@ -17,7 +17,7 @@
       --blue-l: #48484A;
       --blue-p: #E8E8EA;
       --sky:    #FAF9F6;
-      --white:  #FFFFFF;
+      --white:  #FAF9F6;  /* Ivory/cream — matches app background */
       --fog:    #AEAEB2;
       --slate:  #636366;
       --green:  #34C759;
@@ -39,7 +39,7 @@
     /* ── Nav ── */
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(255,255,255,.92);
+      background: rgba(250,249,246,.92);  /* Ivory with transparency */
       backdrop-filter: blur(12px);
       border-bottom: 1px solid #E5E5EA;
       padding: 0 24px;
@@ -51,6 +51,9 @@
       font-size: 1.3rem; font-weight: 700; color: var(--navy);
       letter-spacing: 0.5px; text-decoration: none;
     }
+    .nav-right {
+      display: flex; align-items: center; gap: 12px;
+    }
     .nav-cta {
       background: var(--blue); color: #fff;
       text-decoration: none; padding: 8px 20px;
@@ -58,6 +61,35 @@
       transition: background .2s;
     }
     .nav-cta:hover { background: var(--blue-l); }
+
+    /* ── Language toggle ── */
+    .lang-toggle {
+      display: inline-flex; gap: 4px;
+    }
+    .lang-toggle a {
+      padding: 5px 12px; border-radius: 8px;
+      font-size: .75rem; font-weight: 600;
+      text-decoration: none; color: var(--slate);
+      border: 1.5px solid #E5E5EA;
+      transition: background .15s;
+      cursor: pointer;
+    }
+    .lang-toggle a.active {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+    .lang-toggle a:hover:not(.active) { background: var(--sky); }
+
+    .lang-es, .lang-en { display: none; }
+    .lang-es.visible, .lang-en.visible { display: block; }
+
+    /* Inline variants for flex/grid containers */
+    .lang-es-inline, .lang-en-inline { display: none; }
+    .lang-es-inline.visible { display: inline; }
+    .lang-en-inline.visible { display: inline; }
+    .lang-es-flex, .lang-en-flex { display: none; }
+    .lang-es-flex.visible, .lang-en-flex.visible { display: flex; }
+    .lang-es-grid, .lang-en-grid { display: none; }
+    .lang-es-grid.visible, .lang-en-grid.visible { display: grid; }
 
     /* ── Hero ── */
     .hero {
@@ -94,7 +126,7 @@
     .btn-primary:hover { background: var(--blue-l); transform: translateY(-2px); }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 10px;
-      background: #fff; color: var(--navy);
+      background: var(--white); color: var(--navy);
       border: 1.5px solid #E5E5EA;
       padding: 14px 28px; border-radius: 14px;
       font-size: 1rem; font-weight: 600; text-decoration: none;
@@ -246,16 +278,19 @@
     /* ── Pricing ── */
     .pricing { padding: 80px 24px; background: var(--sky); }
     .pricing-grid {
-      max-width: 760px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+      max-width: 960px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;
     }
-    @media (max-width: 560px) { .pricing-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 720px) { .pricing-grid { grid-template-columns: 1fr; } }
     .plan {
       background: var(--white); border-radius: 24px;
       padding: 32px 24px;
     }
     .plan.featured {
       background: var(--blue); color: #fff;
+    }
+    .plan.lifetime {
+      background: linear-gradient(160deg, #FF9500 0%, #FFB84D 100%); color: #fff;
     }
     .plan-name {
       font-size: .75rem; font-weight: 700; letter-spacing: 1px;
@@ -269,8 +304,9 @@
     .plan-period { font-size: .875rem; opacity: .6; margin-bottom: 24px; }
     .plan ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .plan li { font-size: .9rem; display: flex; gap: 8px; align-items: flex-start; }
-    .plan li::before { content: '✓'; font-weight: 800; color: var(--green); flex-shrink: 0; }
+    .plan li::before { content: '\2713'; font-weight: 800; color: var(--green); flex-shrink: 0; }
     .plan.featured li::before { color: rgba(255,255,255,.8); }
+    .plan.lifetime li::before { color: rgba(255,255,255,.9); }
 
     /* ── CTA ── */
     .cta-section {
@@ -300,22 +336,44 @@
   <!-- Nav -->
   <nav>
     <a class="nav-logo" href="#">0Dopamine</a>
-    <a class="nav-cta" href="#download">Descargar gratis</a>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <a class="active" id="btn-es" onclick="showLang('es');return false;">ES</a>
+        <a id="btn-en" onclick="showLang('en');return false;">EN</a>
+      </div>
+      <a class="nav-cta lang-es-inline visible" href="#download">Descargar gratis</a>
+      <a class="nav-cta lang-en-inline" href="#download">Download free</a>
+    </div>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-badge">Para Android</div>
-    <h1>Recupera el control<br>de tu <span>tiempo libre</span></h1>
-    <p>0D bloquea las apps que te distraen cuando más lo necesitas. Sin rodeos, sin trucos, solo fuerza de voluntad asistida.</p>
-    <div class="hero-actions">
-      <a id="download" class="btn-primary" href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">
-        ▶ Descargar en Google Play
-      </a>
-      <a class="btn-secondary" href="#features">Ver funciones</a>
+    <!-- ES -->
+    <div class="lang-es visible">
+      <div class="hero-badge">Para Android</div>
+      <h1>Recupera el control<br>de tu <span>tiempo libre</span></h1>
+      <p>0D bloquea las apps que te distraen cuando mas lo necesitas. Sin rodeos, sin trucos, solo fuerza de voluntad asistida.</p>
+      <div class="hero-actions">
+        <a id="download" class="btn-primary" href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">
+          &#9654; Descargar en Google Play
+        </a>
+        <a class="btn-secondary" href="#features">Ver funciones</a>
+      </div>
+    </div>
+    <!-- EN -->
+    <div class="lang-en">
+      <div class="hero-badge">For Android</div>
+      <h1>Take back control<br>of your <span>free time</span></h1>
+      <p>0D blocks distracting apps when you need it most. No gimmicks, no tricks, just assisted willpower.</p>
+      <div class="hero-actions">
+        <a id="download-en" class="btn-primary" href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">
+          &#9654; Download on Google Play
+        </a>
+        <a class="btn-secondary" href="#features">See features</a>
+      </div>
     </div>
 
-    <!-- Phone mockup -->
+    <!-- Phone mockup (shared, no text) -->
     <div class="mockup-wrap">
       <div class="phone">
         <div class="phone-bar" style="height:28px;margin-top:12px;"></div>
@@ -340,69 +398,154 @@
 
   <!-- Features -->
   <section class="features" id="features">
-    <div class="section-label">Funciones</div>
-    <h2 class="section-title">Todo lo que necesitas para desconectar</h2>
-    <p class="section-sub">Diseñado para ser efectivo sin ser invasivo. Tú eliges las reglas.</p>
+    <!-- ES -->
+    <div class="lang-es visible">
+      <div class="section-label">Funciones</div>
+      <h2 class="section-title">Todo lo que necesitas para desconectar</h2>
+      <p class="section-sub">Diseñado para ser efectivo sin ser invasivo. Tu eliges las reglas.</p>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">⏸</div>
-        <h3>Pausa consciente</h3>
-        <p>Antes de abrir una app bloqueada, una animación de respiración te da unos segundos para reconsiderarlo.</p>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#9199;</div>
+          <h3>Pausa consciente</h3>
+          <p>Antes de abrir una app bloqueada, una animacion de respiracion te da unos segundos para reconsiderarlo.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#127916;</div>
+          <h3>Bloqueo de Shorts y Reels</h3>
+          <p>Usa YouTube o Instagram con normalidad, pero bloquea solo la seccion de videos cortos. Sin sacrificar la app entera.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128336;</div>
+          <h3>Horario automatico</h3>
+          <p>Define las horas en las que quieres bloquear cada app. Por las noches, en el trabajo o cuando tu decidas.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128202;</div>
+          <h3>Limite diario</h3>
+          <p>Establece cuantos minutos al dia puedes usar cada app. Cuando se acaban, se bloquea automaticamente.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#129496;</div>
+          <h3>Mindfulness integrado</h3>
+          <p>En lugar de un bloqueo seco, muestra un ejercicio de respiracion 4-7-8 que te ayuda a desengancharte con calma.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128274;</div>
+          <h3>Bloqueo total</h3>
+          <p>Cuando necesitas concentracion maxima, bloquea la app por completo con un mensaje motivacional tuyo.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128128;</div>
+          <h3>Ver solo este y cerrar</h3>
+          <p>¿Un Short te llama la atencion? Velo, pero al deslizar al siguiente la app se cierra automaticamente. Solo Premium.</p>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎬</div>
-        <h3>Bloqueo de Shorts y Reels</h3>
-        <p>Usa YouTube o Instagram con normalidad, pero bloquea solo la sección de vídeos cortos. Sin sacrificar la app entera.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🕒</div>
-        <h3>Horario automático</h3>
-        <p>Define las horas en las que quieres bloquear cada app. Por las noches, en el trabajo o cuando tú decidas.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Límite diario</h3>
-        <p>Establece cuántos minutos al día puedes usar cada app. Cuando se acaban, se bloquea automáticamente.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🧘</div>
-        <h3>Mindfulness integrado</h3>
-        <p>En lugar de un bloqueo seco, muestra un ejercicio de respiración 4-7-8 que te ayuda a desengancharte con calma.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3>Bloqueo total</h3>
-        <p>Cuando necesitas concentración máxima, bloquea la app por completo con un mensaje motivacional tuyo.</p>
+    </div>
+
+    <!-- EN -->
+    <div class="lang-en">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything you need to unplug</h2>
+      <p class="section-sub">Designed to be effective without being invasive. You set the rules.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#9199;</div>
+          <h3>Mindful pause</h3>
+          <p>Before opening a blocked app, a breathing animation gives you a few seconds to reconsider.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#127916;</div>
+          <h3>Shorts &amp; Reels blocking</h3>
+          <p>Use YouTube or Instagram normally, but block only the short-form video section. No need to sacrifice the entire app.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128336;</div>
+          <h3>Automatic schedule</h3>
+          <p>Set the hours when you want each app blocked. At night, during work, or whenever you decide.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128202;</div>
+          <h3>Daily limit</h3>
+          <p>Set how many minutes per day you can use each app. When time runs out, it blocks automatically.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#129496;</div>
+          <h3>Built-in mindfulness</h3>
+          <p>Instead of a hard block, it shows a 4-7-8 breathing exercise that helps you disengage calmly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128274;</div>
+          <h3>Total block</h3>
+          <p>When you need maximum focus, block the app entirely with your own motivational message.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128128;</div>
+          <h3>Watch One &amp; close</h3>
+          <p>A Short caught your eye? Watch it, but when you swipe to the next one the app closes automatically. Premium only.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- How it works -->
   <section class="how">
-    <div class="section-label">Cómo funciona</div>
-    <h2 class="section-title" style="text-align:center">En 3 pasos</h2>
-    <p class="section-sub" style="text-align:center;max-width:500px;margin:0 auto 48px">No hace falta configuración complicada.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div>
-          <h3>Añade una app</h3>
-          <p>Selecciona la app que quieres controlar desde la lista de aplicaciones instaladas en tu móvil.</p>
+    <!-- ES -->
+    <div class="lang-es visible">
+      <div class="section-label">Como funciona</div>
+      <h2 class="section-title" style="text-align:center">En 3 pasos</h2>
+      <p class="section-sub" style="text-align:center;max-width:500px;margin:0 auto 48px">No hace falta configuracion complicada.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Añade una app</h3>
+            <p>Selecciona la app que quieres controlar desde la lista de aplicaciones instaladas en tu movil.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Elige el modo de bloqueo</h3>
+            <p>Pausa, horario, limite diario, mindfulness o bloqueo total. Tambien puedes bloquear solo Shorts y Reels.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>0D hace el resto</h3>
+            <p>Activa la regla y listo. Cada vez que intentes abrir la app, 0D aplicara la restriccion que hayas definido.</p>
+          </div>
         </div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div>
-          <h3>Elige el modo de bloqueo</h3>
-          <p>Pausa, horario, límite diario, mindfulness o bloqueo total. También puedes bloquear solo Shorts y Reels.</p>
+    </div>
+    <!-- EN -->
+    <div class="lang-en">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title" style="text-align:center">In 3 steps</h2>
+      <p class="section-sub" style="text-align:center;max-width:500px;margin:0 auto 48px">No complicated setup needed.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Add an app</h3>
+            <p>Select the app you want to control from the list of installed apps on your phone.</p>
+          </div>
         </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div>
-          <h3>0D hace el resto</h3>
-          <p>Activa la regla y listo. Cada vez que intentes abrir la app, 0D aplicará la restricción que hayas definido.</p>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>Choose the block mode</h3>
+            <p>Pause, schedule, daily limit, mindfulness, or total block. You can also block only Shorts and Reels.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>0D does the rest</h3>
+            <p>Activate the rule and you're done. Every time you try to open the app, 0D will apply the restriction you set.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -410,10 +553,19 @@
 
   <!-- Supported apps -->
   <section class="apps-section">
-    <div class="section-label">Compatibilidad</div>
-    <h2 class="section-title">Apps soportadas</h2>
-    <p class="section-sub">Bloqueo de Shorts, Reels, Stories y Spotlight disponible para:</p>
-    <div class="carousel-track" aria-label="Apps soportadas">
+    <!-- ES -->
+    <div class="lang-es visible">
+      <div class="section-label">Compatibilidad</div>
+      <h2 class="section-title">Apps soportadas</h2>
+      <p class="section-sub">Bloqueo de Shorts, Reels, Stories y Spotlight disponible para:</p>
+    </div>
+    <!-- EN -->
+    <div class="lang-en">
+      <div class="section-label">Compatibility</div>
+      <h2 class="section-title">Supported apps</h2>
+      <p class="section-sub">Shorts, Reels, Stories and Spotlight blocking available for:</p>
+    </div>
+    <div class="carousel-track" aria-label="Supported apps">
       <!-- Set 1 -->
       <div class="app-card">
         <div class="app-logo" style="background:#FF0000"><svg viewBox="0 0 24 24" fill="#fff"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 0 0 .5 6.19 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.81 3.02 3.02 0 0 0 2.12 2.14c1.87.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 0 0 2.12-2.14A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.81zM9.55 15.57V8.43L15.82 12l-6.27 3.57z"/></svg></div>
@@ -489,83 +641,183 @@
         <span>Pinterest</span>
       </div>
     </div>
-    <p style="text-align:center;margin-top:24px;color:var(--fog);font-size:.85rem">
+    <!-- ES -->
+    <p class="lang-es visible" style="text-align:center;margin-top:24px;color:var(--fog);font-size:.85rem">
       Cualquier otra app puede bloquearse de forma completa.
+    </p>
+    <!-- EN -->
+    <p class="lang-en" style="text-align:center;margin-top:24px;color:var(--fog);font-size:.85rem">
+      Any other app can be fully blocked.
     </p>
   </section>
 
   <!-- Pricing -->
   <section class="pricing">
-    <div class="section-label">Precios</div>
-    <h2 class="section-title">Simple y honesto</h2>
-    <p class="section-sub">Empieza gratis. Mejora cuando quieras.</p>
-    <div class="pricing-grid">
-      <div class="plan">
-        <div class="plan-name">Gratuito</div>
-        <div class="plan-price">0€</div>
-        <div class="plan-period">Para siempre</div>
-        <ul>
-          <li>1 app bloqueada</li>
-          <li>Modo Pausa consciente</li>
-          <li>Sin límite de tiempo</li>
-        </ul>
+    <!-- ES -->
+    <div class="lang-es visible">
+      <div class="section-label">Precios</div>
+      <h2 class="section-title">Simple y honesto</h2>
+      <p class="section-sub">Empieza gratis. Mejora cuando quieras.</p>
+      <div class="pricing-grid">
+        <div class="plan">
+          <div class="plan-name">Gratuito</div>
+          <div class="plan-price">0&euro;</div>
+          <div class="plan-period">Para siempre</div>
+          <ul>
+            <li>1 app bloqueada</li>
+            <li>Todos los modos de bloqueo</li>
+            <li>2 horas/dia maximo</li>
+          </ul>
+        </div>
+        <div class="plan featured">
+          <div class="plan-name">Premium</div>
+          <div class="plan-price"><sup>&euro;</sup>0,99</div>
+          <div class="plan-period">al mes &middot; 7 dias de prueba gratis</div>
+          <ul>
+            <li>Apps ilimitadas</li>
+            <li>Todos los modos de bloqueo</li>
+            <li>Bloqueo de Shorts y Reels</li>
+            <li>Horario y limite diario</li>
+            <li>Watch One: ver uno y cerrar</li>
+            <li>Cancela cuando quieras</li>
+          </ul>
+        </div>
+        <div class="plan lifetime">
+          <div class="plan-name">Lifetime</div>
+          <div class="plan-price"><sup>&euro;</sup>365</div>
+          <div class="plan-period">pago unico &middot; para siempre</div>
+          <ul>
+            <li>Todo lo de Premium</li>
+            <li>Sin pagos recurrentes</li>
+            <li>Actualizaciones de por vida</li>
+          </ul>
+        </div>
       </div>
-      <div class="plan featured">
-        <div class="plan-name">Premium</div>
-        <div class="plan-price"><sup>€</sup>0,99</div>
-        <div class="plan-period">al mes · cancela cuando quieras</div>
-        <ul>
-          <li>Apps ilimitadas</li>
-          <li>Todos los modos de bloqueo</li>
-          <li>Bloqueo de Shorts y Reels</li>
-          <li>Horario y límite diario</li>
-          <li>Mindfulness integrado</li>
-        </ul>
+    </div>
+    <!-- EN -->
+    <div class="lang-en">
+      <div class="section-label">Pricing</div>
+      <h2 class="section-title">Simple and honest</h2>
+      <p class="section-sub">Start free. Upgrade when you want.</p>
+      <div class="pricing-grid">
+        <div class="plan">
+          <div class="plan-name">Free</div>
+          <div class="plan-price">0&euro;</div>
+          <div class="plan-period">Forever</div>
+          <ul>
+            <li>1 blocked app</li>
+            <li>All block modes</li>
+            <li>2 hours/day maximum</li>
+          </ul>
+        </div>
+        <div class="plan featured">
+          <div class="plan-name">Premium</div>
+          <div class="plan-price"><sup>&euro;</sup>0.99</div>
+          <div class="plan-period">per month &middot; 7-day free trial</div>
+          <ul>
+            <li>Unlimited apps</li>
+            <li>All block modes</li>
+            <li>Shorts &amp; Reels blocking</li>
+            <li>Schedule &amp; daily limit</li>
+            <li>Watch One: view one &amp; close</li>
+            <li>Cancel anytime</li>
+          </ul>
+        </div>
+        <div class="plan lifetime">
+          <div class="plan-name">Lifetime</div>
+          <div class="plan-price"><sup>&euro;</sup>365</div>
+          <div class="plan-period">one-time payment &middot; forever</div>
+          <ul>
+            <li>Everything in Premium</li>
+            <li>No recurring payments</li>
+            <li>Lifetime updates</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta-section">
-    <h2>¿Cuánto tiempo perdiste hoy<br>en el móvil?</h2>
-    <p>Empieza ahora. Es gratis y tarda 2 minutos en configurarse.</p>
-    <a class="btn-primary" style="display:inline-flex;margin:0 auto"
-       href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">
-      ▶ Descargar en Google Play
-    </a>
+    <!-- ES -->
+    <div class="lang-es visible">
+      <h2>&iquest;Cuanto tiempo perdiste hoy<br>en el movil?</h2>
+      <p>Empieza ahora. Es gratis y tarda 2 minutos en configurarse.</p>
+      <a class="btn-primary" style="display:inline-flex;margin:0 auto"
+         href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">
+        &#9654; Descargar en Google Play
+      </a>
+    </div>
+    <!-- EN -->
+    <div class="lang-en">
+      <h2>How much time did you lose today<br>on your phone?</h2>
+      <p>Start now. It's free and takes 2 minutes to set up.</p>
+      <a class="btn-primary" style="display:inline-flex;margin:0 auto"
+         href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">
+        &#9654; Download on Google Play
+      </a>
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>© 2026 0Dopamine · Hecho con 💙 para recuperar el tiempo libre</p>
-    <p style="margin-top:8px">
-      <a href="mailto:hola@zerodopamine.app">Contacto</a>
-      &nbsp;&middot;&nbsp;
-      <a href="privacy.html">Política de privacidad</a>
-      &nbsp;&middot;&nbsp;
-      <a href="terms.html">Términos de uso</a>
-    </p>
+    <!-- ES -->
+    <div class="lang-es visible">
+      <p>&copy; 2026 0Dopamine &middot; Hecho con &#x1F499; para recuperar el tiempo libre</p>
+      <p style="margin-top:8px">
+        <a href="mailto:hola@zerodopamine.app">Contacto</a>
+        &nbsp;&middot;&nbsp;
+        <a href="privacy.html">Politica de privacidad</a>
+        &nbsp;&middot;&nbsp;
+        <a href="terms.html">Terminos de uso</a>
+      </p>
+    </div>
+    <!-- EN -->
+    <div class="lang-en">
+      <p>&copy; 2026 0Dopamine &middot; Made with &#x1F499; to reclaim your free time</p>
+      <p style="margin-top:8px">
+        <a href="mailto:hola@zerodopamine.app">Contact</a>
+        &nbsp;&middot;&nbsp;
+        <a href="privacy.html">Privacy policy</a>
+        &nbsp;&middot;&nbsp;
+        <a href="terms.html">Terms of use</a>
+      </p>
+    </div>
   </footer>
 
   <script>
+  // Language toggle
+  function showLang(lang) {
+    document.querySelectorAll('.lang-es, .lang-es-inline, .lang-es-flex, .lang-es-grid').forEach(function(el) {
+      el.classList.toggle('visible', lang === 'es');
+    });
+    document.querySelectorAll('.lang-en, .lang-en-inline, .lang-en-flex, .lang-en-grid').forEach(function(el) {
+      el.classList.toggle('visible', lang === 'en');
+    });
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+  }
+
+  // Carousel
   (function() {
-    const track = document.querySelector('.carousel-track');
+    var track = document.querySelector('.carousel-track');
     if (!track) return;
 
     // Measure half-width (duplicate set) for seamless wrap
-    const cards = track.children;
-    const half = track.scrollWidth / 2;
+    var cards = track.children;
+    var half = track.scrollWidth / 2;
 
     // State
-    let pos = 0;               // current translateX
-    let speed = -0.5;          // px per frame (negative = scroll left)
-    let baseSpeed = -0.5;
-    let isDragging = false;
-    let startX = 0;
-    let dragStartPos = 0;
-    let lastX = 0;
-    let velocity = 0;
-    let rafId = null;
+    var pos = 0;               // current translateX
+    var speed = -0.5;          // px per frame (negative = scroll left)
+    var baseSpeed = -0.5;
+    var isDragging = false;
+    var startX = 0;
+    var dragStartPos = 0;
+    var lastX = 0;
+    var velocity = 0;
+    var rafId = null;
 
     function wrap() {
       if (pos <= -half) pos += half;
