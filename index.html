@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>0D — Recupera tu tiempo</title>
   <meta name="description" content="0D bloquea las apps que te distraen y te ayuda a recuperar el control de tu tiempo. Disponible para Android." />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0E1D2D" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Varela+Round&display=swap" rel="stylesheet">
@@ -52,6 +57,10 @@
       font-family: "Varela Round", "Nunito Sans", sans-serif;
       font-size: 1.3rem; font-weight: 700; color: var(--navy);
       letter-spacing: 0.5px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .nav-logo img {
+      width: 32px; height: 32px; border-radius: 7px; display: block;
     }
     .nav-right {
       display: flex; align-items: center; gap: 12px;
@@ -349,7 +358,7 @@
 
   <!-- Nav -->
   <nav>
-    <a class="nav-logo" href="#">0Dopamine</a>
+    <a class="nav-logo" href="#"><img src="assets/logo-192.png" alt="0Dopamine" />0Dopamine</a>
     <div class="nav-right">
       <div class="lang-toggle">
         <a class="active" id="btn-es" onclick="showLang('es');return false;">ES</a>
