@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instalar 0D — Beta para Android</title>
+  <meta name="description" content="Unete a la beta de 0Dopamine en Google Play. Dos pasos: email + unirse al grupo de testers." />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <meta name="theme-color" content="#0E1D2D" />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Varela+Round&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #F2F2F7;
+      --blue:   #FFFFFF;
+      --blue-l: #E5E5EA;
+      --sky:    #0E1A2E;
+      --white:  #0A1628;
+      --fog:    #98989D;
+      --slate:  #AEAEB2;
+      --green:  #34C759;
+      --red:    #FF3B30;
+      --accent: #7B79E0;
+      --surface: #111E33;
+      --border: #3A3A3C;
+    }
+
+    html, body { min-height: 100%; }
+    body {
+      font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      display: flex; flex-direction: column;
+    }
+
+    nav {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,.6);
+    }
+    .nav-logo {
+      font-family: "Varela Round", "Nunito Sans", sans-serif;
+      font-size: 1.3rem; font-weight: 700; color: var(--navy);
+      letter-spacing: 0.5px; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .nav-logo img {
+      width: 32px; height: 32px; border-radius: 7px; display: block;
+    }
+
+    .wrap {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px 60px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      max-width: 520px; width: 100%;
+      padding: 40px 32px 32px;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(123,121,224,.15);
+      color: var(--accent);
+      padding: 6px 12px; border-radius: 100px;
+      font-size: .72rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: 16px;
+    }
+    h1 {
+      font-family: "Varela Round", "Nunito Sans", sans-serif;
+      font-size: 1.75rem; font-weight: 700; line-height: 1.2;
+      color: var(--navy); margin-bottom: 10px;
+    }
+    .desc {
+      color: var(--slate); font-size: .95rem; margin-bottom: 22px;
+      line-height: 1.5;
+    }
+    .submit {
+      background: var(--blue); color: #000; font-weight: 700;
+      border: none; border-radius: 14px;
+      padding: 14px 28px; font-size: 1rem; font-family: inherit;
+      cursor: pointer; transition: all .15s;
+      text-decoration: none; text-align: center; display: block;
+      width: 100%;
+    }
+    .submit:hover { background: var(--blue-l); transform: translateY(-1px); }
+    .submit:disabled { opacity: .6; cursor: wait; transform: none; }
+    .input {
+      background: rgba(0,0,0,.3);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: var(--navy); font-size: 1rem; font-family: inherit;
+      transition: border-color .15s, background .15s;
+      width: 100%;
+      margin-top: 16px;
+    }
+    .input:focus { outline: none; border-color: var(--accent); background: rgba(0,0,0,.4); }
+    .input::placeholder { color: var(--fog); }
+    .input.error { border-color: var(--red); }
+    .step-block { display: none; }
+    .step-block.active { display: block; }
+    .note {
+      margin-top: 14px;
+      font-size: .78rem; color: var(--fog); text-align: center;
+      line-height: 1.5;
+    }
+    .step-row {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px; margin-bottom: 8px;
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: .9rem; color: var(--navy); line-height: 1.45;
+    }
+    .step-num {
+      background: var(--accent); color: white;
+      width: 22px; height: 22px; border-radius: 50%;
+      flex-shrink: 0; font-weight: 800; font-size: .78rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cta-row { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+    footer {
+      text-align: center; padding: 24px;
+      font-size: .8rem; color: rgba(255,255,255,.4);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: rgba(255,255,255,.55); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    .lang-toggle {
+      display: inline-flex; gap: 4px; float: right;
+    }
+    .lang-toggle a {
+      padding: 5px 12px; border-radius: 8px;
+      font-size: .75rem; font-weight: 600;
+      text-decoration: none; color: var(--slate);
+      border: 1.5px solid var(--border);
+      cursor: pointer;
+    }
+    .lang-toggle a.active {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+    .lang-es, .lang-en { display: none; }
+    .lang-es.visible, .lang-en.visible { display: block; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/"><img src="assets/logo-192.png" alt="0Dopamine" />0Dopamine</a>
+    <div class="lang-toggle">
+      <a class="active" id="btn-es" onclick="showLang('es');return false;">ES</a>
+      <a id="btn-en" onclick="showLang('en');return false;">EN</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="card">
+
+      <!-- ES -->
+      <div class="lang-es visible">
+        <span class="badge">Programa de testers</span>
+        <h1>Instala 0D en tu Android</h1>
+
+        <div class="step-block active" data-step="1">
+          <p class="desc">Acceso anticipado a la beta. Dejanos tu email para empezar:</p>
+          <form data-beta-form novalidate>
+            <input class="input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" maxlength="254" />
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+            <button class="submit" type="submit" style="margin-top:12px">Continuar &rarr;</button>
+          </form>
+          <p class="note">Solo usamos tu email para avisarte de novedades de la beta. Sin spam. Ver <a href="privacy.html" style="color:var(--accent)">politica de privacidad</a>.</p>
+        </div>
+
+        <div class="step-block" data-step="2">
+          <p class="desc" data-popup-ok>Te abrimos una pestana para unirte al grupo de testers. Confirma ahi y vuelve:</p>
+          <p class="desc" data-popup-blocked style="display:none">Tu navegador bloqueo la pestana. Unete al grupo primero:</p>
+          <div class="cta-row">
+            <div class="step-row"><span class="step-num">1</span><span>Confirma "Unirme al grupo" en la pestana que se abrio.</span></div>
+            <div class="step-row"><span class="step-num">2</span><span>Espera ~5 minutos para que Google active tu acceso.</span></div>
+            <div class="step-row"><span class="step-num">3</span><span>Toca el boton y descarga la beta en tu movil.</span></div>
+          </div>
+          <a class="submit" data-group-fallback
+             href="https://groups.google.com/g/zerodopamine-beta"
+             target="_blank" rel="noopener"
+             style="margin-top:18px;display:none">
+            Unirse al grupo de testers &rarr;
+          </a>
+          <a class="submit" data-beta-go
+             href="https://play.google.com/apps/testing/com.zerodopamine"
+             target="_blank" rel="noopener"
+             style="margin-top:18px">
+            Descargar la beta en Google Play &rarr;
+          </a>
+          <p class="note">Usa la misma cuenta Google en el grupo y en tu movil Android.</p>
+        </div>
+      </div>
+
+      <!-- EN -->
+      <div class="lang-en">
+        <span class="badge">Tester program</span>
+        <h1>Install 0D on your Android</h1>
+
+        <div class="step-block active" data-step="1">
+          <p class="desc">Early access to the beta. Drop us your email to get started:</p>
+          <form data-beta-form novalidate>
+            <input class="input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" maxlength="254" />
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+            <button class="submit" type="submit" style="margin-top:12px">Continue &rarr;</button>
+          </form>
+          <p class="note">We only use your email to send beta updates. No spam. See <a href="privacy.html" style="color:var(--accent)">privacy policy</a>.</p>
+        </div>
+
+        <div class="step-block" data-step="2">
+          <p class="desc" data-popup-ok>We opened a tab for you to join the tester group. Confirm there and come back:</p>
+          <p class="desc" data-popup-blocked style="display:none">Your browser blocked the tab. Join the group first:</p>
+          <div class="cta-row">
+            <div class="step-row"><span class="step-num">1</span><span>Confirm "Join group" in the tab that just opened.</span></div>
+            <div class="step-row"><span class="step-num">2</span><span>Wait ~5 minutes for Google to activate your access.</span></div>
+            <div class="step-row"><span class="step-num">3</span><span>Tap the button and install the beta on your phone.</span></div>
+          </div>
+          <a class="submit" data-group-fallback
+             href="https://groups.google.com/g/zerodopamine-beta"
+             target="_blank" rel="noopener"
+             style="margin-top:18px;display:none">
+            Join the tester group &rarr;
+          </a>
+          <a class="submit" data-beta-go
+             href="https://play.google.com/apps/testing/com.zerodopamine"
+             target="_blank" rel="noopener"
+             style="margin-top:18px">
+            Install the beta on Google Play &rarr;
+          </a>
+          <p class="note">Use the same Google account in the group and on your Android phone.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="lang-es visible">
+      <p>&copy; 2026 0Dopamine &middot; <a href="/">Volver al inicio</a> &middot; <a href="privacy.html">Privacidad</a> &middot; <a href="terms.html">Terminos</a></p>
+    </div>
+    <div class="lang-en">
+      <p>&copy; 2026 0Dopamine &middot; <a href="/">Back to home</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+  <script>
+  (function() {
+    var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzmpNH3PHTG9Lf_tDE3dHWalSTJzJCogBRGn92-l_voWj2d-71vptYjXlmTMwNoIsLb/exec';
+    var GROUP_URL = 'https://groups.google.com/g/zerodopamine-beta';
+    var STORAGE_KEY = '0d_beta_email';
+    var savedEmail = '';
+    try { savedEmail = localStorage.getItem(STORAGE_KEY) || ''; } catch(_) {}
+
+    function pushStage(stage, email) {
+      if (!ENDPOINT) return;
+      try {
+        var body = new FormData();
+        body.append('email', email || '');
+        body.append('source', '0dopamine.com/install:' + stage);
+        body.append('lang', document.documentElement.lang || 'es');
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(ENDPOINT, body);
+        } else {
+          fetch(ENDPOINT, { method: 'POST', body: body, mode: 'no-cors', keepalive: true });
+        }
+      } catch(_) {}
+    }
+
+    function setStep(n) {
+      document.querySelectorAll('[data-step]').forEach(function(el) {
+        el.classList.toggle('active', el.getAttribute('data-step') === String(n));
+      });
+    }
+
+    function showGroupFallback(blocked) {
+      document.querySelectorAll('[data-popup-ok]').forEach(function(el) {
+        el.style.display = blocked ? 'none' : '';
+      });
+      document.querySelectorAll('[data-popup-blocked]').forEach(function(el) {
+        el.style.display = blocked ? '' : 'none';
+      });
+      document.querySelectorAll('[data-group-fallback]').forEach(function(el) {
+        el.style.display = blocked ? '' : 'none';
+      });
+    }
+
+    if (savedEmail) {
+      showGroupFallback(true);
+      setStep(2);
+      pushStage('step2_view_returning', savedEmail);
+    }
+
+    document.querySelectorAll('[data-beta-go]').forEach(function(el) {
+      el.addEventListener('click', function() { pushStage('play_click', savedEmail); });
+    });
+    document.querySelectorAll('[data-group-fallback]').forEach(function(el) {
+      el.addEventListener('click', function() { pushStage('group_click', savedEmail); });
+    });
+
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    document.querySelectorAll('[data-beta-form]').forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var input = form.querySelector('.input');
+        var hp = form.querySelector('input[name="website"]');
+        var btn = form.querySelector('.submit');
+        var email = (input.value || '').trim().toLowerCase();
+
+        if (hp && hp.value) { showGroupFallback(false); setStep(2); return; }
+
+        if (!email || email.length > 254 || !EMAIL_RE.test(email)) {
+          input.classList.add('error');
+          input.focus();
+          return;
+        }
+        input.classList.remove('error');
+        btn.disabled = true;
+
+        var popup = window.open(GROUP_URL, '_blank', 'noopener');
+        var popupBlocked = !popup;
+
+        function advance() {
+          btn.disabled = false;
+          savedEmail = email;
+          try { localStorage.setItem(STORAGE_KEY, email); } catch(_) {}
+          showGroupFallback(popupBlocked);
+          setStep(2);
+          pushStage('step2_view', email);
+        }
+
+        var body = new FormData();
+        body.append('email', email);
+        body.append('source', '0dopamine.com/install');
+        body.append('lang', document.documentElement.lang || 'es');
+        if (hp) body.append('website', hp.value || '');
+
+        fetch(ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
+          .then(advance)
+          .catch(advance);
+      });
+    });
+  })();
+
+  function showLang(lang) {
+    document.querySelectorAll('.lang-es').forEach(function(el) {
+      el.classList.toggle('visible', lang === 'es');
+    });
+    document.querySelectorAll('.lang-en').forEach(function(el) {
+      el.classList.toggle('visible', lang === 'en');
+    });
+    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+  }
+
+  // Auto-detect browser language on first load
+  (function() {
+    var lang = (navigator.language || 'es').slice(0, 2).toLowerCase();
+    if (lang === 'en') showLang('en');
+  })();
+  </script>
+</body>
+</html>

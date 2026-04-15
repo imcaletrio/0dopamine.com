@@ -1004,6 +1004,26 @@
     // Apps Script web app endpoint — writes to Google Sheet "0D Beta Signups"
     var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzmpNH3PHTG9Lf_tDE3dHWalSTJzJCogBRGn92-l_voWj2d-71vptYjXlmTMwNoIsLb/exec';
     var GROUP_URL = 'https://groups.google.com/g/zerodopamine-beta';
+    var STORAGE_KEY = '0d_beta_email';
+    var savedEmail = '';
+    try { savedEmail = localStorage.getItem(STORAGE_KEY) || ''; } catch(_) {}
+
+    // Funnel telemetry — piggybacks on the "source" column (no Apps Script changes needed).
+    // Rows show as "0dopamine.com:<stage>" so the sheet can be filtered/counted by stage.
+    function pushStage(stage, email) {
+      if (!ENDPOINT) return;
+      try {
+        var body = new FormData();
+        body.append('email', email || '');
+        body.append('source', '0dopamine.com:' + stage);
+        body.append('lang', document.documentElement.lang || 'es');
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(ENDPOINT, body);
+        } else {
+          fetch(ENDPOINT, { method: 'POST', body: body, mode: 'no-cors', keepalive: true });
+        }
+      } catch(_) {}
+    }
 
     function setStep(n) {
       modal.querySelectorAll('[data-step]').forEach(function(el) {
@@ -1024,9 +1044,17 @@
     }
 
     function open() {
-      setStep(1);
       modal.querySelectorAll('[data-beta-form]').forEach(function(f) { f.reset(); });
       modal.querySelectorAll('.modal-input').forEach(function(i) { i.classList.remove('error'); });
+      if (savedEmail) {
+        // Returning user — skip Step 1, show Step 2 with the group fallback button
+        // (don't auto-open popup; they likely already joined).
+        showGroupFallback(true);
+        setStep(2);
+        pushStage('step2_view_returning', savedEmail);
+      } else {
+        setStep(1);
+      }
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -1046,7 +1074,13 @@
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
 
     modal.querySelectorAll('[data-beta-go]').forEach(function(el) {
-      el.addEventListener('click', function() { setTimeout(close, 400); });
+      el.addEventListener('click', function() {
+        pushStage('play_click', savedEmail);
+        setTimeout(close, 400);
+      });
+    });
+    modal.querySelectorAll('[data-group-fallback]').forEach(function(el) {
+      el.addEventListener('click', function() { pushStage('group_click', savedEmail); });
     });
 
     var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -1077,8 +1111,11 @@
 
         function advance() {
           btn.disabled = false;
+          savedEmail = email;
+          try { localStorage.setItem(STORAGE_KEY, email); } catch(_) {}
           showGroupFallback(popupBlocked);
           setStep(2);
+          pushStage('step2_view', email);
         }
 
         if (!ENDPOINT || ENDPOINT.indexOf('REPLACE_') === 0) {
