@@ -927,27 +927,28 @@
           <p class="modal-note">Solo usamos tu email para avisarte de novedades de la beta. Sin spam. Ver <a href="privacy.html" style="color:var(--accent)">politica de privacidad</a>.</p>
         </div>
 
-        <!-- Step 2: join group + play -->
+        <!-- Step 2: join group (auto-opened) + play -->
         <div class="modal-step-2" data-step="2">
-          <p class="modal-desc">Perfecto. Ahora dos pasos rapidos en tu cuenta Google:</p>
+          <p class="modal-desc" data-popup-ok>Te abrimos una pestana para unirte al grupo de testers. Confirma ahi y vuelve:</p>
+          <p class="modal-desc" data-popup-blocked style="display:none">Tu navegador bloqueo la pestana. Unete al grupo primero:</p>
           <div class="modal-cta-row">
-            <div class="modal-step"><span class="modal-step-num">1</span><span>Unete a nuestro grupo de testers (1 click, sin aprobacion).</span></div>
+            <div class="modal-step"><span class="modal-step-num">1</span><span>Confirma "Unirme al grupo" en la pestana que se abrio.</span></div>
             <div class="modal-step"><span class="modal-step-num">2</span><span>Espera ~5 minutos para que Google active tu acceso.</span></div>
-            <div class="modal-step"><span class="modal-step-num">3</span><span>Abre Google Play y descarga la beta.</span></div>
+            <div class="modal-step"><span class="modal-step-num">3</span><span>Toca el boton y descarga la beta en tu movil.</span></div>
           </div>
-          <a class="modal-submit"
+          <a class="modal-submit" data-group-fallback
              href="https://groups.google.com/g/zerodopamine-beta"
              target="_blank" rel="noopener"
-             style="margin-top:18px">
-            1. Unirse al grupo de testers &rarr;
+             style="margin-top:18px;display:none">
+            Unirse al grupo de testers &rarr;
           </a>
           <a class="modal-submit" data-beta-go
              href="https://play.google.com/apps/testing/com.zerodopamine"
              target="_blank" rel="noopener"
-             style="margin-top:10px;background:transparent;color:var(--navy);border:1.5px solid var(--border)">
-            2. Ya me uni, abrir Google Play
+             style="margin-top:18px">
+            Descargar la beta en Google Play &rarr;
           </a>
-          <p class="modal-note">Usa la misma cuenta Google en los dos pasos y en tu movil Android.</p>
+          <p class="modal-note">Usa la misma cuenta Google en el grupo y en tu movil Android.</p>
         </div>
       </div>
 
@@ -967,27 +968,28 @@
           <p class="modal-note">We only use your email to send beta updates. No spam. See <a href="privacy.html" style="color:var(--accent)">privacy policy</a>.</p>
         </div>
 
-        <!-- Step 2: join group + play -->
+        <!-- Step 2: join group (auto-opened) + play -->
         <div class="modal-step-2" data-step="2">
-          <p class="modal-desc">Great. Now two quick steps with your Google account:</p>
+          <p class="modal-desc" data-popup-ok>We opened a tab for you to join the tester group. Confirm there and come back:</p>
+          <p class="modal-desc" data-popup-blocked style="display:none">Your browser blocked the tab. Join the group first:</p>
           <div class="modal-cta-row">
-            <div class="modal-step"><span class="modal-step-num">1</span><span>Join our tester group (1 click, no approval needed).</span></div>
+            <div class="modal-step"><span class="modal-step-num">1</span><span>Confirm "Join group" in the tab that just opened.</span></div>
             <div class="modal-step"><span class="modal-step-num">2</span><span>Wait ~5 minutes for Google to activate your access.</span></div>
-            <div class="modal-step"><span class="modal-step-num">3</span><span>Open Google Play and install the beta.</span></div>
+            <div class="modal-step"><span class="modal-step-num">3</span><span>Tap the button and install the beta on your phone.</span></div>
           </div>
-          <a class="modal-submit"
+          <a class="modal-submit" data-group-fallback
              href="https://groups.google.com/g/zerodopamine-beta"
              target="_blank" rel="noopener"
-             style="margin-top:18px">
-            1. Join the tester group &rarr;
+             style="margin-top:18px;display:none">
+            Join the tester group &rarr;
           </a>
           <a class="modal-submit" data-beta-go
              href="https://play.google.com/apps/testing/com.zerodopamine"
              target="_blank" rel="noopener"
-             style="margin-top:10px;background:transparent;color:var(--navy);border:1.5px solid var(--border)">
-            2. I joined, open Google Play
+             style="margin-top:18px">
+            Install the beta on Google Play &rarr;
           </a>
-          <p class="modal-note">Use the same Google account in both steps and on your Android phone.</p>
+          <p class="modal-note">Use the same Google account in the group and on your Android phone.</p>
         </div>
       </div>
     </div>
@@ -1001,10 +1003,23 @@
 
     // Apps Script web app endpoint — writes to Google Sheet "0D Beta Signups"
     var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzmpNH3PHTG9Lf_tDE3dHWalSTJzJCogBRGn92-l_voWj2d-71vptYjXlmTMwNoIsLb/exec';
+    var GROUP_URL = 'https://groups.google.com/g/zerodopamine-beta';
 
     function setStep(n) {
       modal.querySelectorAll('[data-step]').forEach(function(el) {
         el.classList.toggle('active', el.getAttribute('data-step') === String(n));
+      });
+    }
+
+    function showGroupFallback(blocked) {
+      modal.querySelectorAll('[data-popup-ok]').forEach(function(el) {
+        el.style.display = blocked ? 'none' : '';
+      });
+      modal.querySelectorAll('[data-popup-blocked]').forEach(function(el) {
+        el.style.display = blocked ? '' : 'none';
+      });
+      modal.querySelectorAll('[data-group-fallback]').forEach(function(el) {
+        el.style.display = blocked ? '' : 'none';
       });
     }
 
@@ -1044,8 +1059,8 @@
         var btn = form.querySelector('.modal-submit');
         var email = (input.value || '').trim().toLowerCase();
 
-        // Honeypot tripped — silent advance (don't leak to bots)
-        if (hp && hp.value) { setStep(2); return; }
+        // Honeypot tripped — silent advance (don't leak to bots), no popup for them
+        if (hp && hp.value) { showGroupFallback(false); setStep(2); return; }
 
         if (!email || email.length > 254 || !EMAIL_RE.test(email)) {
           input.classList.add('error');
@@ -1055,7 +1070,16 @@
         input.classList.remove('error');
         btn.disabled = true;
 
-        function advance() { btn.disabled = false; setStep(2); }
+        // Open group-join tab synchronously inside the user gesture so popup blockers
+        // don't kill it. If blocked, fall back to a visible CTA in step 2.
+        var popup = window.open(GROUP_URL, '_blank', 'noopener');
+        var popupBlocked = !popup;
+
+        function advance() {
+          btn.disabled = false;
+          showGroupFallback(popupBlocked);
+          setStep(2);
+        }
 
         if (!ENDPOINT || ENDPOINT.indexOf('REPLACE_') === 0) {
           advance();
