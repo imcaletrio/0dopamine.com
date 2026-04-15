@@ -352,6 +352,88 @@
     }
     footer a { color: rgba(255,255,255,.5); text-decoration: none; }
     footer a:hover { color: #fff; }
+
+    /* ── Beta signup modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      justify-content: center; align-items: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      max-width: 460px; width: 100%;
+      padding: 40px 32px 32px;
+      position: relative;
+      animation: modalIn .25s ease;
+      max-height: 90vh; overflow-y: auto;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(16px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-close {
+      position: absolute; top: 12px; right: 12px;
+      background: none; border: none; color: var(--fog);
+      font-size: 1.5rem; cursor: pointer;
+      width: 36px; height: 36px; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px; transition: all .15s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.08); color: var(--navy); }
+    .modal-badge {
+      display: inline-block;
+      background: rgba(123,121,224,.15);
+      color: var(--accent);
+      padding: 6px 12px; border-radius: 100px;
+      font-size: .72rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: 16px;
+    }
+    .modal h3 {
+      font-size: 1.5rem; font-weight: 800; margin-bottom: 10px;
+      line-height: 1.25; color: var(--navy);
+    }
+    .modal-desc {
+      color: var(--slate); font-size: .95rem; margin-bottom: 22px;
+      line-height: 1.5;
+    }
+    .modal-submit {
+      background: var(--blue); color: #000; font-weight: 700;
+      border: none; border-radius: 14px;
+      padding: 14px 28px; font-size: 1rem; font-family: inherit;
+      cursor: pointer; transition: all .15s;
+      text-decoration: none; text-align: center; display: block;
+      width: 100%;
+    }
+    .modal-submit:hover { background: var(--blue-l); transform: translateY(-1px); }
+    .modal-note {
+      margin-top: 14px;
+      font-size: .78rem; color: var(--fog); text-align: center;
+      line-height: 1.5;
+    }
+    .modal-step {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px; margin-bottom: 8px;
+      text-align: left;
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: .9rem; color: var(--navy); line-height: 1.45;
+    }
+    .modal-step-num {
+      background: var(--accent); color: white;
+      width: 22px; height: 22px; border-radius: 50%;
+      flex-shrink: 0; font-weight: 800; font-size: .78rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-cta-row { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
   </style>
 </head>
 <body>
@@ -382,6 +464,10 @@
         </a>
         <a class="btn-secondary" href="#features">Ver funciones</a>
       </div>
+      <p style="margin-top:18px;font-size:.9rem;color:var(--fog)">
+        &iquest;Quieres acceso anticipado?
+        <a href="#" data-beta-open style="color:var(--accent);font-weight:700;text-decoration:none">Unirte a la beta &rarr;</a>
+      </p>
     </div>
     <!-- EN -->
     <div class="lang-en">
@@ -394,6 +480,10 @@
         </a>
         <a class="btn-secondary" href="#features">See features</a>
       </div>
+      <p style="margin-top:18px;font-size:.9rem;color:var(--fog)">
+        Want early access?
+        <a href="#" data-beta-open style="color:var(--accent);font-weight:700;text-decoration:none">Join the beta &rarr;</a>
+      </p>
     </div>
 
     <!-- Phone mockup (shared, no text) -->
@@ -808,7 +898,92 @@
     </div>
   </footer>
 
+  <!-- Beta signup modal -->
+  <div class="modal-overlay" id="beta-modal" role="dialog" aria-modal="true" aria-labelledby="beta-title">
+    <div class="modal">
+      <button type="button" class="modal-close" aria-label="Cerrar" data-beta-close>&times;</button>
+
+      <!-- ES -->
+      <div class="lang-es visible">
+        <span class="modal-badge">Programa de testers</span>
+        <h3 id="beta-title">Se de los primeros en probar 0D</h3>
+        <p class="modal-desc">Acceso anticipado a nuevas funciones. Dos pasos rapidos desde tu cuenta Google:</p>
+        <div class="modal-cta-row">
+          <div class="modal-step"><span class="modal-step-num">1</span><span>Unete a nuestro grupo de testers (1 click, sin aprobacion).</span></div>
+          <div class="modal-step"><span class="modal-step-num">2</span><span>Espera ~5 minutos para que Google active tu acceso.</span></div>
+          <div class="modal-step"><span class="modal-step-num">3</span><span>Abre Google Play y descarga la beta.</span></div>
+        </div>
+        <a class="modal-submit"
+           href="https://groups.google.com/g/zerodopamine-beta"
+           target="_blank" rel="noopener"
+           style="margin-top:18px">
+          1. Unirse al grupo de testers &rarr;
+        </a>
+        <a class="modal-submit" data-beta-go
+           href="https://play.google.com/apps/testing/com.zerodopamine"
+           target="_blank" rel="noopener"
+           style="margin-top:10px;background:transparent;color:var(--navy);border:1.5px solid var(--border)">
+          2. Ya me uni, abrir Google Play
+        </a>
+        <p class="modal-note">Usa la misma cuenta Google en los dos pasos y en tu movil Android.</p>
+      </div>
+      <!-- EN -->
+      <div class="lang-en">
+        <span class="modal-badge">Tester program</span>
+        <h3>Be one of the first to try 0D</h3>
+        <p class="modal-desc">Early access to new features. Two quick steps with your Google account:</p>
+        <div class="modal-cta-row">
+          <div class="modal-step"><span class="modal-step-num">1</span><span>Join our tester group (1 click, no approval needed).</span></div>
+          <div class="modal-step"><span class="modal-step-num">2</span><span>Wait ~5 minutes for Google to activate your access.</span></div>
+          <div class="modal-step"><span class="modal-step-num">3</span><span>Open Google Play and install the beta.</span></div>
+        </div>
+        <a class="modal-submit"
+           href="https://groups.google.com/g/zerodopamine-beta"
+           target="_blank" rel="noopener"
+           style="margin-top:18px">
+          1. Join the tester group &rarr;
+        </a>
+        <a class="modal-submit" data-beta-go
+           href="https://play.google.com/apps/testing/com.zerodopamine"
+           target="_blank" rel="noopener"
+           style="margin-top:10px;background:transparent;color:var(--navy);border:1.5px solid var(--border)">
+          2. I joined, open Google Play
+        </a>
+        <p class="modal-note">Use the same Google account in both steps and on your Android phone.</p>
+      </div>
+    </div>
+  </div>
+
   <script>
+  // Beta modal
+  (function() {
+    var modal = document.getElementById('beta-modal');
+    if (!modal) return;
+
+    function open() {
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-beta-open]').forEach(function(el) {
+      el.addEventListener('click', function(e) { e.preventDefault(); open(); });
+    });
+    modal.querySelectorAll('[data-beta-close]').forEach(function(el) {
+      el.addEventListener('click', function(e) { e.preventDefault(); close(); });
+    });
+    modal.addEventListener('click', function(e) { if (e.target === modal) close(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+
+    // Close modal after a short delay when user clicks the "Continue to Play" CTA
+    modal.querySelectorAll('[data-beta-go]').forEach(function(el) {
+      el.addEventListener('click', function() { setTimeout(close, 400); });
+    });
+  })();
+
   // Language toggle
   function showLang(lang) {
     document.querySelectorAll('.lang-es, .lang-es-inline, .lang-es-flex, .lang-es-grid').forEach(function(el) {
