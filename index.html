@@ -920,10 +920,11 @@
         <div class="modal-step-1 active" data-step="1">
           <p class="modal-desc">Acceso anticipado a nuevas funciones. Dejanos tu email para empezar:</p>
           <form data-beta-form novalidate>
-            <input class="modal-input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" />
+            <input class="modal-input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" maxlength="254" />
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             <button class="modal-submit" type="submit" style="margin-top:12px">Continuar &rarr;</button>
           </form>
-          <p class="modal-note">Solo usamos tu email para avisarte de novedades de la beta. Sin spam.</p>
+          <p class="modal-note">Solo usamos tu email para avisarte de novedades de la beta. Sin spam. Ver <a href="privacy.html" style="color:var(--accent)">politica de privacidad</a>.</p>
         </div>
 
         <!-- Step 2: join group + play -->
@@ -959,10 +960,11 @@
         <div class="modal-step-1 active" data-step="1">
           <p class="modal-desc">Early access to new features. Drop us your email to get started:</p>
           <form data-beta-form novalidate>
-            <input class="modal-input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" />
+            <input class="modal-input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" maxlength="254" />
+            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             <button class="modal-submit" type="submit" style="margin-top:12px">Continue &rarr;</button>
           </form>
-          <p class="modal-note">We only use your email to send beta updates. No spam.</p>
+          <p class="modal-note">We only use your email to send beta updates. No spam. See <a href="privacy.html" style="color:var(--accent)">privacy policy</a>.</p>
         </div>
 
         <!-- Step 2: join group + play -->
@@ -1032,13 +1034,20 @@
       el.addEventListener('click', function() { setTimeout(close, 400); });
     });
 
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
     modal.querySelectorAll('[data-beta-form]').forEach(function(form) {
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         var input = form.querySelector('.modal-input');
+        var hp = form.querySelector('input[name="website"]');
         var btn = form.querySelector('.modal-submit');
-        var email = (input.value || '').trim();
-        if (!email || !input.checkValidity()) {
+        var email = (input.value || '').trim().toLowerCase();
+
+        // Honeypot tripped — silent advance (don't leak to bots)
+        if (hp && hp.value) { setStep(2); return; }
+
+        if (!email || email.length > 254 || !EMAIL_RE.test(email)) {
           input.classList.add('error');
           input.focus();
           return;
@@ -1057,6 +1066,7 @@
         body.append('email', email);
         body.append('source', '0dopamine.com');
         body.append('lang', document.documentElement.lang || 'es');
+        if (hp) body.append('website', hp.value || '');
 
         fetch(ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
           .then(advance)
