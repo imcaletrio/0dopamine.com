@@ -413,6 +413,22 @@
       width: 100%;
     }
     .modal-submit:hover { background: var(--blue-l); transform: translateY(-1px); }
+    .modal-submit:disabled { opacity: .6; cursor: wait; transform: none; }
+    .modal-input {
+      background: rgba(0,0,0,.3);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+      color: var(--navy); font-size: 1rem; font-family: inherit;
+      transition: border-color .15s, background .15s;
+      width: 100%;
+      margin-top: 16px;
+    }
+    .modal-input:focus { outline: none; border-color: var(--accent); background: rgba(0,0,0,.4); }
+    .modal-input::placeholder { color: var(--fog); }
+    .modal-input.error { border-color: var(--red); }
+    .modal-step-1, .modal-step-2 { display: none; }
+    .modal-step-1.active, .modal-step-2.active { display: block; }
     .modal-note {
       margin-top: 14px;
       font-size: .78rem; color: var(--fog); text-align: center;
@@ -899,49 +915,78 @@
       <div class="lang-es visible">
         <span class="modal-badge">Programa de testers</span>
         <h3 id="beta-title">Se de los primeros en probar 0D</h3>
-        <p class="modal-desc">Acceso anticipado a nuevas funciones. Dos pasos rapidos desde tu cuenta Google:</p>
-        <div class="modal-cta-row">
-          <div class="modal-step"><span class="modal-step-num">1</span><span>Unete a nuestro grupo de testers (1 click, sin aprobacion).</span></div>
-          <div class="modal-step"><span class="modal-step-num">2</span><span>Espera ~5 minutos para que Google active tu acceso.</span></div>
-          <div class="modal-step"><span class="modal-step-num">3</span><span>Abre Google Play y descarga la beta.</span></div>
+
+        <!-- Step 1: email -->
+        <div class="modal-step-1 active" data-step="1">
+          <p class="modal-desc">Acceso anticipado a nuevas funciones. Dejanos tu email para empezar:</p>
+          <form data-beta-form novalidate>
+            <input class="modal-input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" />
+            <button class="modal-submit" type="submit" style="margin-top:12px">Continuar &rarr;</button>
+          </form>
+          <p class="modal-note">Solo usamos tu email para avisarte de novedades de la beta. Sin spam.</p>
         </div>
-        <a class="modal-submit"
-           href="https://groups.google.com/g/zerodopamine-beta"
-           target="_blank" rel="noopener"
-           style="margin-top:18px">
-          1. Unirse al grupo de testers &rarr;
-        </a>
-        <a class="modal-submit" data-beta-go
-           href="https://play.google.com/apps/testing/com.zerodopamine"
-           target="_blank" rel="noopener"
-           style="margin-top:10px;background:transparent;color:var(--navy);border:1.5px solid var(--border)">
-          2. Ya me uni, abrir Google Play
-        </a>
-        <p class="modal-note">Usa la misma cuenta Google en los dos pasos y en tu movil Android.</p>
+
+        <!-- Step 2: join group + play -->
+        <div class="modal-step-2" data-step="2">
+          <p class="modal-desc">Perfecto. Ahora dos pasos rapidos en tu cuenta Google:</p>
+          <div class="modal-cta-row">
+            <div class="modal-step"><span class="modal-step-num">1</span><span>Unete a nuestro grupo de testers (1 click, sin aprobacion).</span></div>
+            <div class="modal-step"><span class="modal-step-num">2</span><span>Espera ~5 minutos para que Google active tu acceso.</span></div>
+            <div class="modal-step"><span class="modal-step-num">3</span><span>Abre Google Play y descarga la beta.</span></div>
+          </div>
+          <a class="modal-submit"
+             href="https://groups.google.com/g/zerodopamine-beta"
+             target="_blank" rel="noopener"
+             style="margin-top:18px">
+            1. Unirse al grupo de testers &rarr;
+          </a>
+          <a class="modal-submit" data-beta-go
+             href="https://play.google.com/apps/testing/com.zerodopamine"
+             target="_blank" rel="noopener"
+             style="margin-top:10px;background:transparent;color:var(--navy);border:1.5px solid var(--border)">
+            2. Ya me uni, abrir Google Play
+          </a>
+          <p class="modal-note">Usa la misma cuenta Google en los dos pasos y en tu movil Android.</p>
+        </div>
       </div>
+
       <!-- EN -->
       <div class="lang-en">
         <span class="modal-badge">Tester program</span>
         <h3>Be one of the first to try 0D</h3>
-        <p class="modal-desc">Early access to new features. Two quick steps with your Google account:</p>
-        <div class="modal-cta-row">
-          <div class="modal-step"><span class="modal-step-num">1</span><span>Join our tester group (1 click, no approval needed).</span></div>
-          <div class="modal-step"><span class="modal-step-num">2</span><span>Wait ~5 minutes for Google to activate your access.</span></div>
-          <div class="modal-step"><span class="modal-step-num">3</span><span>Open Google Play and install the beta.</span></div>
+
+        <!-- Step 1: email -->
+        <div class="modal-step-1 active" data-step="1">
+          <p class="modal-desc">Early access to new features. Drop us your email to get started:</p>
+          <form data-beta-form novalidate>
+            <input class="modal-input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" />
+            <button class="modal-submit" type="submit" style="margin-top:12px">Continue &rarr;</button>
+          </form>
+          <p class="modal-note">We only use your email to send beta updates. No spam.</p>
         </div>
-        <a class="modal-submit"
-           href="https://groups.google.com/g/zerodopamine-beta"
-           target="_blank" rel="noopener"
-           style="margin-top:18px">
-          1. Join the tester group &rarr;
-        </a>
-        <a class="modal-submit" data-beta-go
-           href="https://play.google.com/apps/testing/com.zerodopamine"
-           target="_blank" rel="noopener"
-           style="margin-top:10px;background:transparent;color:var(--navy);border:1.5px solid var(--border)">
-          2. I joined, open Google Play
-        </a>
-        <p class="modal-note">Use the same Google account in both steps and on your Android phone.</p>
+
+        <!-- Step 2: join group + play -->
+        <div class="modal-step-2" data-step="2">
+          <p class="modal-desc">Great. Now two quick steps with your Google account:</p>
+          <div class="modal-cta-row">
+            <div class="modal-step"><span class="modal-step-num">1</span><span>Join our tester group (1 click, no approval needed).</span></div>
+            <div class="modal-step"><span class="modal-step-num">2</span><span>Wait ~5 minutes for Google to activate your access.</span></div>
+            <div class="modal-step"><span class="modal-step-num">3</span><span>Open Google Play and install the beta.</span></div>
+          </div>
+          <a class="modal-submit"
+             href="https://groups.google.com/g/zerodopamine-beta"
+             target="_blank" rel="noopener"
+             style="margin-top:18px">
+            1. Join the tester group &rarr;
+          </a>
+          <a class="modal-submit" data-beta-go
+             href="https://play.google.com/apps/testing/com.zerodopamine"
+             target="_blank" rel="noopener"
+             style="margin-top:10px;background:transparent;color:var(--navy);border:1.5px solid var(--border)">
+            2. I joined, open Google Play
+          </a>
+          <p class="modal-note">Use the same Google account in both steps and on your Android phone.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -952,10 +997,23 @@
     var modal = document.getElementById('beta-modal');
     if (!modal) return;
 
+    // Apps Script web app endpoint — writes to Google Sheet "0D Beta Signups"
+    var ENDPOINT = 'REPLACE_WITH_APPS_SCRIPT_WEBAPP_URL';
+
+    function setStep(n) {
+      modal.querySelectorAll('[data-step]').forEach(function(el) {
+        el.classList.toggle('active', el.getAttribute('data-step') === String(n));
+      });
+    }
+
     function open() {
+      setStep(1);
+      modal.querySelectorAll('[data-beta-form]').forEach(function(f) { f.reset(); });
+      modal.querySelectorAll('.modal-input').forEach(function(i) { i.classList.remove('error'); });
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
+
     function close() {
       modal.classList.remove('open');
       document.body.style.overflow = '';
@@ -970,9 +1028,40 @@
     modal.addEventListener('click', function(e) { if (e.target === modal) close(); });
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
 
-    // Close modal after a short delay when user clicks the "Continue to Play" CTA
     modal.querySelectorAll('[data-beta-go]').forEach(function(el) {
       el.addEventListener('click', function() { setTimeout(close, 400); });
+    });
+
+    modal.querySelectorAll('[data-beta-form]').forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var input = form.querySelector('.modal-input');
+        var btn = form.querySelector('.modal-submit');
+        var email = (input.value || '').trim();
+        if (!email || !input.checkValidity()) {
+          input.classList.add('error');
+          input.focus();
+          return;
+        }
+        input.classList.remove('error');
+        btn.disabled = true;
+
+        function advance() { btn.disabled = false; setStep(2); }
+
+        if (!ENDPOINT || ENDPOINT.indexOf('REPLACE_') === 0) {
+          advance();
+          return;
+        }
+
+        var body = new FormData();
+        body.append('email', email);
+        body.append('source', '0dopamine.com');
+        body.append('lang', document.documentElement.lang || 'es');
+
+        fetch(ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
+          .then(advance)
+          .catch(advance);
+      });
     });
   })();
 
