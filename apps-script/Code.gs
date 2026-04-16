@@ -32,8 +32,8 @@ function doPost(e) {
 
     var p = e.parameter || {};
     var email  = String(p.email  || '').trim().toLowerCase();
-    var source = String(p.source || '').trim().slice(0, 80);
-    var lang   = String(p.lang   || '').trim().slice(0, 8);
+    var source = sanitize_(String(p.source || '').trim().slice(0, 80));
+    var lang   = sanitize_(String(p.lang   || '').trim().slice(0, 8));
     var hp     = String(p.website || '');
 
     // Honeypot: silent success (don't leak to bots)
@@ -221,6 +221,12 @@ function htmlShell_(title, intro, steps, cta1, cta2, note, reply, sig, foot) {
     '<p style="max-width:560px;margin:16px auto 0;font-size:12px;color:#888;line-height:1.5;text-align:center">' + foot + '</p>',
     '</td></tr></table></body></html>'
   ].join('');
+}
+
+function sanitize_(str) {
+  // Prevent Google Sheets formula injection
+  if (/^[=+\-@\t\r]/.test(str)) return "'" + str;
+  return str;
 }
 
 function json_(obj) {

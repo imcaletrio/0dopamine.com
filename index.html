@@ -10,6 +10,23 @@
   <link rel="shortcut icon" href="favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <meta name="theme-color" content="#0E1D2D" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="0Dopamine — Recupera tu tiempo" />
+  <meta property="og:description" content="Bloquea las apps que te distraen y recupera el control de tu tiempo. Gratis para Android." />
+  <meta property="og:image" content="https://0dopamine.com/assets/logo-512.png" />
+  <meta property="og:url" content="https://0dopamine.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="0Dopamine — Recupera tu tiempo" />
+  <meta name="twitter:description" content="Bloquea las apps que te distraen. Gratis para Android." />
+  <meta name="twitter:image" content="https://0dopamine.com/assets/logo-512.png" />
+
+  <link rel="canonical" href="https://0dopamine.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Varela+Round&display=swap" rel="stylesheet">
@@ -426,7 +443,8 @@
     }
     .modal-input:focus { outline: none; border-color: var(--accent); background: rgba(0,0,0,.4); }
     .modal-input::placeholder { color: var(--fog); }
-    .modal-input.error { border-color: var(--red); }
+    .modal-input.error, .modal-input[aria-invalid="true"] { border-color: var(--red); }
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
     .modal-step-1, .modal-step-2 { display: none; }
     .modal-step-1.active, .modal-step-2.active { display: block; }
     .modal-note {
@@ -909,7 +927,7 @@
   <!-- Beta signup modal -->
   <div class="modal-overlay" id="beta-modal" role="dialog" aria-modal="true" aria-labelledby="beta-title">
     <div class="modal">
-      <button type="button" class="modal-close" aria-label="Cerrar" data-beta-close>&times;</button>
+      <button type="button" class="modal-close" aria-label="Close" data-beta-close>&times;</button>
 
       <!-- ES -->
       <div class="lang-es visible">
@@ -920,7 +938,8 @@
         <div class="modal-step-1 active" data-step="1">
           <p class="modal-desc">Acceso anticipado a nuevas funciones. Dejanos tu email para empezar:</p>
           <form data-beta-form novalidate>
-            <input class="modal-input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" maxlength="254" />
+            <label for="beta-email-es" class="sr-only">Email</label>
+            <input id="beta-email-es" class="modal-input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" maxlength="254" />
             <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             <button class="modal-submit" type="submit" style="margin-top:12px">Continuar &rarr;</button>
           </form>
@@ -961,7 +980,8 @@
         <div class="modal-step-1 active" data-step="1">
           <p class="modal-desc">Early access to new features. Drop us your email to get started:</p>
           <form data-beta-form novalidate>
-            <input class="modal-input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" maxlength="254" />
+            <label for="beta-email-en" class="sr-only">Email</label>
+            <input id="beta-email-en" class="modal-input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" maxlength="254" />
             <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             <button class="modal-submit" type="submit" style="margin-top:12px">Continue &rarr;</button>
           </form>
@@ -1098,10 +1118,12 @@
 
         if (!email || email.length > 254 || !EMAIL_RE.test(email)) {
           input.classList.add('error');
+          input.setAttribute('aria-invalid', 'true');
           input.focus();
           return;
         }
         input.classList.remove('error');
+        input.removeAttribute('aria-invalid');
         btn.disabled = true;
 
         // Open group-join tab synchronously inside the user gesture so popup blockers

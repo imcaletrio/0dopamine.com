@@ -109,7 +109,8 @@
     }
     .input:focus { outline: none; border-color: var(--accent); background: rgba(0,0,0,.4); }
     .input::placeholder { color: var(--fog); }
-    .input.error { border-color: var(--red); }
+    .input.error, .input[aria-invalid="true"] { border-color: var(--red); }
+    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
     .step-block { display: none; }
     .step-block.active { display: block; }
     .note {
@@ -178,7 +179,8 @@
         <div class="step-block active" data-step="1">
           <p class="desc">Acceso anticipado a la beta. Dejanos tu email para empezar:</p>
           <form data-beta-form novalidate>
-            <input class="input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" maxlength="254" />
+            <label for="install-email-es" class="sr-only">Email</label>
+            <input id="install-email-es" class="input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" maxlength="254" />
             <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             <button class="submit" type="submit" style="margin-top:12px">Continuar &rarr;</button>
           </form>
@@ -217,7 +219,8 @@
         <div class="step-block active" data-step="1">
           <p class="desc">Early access to the beta. Drop us your email to get started:</p>
           <form data-beta-form novalidate>
-            <input class="input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" maxlength="254" />
+            <label for="install-email-en" class="sr-only">Email</label>
+            <input id="install-email-en" class="input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" maxlength="254" />
             <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             <button class="submit" type="submit" style="margin-top:12px">Continue &rarr;</button>
           </form>
@@ -328,10 +331,12 @@
 
         if (!email || email.length > 254 || !EMAIL_RE.test(email)) {
           input.classList.add('error');
+          input.setAttribute('aria-invalid', 'true');
           input.focus();
           return;
         }
         input.classList.remove('error');
+        input.removeAttribute('aria-invalid');
         btn.disabled = true;
 
         var popup = window.open(GROUP_URL, '_blank', 'noopener');
