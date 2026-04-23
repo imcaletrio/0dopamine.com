@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /install.html
+
+Sitemap: https://0dopamine.com/sitemap.xml

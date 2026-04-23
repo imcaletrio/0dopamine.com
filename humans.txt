@@ -1,0 +1,12 @@
+/* TEAM */
+  Creator: 0Dopamine (solo indie dev)
+  Site: https://0dopamine.com
+  Contact: hola [at] 0dopamine.com
+
+/* SITE */
+  Language: Español / English
+  Doctype: HTML5
+  Components: vanilla HTML/CSS/JS (no framework)
+  Standards: HTML5, CSS3, WCAG 2.1 AA
+  Hosting: GitHub Pages
+  Last updated: 2026/04/23

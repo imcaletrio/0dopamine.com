@@ -3,144 +3,158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>0D — Términos de uso</title>
-  <meta name="description" content="Términos y condiciones de uso de 0Dopamine (0D)." />
+  <title>Términos de uso — 0Dopamine (0D)</title>
+  <meta name="description" content="Términos y condiciones de uso de 0Dopamine (0D) — app Android de bienestar digital. Beta gratuita, pago a través de Google Play, legislación española." />
+
+  <meta name="author" content="0Dopamine" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="color-scheme" content="light dark" />
+
+  <link rel="canonical" href="https://0dopamine.com/terms.html" />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
-  <link rel="shortcut icon" href="favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-  <meta name="theme-color" content="#0E1D2D" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#FAF9F6" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0A1628" media="(prefers-color-scheme: dark)" />
+
+  <meta property="og:title" content="0D — Términos de uso" />
+  <meta property="og:description" content="Términos y condiciones de uso de 0Dopamine (0D)." />
+  <meta property="og:image" content="https://0dopamine.com/assets/logo-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="Logo de 0Dopamine" />
+  <meta property="og:url" content="https://0dopamine.com/terms.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="0Dopamine" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://0dopamine.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Términos de uso", "item": "https://0dopamine.com/terms.html" }
+    ]
+  }
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:   #1C1C1E;
-      --blue:   #2C2C2E;
-      --blue-l: #48484A;
-      --blue-p: #E8E8EA;
-      --sky:    #FAF9F6;
-      --white:  #FAF9F6;  /* Ivory/cream — matches app background */
-      --fog:    #AEAEB2;
-      --slate:  #636366;
-      --green:  #34C759;
-      --red:    #FF3B30;
-      --amber:  #FF9500;
-      --accent: #5856D6;
+      --ink:     #1C1C1E;
+      --surface: #2C2C2E;
+      --bg:      #FAF9F6;
+      --bg-alt:  #F2F1EE;
+      --muted:   #636366;
+      --hair:    #E5E5EA;
+      --accent:      #7B79E0;
+      --accent-dark: #4A47C7;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--white);
-      color: var(--navy);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased;
     }
+
+    :focus { outline: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+    .skip-link { position: absolute; left: -9999px; top: 0; background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 0 0 8px 0; font-weight: 700; z-index: 10000; text-decoration: none; }
+    .skip-link:focus { left: 0; }
 
     nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(250,249,246,.92);  /* Ivory with transparency */
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid #E5E5EA;
-      padding: 0 24px;
+      background: rgba(250,249,246,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--hair);
+      padding: 0 24px; height: 60px;
       display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
     }
-    .nav-logo {
-      font-size: 1.2rem; font-weight: 700; color: var(--navy);
-      letter-spacing: .5px; text-decoration: none;
-    }
+    .nav-logo { font-size: 1.2rem; font-weight: 800; color: var(--ink); letter-spacing: .5px; text-decoration: none; }
     .nav-cta {
-      background: var(--blue); color: #fff;
-      text-decoration: none; padding: 8px 20px;
-      border-radius: 10px; font-size: .875rem; font-weight: 600;
+      background: var(--ink); color: #fff; text-decoration: none;
+      padding: 8px 18px; border-radius: 10px; font-size: .85rem; font-weight: 700;
       transition: background .2s;
     }
-    .nav-cta:hover { background: var(--blue-l); }
+    .nav-cta:hover { background: var(--surface); }
 
-    .content {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 60px 24px 80px;
-    }
+    main { max-width: 760px; margin: 0 auto; padding: 48px 24px 72px; }
+    .breadcrumb { font-size: .78rem; color: var(--muted); margin-bottom: 14px; }
+    .breadcrumb a { color: var(--muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--accent-dark); text-decoration: underline; }
 
-    .content h1 {
-      font-size: 2rem; font-weight: 800; margin-bottom: 8px;
-    }
-    .content .date {
-      color: var(--fog); font-size: .875rem; margin-bottom: 40px;
-    }
-    .content h2 {
-      font-size: 1.25rem; font-weight: 700; margin-top: 36px; margin-bottom: 12px;
-      color: var(--navy);
-    }
-    .content p, .content li {
-      font-size: .95rem; color: var(--slate); margin-bottom: 12px;
-    }
-    .content ul {
-      padding-left: 20px; margin-bottom: 12px;
-    }
-    .content li { margin-bottom: 6px; }
-    .content a { color: var(--accent); }
-    .content strong { color: var(--navy); }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.25rem); font-weight: 800; margin-bottom: 6px; letter-spacing: -.02em; }
+    .date { color: var(--muted); font-size: .85rem; margin-bottom: 28px; }
 
-    .lang-toggle {
-      display: inline-flex; gap: 8px; margin-bottom: 32px;
+    .lang-toggle { display: inline-flex; gap: 8px; margin-bottom: 28px; }
+    .lang-toggle button {
+      padding: 6px 14px; border-radius: 8px; font-size: .8rem; font-weight: 700;
+      color: var(--muted); background: transparent;
+      border: 1.5px solid var(--hair); cursor: pointer; font-family: inherit;
     }
-    .lang-toggle a {
-      padding: 6px 14px; border-radius: 8px;
-      font-size: .8rem; font-weight: 600;
-      text-decoration: none; color: var(--slate);
-      border: 1.5px solid #E5E5EA;
-      transition: background .15s;
-    }
-    .lang-toggle a.active {
-      background: var(--accent); color: #fff; border-color: var(--accent);
-    }
-    .lang-toggle a:hover:not(.active) { background: var(--sky); }
+    .lang-toggle button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .lang-toggle button:hover:not(.active) { background: var(--bg-alt); }
 
     .lang-es, .lang-en { display: none; }
     .lang-es.visible, .lang-en.visible { display: block; }
 
+    article h2 { font-size: 1.2rem; font-weight: 800; margin-top: 32px; margin-bottom: 10px; }
+    article p, article li { font-size: .95rem; margin-bottom: 10px; }
+    article p { color: #2C2C2E; }
+    article ul { padding-left: 22px; margin-bottom: 12px; }
+    article li { margin-bottom: 5px; }
+    article a { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 2px; }
+    article a:hover { color: var(--ink); }
+    article strong { color: var(--ink); font-weight: 800; }
+
     footer {
-      background: var(--navy); color: rgba(255,255,255,.4);
-      text-align: center; padding: 32px 24px;
-      font-size: .8rem;
+      background: var(--ink); color: rgba(255,255,255,.65);
+      text-align: center; padding: 28px 24px; font-size: .82rem; line-height: 1.6;
     }
-    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a { color: rgba(255,255,255,.8); text-decoration: none; }
     footer a:hover { color: #fff; }
+    footer .foot-sep { margin: 0 6px; opacity: .5; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+    }
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link lang-es visible">Saltar al contenido</a>
+  <a href="#main" class="skip-link lang-en">Skip to content</a>
 
-  <nav>
-    <a class="nav-logo" href="index.html">0D</a>
-    <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.zerodopamine" target="_blank">Descargar</a>
+  <nav aria-label="Primary">
+    <a class="nav-logo" href="/">0D</a>
+    <a class="nav-cta" href="/">Inicio</a>
   </nav>
 
-  <div class="content">
-    <h1>Términos de uso</h1>
-    <p class="date">Última actualización: 28 de marzo de 2026</p>
-
-    <div class="lang-toggle">
-      <a href="#" class="active" id="btn-es" onclick="showLang('es');return false;">Español</a>
-      <a href="#" id="btn-en" onclick="showLang('en');return false;">English</a>
+  <main id="main">
+    <div class="lang-toggle" role="group" aria-label="Idioma">
+      <button type="button" class="active" id="btn-es" aria-pressed="true" onclick="showLang('es')">Español</button>
+      <button type="button" id="btn-en" aria-pressed="false" onclick="showLang('en')">English</button>
     </div>
 
-    <!-- ═══ ESPAÑOL ═══ -->
-    <div class="lang-es visible" id="lang-es">
+    <!-- ES -->
+    <article class="lang-es visible">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Inicio</a> · Términos</nav>
+      <h1>Términos de uso</h1>
+      <p class="date">Última actualización: 28 de marzo de 2026</p>
 
       <h2>1. Aceptación de los términos</h2>
-      <p>Al descargar, instalar o usar <strong>0Dopamine</strong> (en adelante "0D" o "la app"), aceptas estos términos de uso. Si no estás de acuerdo, desinstala la app.</p>
+      <p>Al descargar, instalar o usar <strong>0Dopamine</strong> (en adelante «0D» o «la app»), aceptas estos términos de uso. Si no estás de acuerdo, desinstala la app.</p>
 
       <h2>2. Descripción del servicio</h2>
       <p>0D es una herramienta de bienestar digital que permite al usuario bloquear apps y contenido de vídeo corto en su dispositivo Android. La app funciona como una ayuda para la autorregulación, no como un sistema de control parental ni como un software de seguridad.</p>
 
       <h2>3. Uso de la app</h2>
       <ul>
-        <li>La app se proporciona <strong>"tal cual" (as-is)</strong> sin garantías de ningún tipo, ni expresas ni implícitas.</li>
-        <li>No garantizamos que la app bloquee el 100% del contenido en todas las circunstancias. Las actualizaciones de apps de terceros (YouTube, Instagram, etc.) pueden afectar temporalmente a la detección.</li>
+        <li>La app se proporciona <strong>«tal cual» (as-is)</strong> sin garantías de ningún tipo, ni expresas ni implícitas.</li>
+        <li>No garantizamos que la app bloquee el 100% del contenido en todas las circunstancias. Las actualizaciones de apps de terceros (YouTube, Instagram, etc.) pueden afectar temporalmente a la detección. Si detectas un Short o Reel que se escapa del bloqueo, escríbenos a <a href="mailto:hola@0dopamine.com">hola@0dopamine.com</a> — lo revisamos en 48 h.</li>
         <li>El usuario es responsable de la configuración de la app y de los permisos que concede.</li>
         <li>No nos hacemos responsables de pérdidas de productividad, datos u oportunidades derivadas del uso o mal funcionamiento de la app.</li>
       </ul>
@@ -151,8 +165,8 @@
       <h2>5. Suscripciones y compras</h2>
       <ul>
         <li>0D ofrece una versión gratuita con funcionalidad limitada y una versión Premium de pago.</li>
-        <li>Las suscripciones se gestionan a través de <strong>Google Play</strong>. Los términos de pago, renovación y cancelación están sujetos a las <a href="https://play.google.com/intl/es/about/play-terms/" target="_blank">condiciones de Google Play</a>.</li>
-        <li>Puedes cancelar tu suscripción en cualquier momento desde Google Play Store > Suscripciones.</li>
+        <li>Las suscripciones se gestionan a través de <strong>Google Play</strong>. Los términos de pago, renovación y cancelación están sujetos a las <a href="https://play.google.com/intl/es/about/play-terms/" target="_blank" rel="noopener noreferrer">condiciones de Google Play</a>.</li>
+        <li>Puedes cancelar tu suscripción en cualquier momento desde Google Play Store &gt; Suscripciones.</li>
         <li>Las compras de por vida (lifetime) son pagos únicos no reembolsables, salvo lo dispuesto por la legislación aplicable.</li>
       </ul>
 
@@ -174,10 +188,13 @@
       <h2>11. Contacto</h2>
       <p>Para cualquier consulta sobre estos términos:</p>
       <p><a href="mailto:hola@0dopamine.com">hola@0dopamine.com</a></p>
-    </div>
+    </article>
 
-    <!-- ═══ ENGLISH ═══ -->
-    <div class="lang-en" id="lang-en">
+    <!-- EN -->
+    <article class="lang-en">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> · Terms</nav>
+      <h1>Terms of use</h1>
+      <p class="date">Last updated: March 28, 2026</p>
 
       <h2>1. Acceptance of terms</h2>
       <p>By downloading, installing or using <strong>0Dopamine</strong> (hereinafter "0D" or "the app"), you agree to these terms of use. If you do not agree, please uninstall the app.</p>
@@ -188,7 +205,7 @@
       <h2>3. Use of the app</h2>
       <ul>
         <li>The app is provided <strong>"as-is"</strong> without warranties of any kind, either express or implied.</li>
-        <li>We do not guarantee that the app will block 100% of content in all circumstances. Updates to third-party apps (YouTube, Instagram, etc.) may temporarily affect detection.</li>
+        <li>We do not guarantee that the app will block 100% of content in all circumstances. Updates to third-party apps (YouTube, Instagram, etc.) may temporarily affect detection. If you spot a Short or Reel slipping past the block, email <a href="mailto:hola@0dopamine.com">hola@0dopamine.com</a> — we'll review it within 48 h.</li>
         <li>The user is responsible for the app configuration and the permissions they grant.</li>
         <li>We are not liable for any loss of productivity, data or opportunities arising from the use or malfunction of the app.</li>
       </ul>
@@ -199,8 +216,8 @@
       <h2>5. Subscriptions and purchases</h2>
       <ul>
         <li>0D offers a free version with limited features and a paid Premium version.</li>
-        <li>Subscriptions are managed through <strong>Google Play</strong>. Payment, renewal and cancellation terms are subject to <a href="https://play.google.com/intl/en/about/play-terms/" target="_blank">Google Play's terms</a>.</li>
-        <li>You can cancel your subscription at any time from Google Play Store > Subscriptions.</li>
+        <li>Subscriptions are managed through <strong>Google Play</strong>. Payment, renewal and cancellation terms are subject to <a href="https://play.google.com/intl/en/about/play-terms/" target="_blank" rel="noopener noreferrer">Google Play's terms</a>.</li>
+        <li>You can cancel your subscription at any time from Google Play Store &gt; Subscriptions.</li>
         <li>Lifetime purchases are one-time non-refundable payments, except as required by applicable law.</li>
       </ul>
 
@@ -222,29 +239,51 @@
       <h2>11. Contact</h2>
       <p>For any questions about these terms:</p>
       <p><a href="mailto:hola@0dopamine.com">hola@0dopamine.com</a></p>
-    </div>
-
-  </div>
+    </article>
+  </main>
 
   <footer>
-    <p>&copy; 2026 0D &middot; Hecho con &hearts; para recuperar el tiempo libre</p>
-    <p style="margin-top:8px">
+    <div class="lang-es visible">
+      &copy; 2026 0Dopamine
+      <span class="foot-sep">·</span>
+      <a href="/">Inicio</a>
+      <span class="foot-sep">·</span>
+      <a href="faq.html">FAQ</a>
+      <span class="foot-sep">·</span>
       <a href="mailto:hola@0dopamine.com">Contacto</a>
-      &nbsp;&middot;&nbsp;
-      <a href="privacy.html">Política de privacidad</a>
-      &nbsp;&middot;&nbsp;
-      <a href="terms.html">Términos de uso</a>
-    </p>
+      <span class="foot-sep">·</span>
+      <a href="privacy.html">Privacidad</a>
+    </div>
+    <div class="lang-en">
+      &copy; 2026 0Dopamine
+      <span class="foot-sep">·</span>
+      <a href="/">Home</a>
+      <span class="foot-sep">·</span>
+      <a href="faq.html">FAQ</a>
+      <span class="foot-sep">·</span>
+      <a href="mailto:hola@0dopamine.com">Contact</a>
+      <span class="foot-sep">·</span>
+      <a href="privacy.html">Privacy</a>
+    </div>
   </footer>
 
   <script>
     function showLang(lang) {
-      document.getElementById('lang-es').classList.toggle('visible', lang === 'es');
-      document.getElementById('lang-en').classList.toggle('visible', lang === 'en');
-      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.querySelectorAll('.lang-es').forEach(function(el) { el.classList.toggle('visible', lang === 'es'); });
+      document.querySelectorAll('.lang-en').forEach(function(el) { el.classList.toggle('visible', lang === 'en'); });
+      var es = document.getElementById('btn-es'), en = document.getElementById('btn-en');
+      if (es) { es.classList.toggle('active', lang === 'es'); es.setAttribute('aria-pressed', lang === 'es'); }
+      if (en) { en.classList.toggle('active', lang === 'en'); en.setAttribute('aria-pressed', lang === 'en'); }
+      document.documentElement.lang = lang;
+      var cta = document.querySelector('.nav-cta');
+      if (cta) cta.textContent = lang === 'en' ? 'Home' : 'Inicio';
     }
+    (function() {
+      try {
+        var lang = (navigator.language || 'es').slice(0, 2).toLowerCase();
+        if (lang === 'en') showLang('en');
+      } catch(_) {}
+    })();
   </script>
-
 </body>
 </html>

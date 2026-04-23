@@ -4,76 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Instalar 0D — Beta para Android</title>
-  <meta name="description" content="Unete a la beta de 0Dopamine en Google Play. Dos pasos: email + unirse al grupo de testers." />
+  <meta name="description" content="Únete a la beta de 0Dopamine en Google Play. Dos pasos: email + unirse al grupo de testers." />
+
+  <meta name="author" content="0Dopamine" />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="color-scheme" content="dark" />
+
+  <link rel="canonical" href="https://0dopamine.com/install.html" />
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
-  <link rel="shortcut icon" href="favicon.ico" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-  <meta name="theme-color" content="#0E1D2D" />
-  <meta name="robots" content="noindex" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Varela+Round&display=swap" rel="stylesheet">
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0A1628" />
+
+  <meta property="og:title" content="Instalar 0D — Beta para Android" />
+  <meta property="og:description" content="Únete a la beta de 0Dopamine en Google Play en dos pasos." />
+  <meta property="og:image" content="https://0dopamine.com/assets/logo-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="Logo de 0Dopamine" />
+  <meta property="og:url" content="https://0dopamine.com/install.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="0Dopamine" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://script.google.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&family=Varela+Round&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&family=Varela+Round&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&family=Varela+Round&display=swap" /></noscript>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --navy:   #F2F2F7;
-      --blue:   #FFFFFF;
-      --blue-l: #E5E5EA;
-      --sky:    #0E1A2E;
-      --white:  #0A1628;
-      --fog:    #98989D;
-      --slate:  #AEAEB2;
-      --green:  #34C759;
-      --red:    #FF3B30;
-      --accent: #7B79E0;
-      --surface: #111E33;
-      --border: #3A3A3C;
+      --navy: #F2F2F7; --blue: #FFFFFF; --blue-l: #E5E5EA;
+      --surface: #111E33; --bg: #0A1628;
+      --fog: #98989D; --slate: #C7C7CC;
+      --accent: #7B79E0; --accent-soft: #A8A6F0; --accent-dark: #4A47C7;
+      --border: #3A3A3C; --green: #34C759; --red: #FF3B30;
     }
 
     html, body { min-height: 100%; }
     body {
       font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--white);
-      color: var(--navy);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      background: var(--bg); color: var(--navy); line-height: 1.6; -webkit-font-smoothing: antialiased;
       display: flex; flex-direction: column;
     }
 
+    :focus { outline: none; }
+    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 2px; border-radius: 6px; }
+
+    .skip-link { position: absolute; left: -9999px; top: 0; background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 0 0 8px 0; font-weight: 700; z-index: 10000; text-decoration: none; }
+    .skip-link:focus { left: 0; }
+
     nav {
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(0,0,0,.6);
+      padding: 14px 24px; border-bottom: 1px solid var(--border); background: rgba(10,22,40,.72);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
     }
     .nav-logo {
       font-family: "Varela Round", "Nunito Sans", sans-serif;
-      font-size: 1.3rem; font-weight: 700; color: var(--navy);
-      letter-spacing: 0.5px; text-decoration: none;
+      font-size: 1.2rem; font-weight: 700; color: var(--navy);
+      letter-spacing: .5px; text-decoration: none;
       display: inline-flex; align-items: center; gap: 10px;
     }
-    .nav-logo img {
-      width: 32px; height: 32px; border-radius: 7px; display: block;
-    }
+    .nav-logo img { width: 30px; height: 30px; border-radius: 7px; display: block; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
 
-    .wrap {
-      flex: 1;
-      display: flex; align-items: center; justify-content: center;
-      padding: 40px 20px 60px;
+    .lang-toggle { display: inline-flex; gap: 4px; }
+    .lang-toggle button {
+      padding: 5px 10px; border-radius: 8px; font-size: .72rem; font-weight: 600;
+      color: var(--slate); border: 1.5px solid var(--border); background: transparent;
+      cursor: pointer; font-family: inherit;
     }
+    .lang-toggle button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px 60px; }
 
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      max-width: 520px; width: 100%;
-      padding: 40px 32px 32px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
+      max-width: 520px; width: 100%; padding: 40px 32px 32px;
+      box-shadow: 0 40px 80px rgba(0,0,0,.45);
     }
     .badge {
       display: inline-block;
-      background: rgba(123,121,224,.15);
-      color: var(--accent);
+      background: rgba(123,121,224,.18); color: var(--accent-soft);
       padding: 6px 12px; border-radius: 100px;
       font-size: .72rem; font-weight: 800; text-transform: uppercase;
       letter-spacing: .06em; margin-bottom: 16px;
@@ -83,45 +100,38 @@
       font-size: 1.75rem; font-weight: 700; line-height: 1.2;
       color: var(--navy); margin-bottom: 10px;
     }
-    .desc {
-      color: var(--slate); font-size: .95rem; margin-bottom: 22px;
-      line-height: 1.5;
+    .desc { color: var(--slate); font-size: .95rem; margin-bottom: 18px; line-height: 1.5; }
+    .preview { list-style: none; display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+    .preview li {
+      font-size: .7rem; color: var(--slate); padding: 4px 10px;
+      border: 1px solid var(--border); border-radius: 100px; background: rgba(255,255,255,.03);
     }
     .submit {
-      background: var(--blue); color: #000; font-weight: 700;
+      background: var(--blue); color: #000; font-weight: 800;
       border: none; border-radius: 14px;
       padding: 14px 28px; font-size: 1rem; font-family: inherit;
-      cursor: pointer; transition: all .15s;
+      cursor: pointer; transition: background .15s, transform .15s;
       text-decoration: none; text-align: center; display: block;
       width: 100%;
     }
     .submit:hover { background: var(--blue-l); transform: translateY(-1px); }
     .submit:disabled { opacity: .6; cursor: wait; transform: none; }
     .input {
-      background: rgba(0,0,0,.3);
-      border: 1.5px solid var(--border);
-      border-radius: 14px;
-      padding: 14px 16px;
-      color: var(--navy); font-size: 1rem; font-family: inherit;
-      transition: border-color .15s, background .15s;
-      width: 100%;
-      margin-top: 16px;
+      background: rgba(0,0,0,.3); border: 1.5px solid var(--border); border-radius: 14px;
+      padding: 14px 16px; color: var(--navy); font-size: 1rem; font-family: inherit;
+      transition: border-color .15s, background .15s; width: 100%; margin-top: 8px;
     }
-    .input:focus { outline: none; border-color: var(--accent); background: rgba(0,0,0,.4); }
+    .input:focus { outline: none; border-color: var(--accent); background: rgba(0,0,0,.4); box-shadow: 0 0 0 3px rgba(123,121,224,.35); }
     .input::placeholder { color: var(--fog); }
     .input.error, .input[aria-invalid="true"] { border-color: var(--red); }
+    .input-error { color: var(--red); font-size: .78rem; margin-top: 6px; min-height: 1em; }
     .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
     .step-block { display: none; }
     .step-block.active { display: block; }
-    .note {
-      margin-top: 14px;
-      font-size: .78rem; color: var(--fog); text-align: center;
-      line-height: 1.5;
-    }
+    .note { margin-top: 14px; font-size: .78rem; color: var(--fog); text-align: center; line-height: 1.5; }
+    .note a { color: var(--accent-soft); }
     .step-row {
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px;
       padding: 12px 14px; margin-bottom: 8px;
       display: flex; gap: 12px; align-items: flex-start;
       font-size: .9rem; color: var(--navy); line-height: 1.45;
@@ -133,43 +143,40 @@
       display: flex; align-items: center; justify-content: center;
     }
     .cta-row { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
-    footer {
-      text-align: center; padding: 24px;
-      font-size: .8rem; color: rgba(255,255,255,.4);
-      border-top: 1px solid var(--border);
-    }
-    footer a { color: rgba(255,255,255,.55); text-decoration: none; }
-    footer a:hover { color: #fff; }
 
-    .lang-toggle {
-      display: inline-flex; gap: 4px; float: right;
+    footer {
+      text-align: center; padding: 14px 24px;
+      font-size: .74rem; color: rgba(255,255,255,.55);
+      border-top: 1px solid var(--border); background: #000;
     }
-    .lang-toggle a {
-      padding: 5px 12px; border-radius: 8px;
-      font-size: .75rem; font-weight: 600;
-      text-decoration: none; color: var(--slate);
-      border: 1.5px solid var(--border);
-      cursor: pointer;
-    }
-    .lang-toggle a.active {
-      background: var(--accent); color: #fff; border-color: var(--accent);
-    }
+    footer a { color: rgba(255,255,255,.7); text-decoration: none; }
+    footer a:hover { color: #fff; }
+    footer .foot-sep { margin: 0 6px; opacity: .5; }
+
     .lang-es, .lang-en { display: none; }
     .lang-es.visible, .lang-en.visible { display: block; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+    }
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link lang-es visible">Saltar al contenido</a>
+  <a href="#main" class="skip-link lang-en">Skip to content</a>
 
-  <nav>
-    <a class="nav-logo" href="/"><img src="assets/logo-192.png" alt="0Dopamine" />0Dopamine</a>
-    <div class="lang-toggle">
-      <a class="active" id="btn-es" onclick="showLang('es');return false;">ES</a>
-      <a id="btn-en" onclick="showLang('en');return false;">EN</a>
+  <nav aria-label="Primary">
+    <a class="nav-logo" href="/"><img src="assets/logo-192.png" alt="Logo 0Dopamine" width="30" height="30" decoding="async" />0Dopamine</a>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Idioma">
+        <button type="button" class="active" id="btn-es" aria-pressed="true" onclick="showLang('es')">ES</button>
+        <button type="button" id="btn-en" aria-pressed="false" onclick="showLang('en')">EN</button>
+      </div>
     </div>
   </nav>
 
-  <div class="wrap">
-    <div class="card">
+  <main id="main" class="wrap">
+    <div class="card" data-signup-card>
 
       <!-- ES -->
       <div class="lang-es visible">
@@ -177,37 +184,42 @@
         <h1>Instala 0D en tu Android</h1>
 
         <div class="step-block active" data-step="1">
-          <p class="desc">Acceso anticipado a la beta. Dejanos tu email para empezar:</p>
+          <p class="desc">Estás a 2 pasos de la beta:</p>
+          <ol class="preview">
+            <li>1. Email (1 min)</li>
+            <li>2. Grupo + Play (~5 min)</li>
+          </ol>
           <form data-beta-form novalidate>
             <label for="install-email-es" class="sr-only">Email</label>
-            <input id="install-email-es" class="input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" maxlength="254" />
+            <input id="install-email-es" class="input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" maxlength="254" aria-describedby="install-email-es-error" />
+            <p id="install-email-es-error" class="input-error" aria-live="polite"></p>
             <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
-            <button class="submit" type="submit" style="margin-top:12px">Continuar &rarr;</button>
+            <button class="submit" type="submit" style="margin-top:8px">Siguiente paso &rarr;</button>
           </form>
-          <p class="note">Solo usamos tu email para avisarte de novedades de la beta. Sin spam. Ver <a href="privacy.html" style="color:var(--accent)">politica de privacidad</a>.</p>
+          <p class="note">Solo usamos tu email para avisarte de la beta. Sin spam. Ver <a href="privacy.html">política de privacidad</a>.</p>
         </div>
 
         <div class="step-block" data-step="2">
-          <p class="desc" data-popup-ok>Te abrimos una pestana para unirte al grupo de testers. Confirma ahi y vuelve:</p>
-          <p class="desc" data-popup-blocked style="display:none">Tu navegador bloqueo la pestana. Unete al grupo primero:</p>
+          <p class="desc" data-popup-ok>Te abrimos una pestaña para unirte al grupo de testers. Confirma ahí y vuelve:</p>
+          <p class="desc" data-popup-blocked style="display:none">Tu navegador bloqueó la pestaña. Únete al grupo primero:</p>
           <div class="cta-row">
-            <div class="step-row"><span class="step-num">1</span><span>Confirma "Unirme al grupo" en la pestana que se abrio.</span></div>
+            <div class="step-row"><span class="step-num">1</span><span>Confirma «Unirme al grupo» en la pestaña que se abrió.</span></div>
             <div class="step-row"><span class="step-num">2</span><span>Espera ~5 minutos para que Google active tu acceso.</span></div>
-            <div class="step-row"><span class="step-num">3</span><span>Toca el boton y descarga la beta en tu movil.</span></div>
+            <div class="step-row"><span class="step-num">3</span><span>Toca el botón y descarga la beta en tu móvil.</span></div>
           </div>
           <a class="submit" data-group-fallback
              href="https://groups.google.com/g/zerodopamine-beta"
-             target="_blank" rel="noopener"
+             target="_blank" rel="noopener noreferrer"
              style="margin-top:18px;display:none">
-            Unirse al grupo de testers &rarr;
+            Abrir grupo de testers primero &rarr;
           </a>
           <a class="submit" data-beta-go
              href="https://play.google.com/apps/testing/com.zerodopamine"
-             target="_blank" rel="noopener"
+             target="_blank" rel="noopener noreferrer"
              style="margin-top:18px">
-            Descargar la beta en Google Play &rarr;
+            Abrir Play Store para instalar &rarr;
           </a>
-          <p class="note">Usa la misma cuenta Google en el grupo y en tu movil Android.</p>
+          <p class="note">Usa la misma cuenta Google en el grupo y en tu móvil Android.</p>
         </div>
       </div>
 
@@ -217,14 +229,19 @@
         <h1>Install 0D on your Android</h1>
 
         <div class="step-block active" data-step="1">
-          <p class="desc">Early access to the beta. Drop us your email to get started:</p>
+          <p class="desc">You're 2 steps from the beta:</p>
+          <ol class="preview">
+            <li>1. Email (1 min)</li>
+            <li>2. Group + Play (~5 min)</li>
+          </ol>
           <form data-beta-form novalidate>
             <label for="install-email-en" class="sr-only">Email</label>
-            <input id="install-email-en" class="input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" maxlength="254" />
+            <input id="install-email-en" class="input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" maxlength="254" aria-describedby="install-email-en-error" />
+            <p id="install-email-en-error" class="input-error" aria-live="polite"></p>
             <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
-            <button class="submit" type="submit" style="margin-top:12px">Continue &rarr;</button>
+            <button class="submit" type="submit" style="margin-top:8px">Next step &rarr;</button>
           </form>
-          <p class="note">We only use your email to send beta updates. No spam. See <a href="privacy.html" style="color:var(--accent)">privacy policy</a>.</p>
+          <p class="note">We only use your email for beta updates. No spam. See <a href="privacy.html">privacy policy</a>.</p>
         </div>
 
         <div class="step-block" data-step="2">
@@ -237,150 +254,48 @@
           </div>
           <a class="submit" data-group-fallback
              href="https://groups.google.com/g/zerodopamine-beta"
-             target="_blank" rel="noopener"
+             target="_blank" rel="noopener noreferrer"
              style="margin-top:18px;display:none">
-            Join the tester group &rarr;
+            Open tester group first &rarr;
           </a>
           <a class="submit" data-beta-go
              href="https://play.google.com/apps/testing/com.zerodopamine"
-             target="_blank" rel="noopener"
+             target="_blank" rel="noopener noreferrer"
              style="margin-top:18px">
-            Install the beta on Google Play &rarr;
+            Open Play Store to install &rarr;
           </a>
           <p class="note">Use the same Google account in the group and on your Android phone.</p>
         </div>
       </div>
 
     </div>
-  </div>
+  </main>
 
   <footer>
     <div class="lang-es visible">
-      <p>&copy; 2026 0Dopamine &middot; <a href="/">Volver al inicio</a> &middot; <a href="privacy.html">Privacidad</a> &middot; <a href="terms.html">Terminos</a></p>
+      &copy; 2026 0Dopamine
+      <span class="foot-sep">·</span>
+      <a href="/">Volver al inicio</a>
+      <span class="foot-sep">·</span>
+      <a href="faq.html">FAQ</a>
+      <span class="foot-sep">·</span>
+      <a href="privacy.html">Privacidad</a>
+      <span class="foot-sep">·</span>
+      <a href="terms.html">Términos</a>
     </div>
     <div class="lang-en">
-      <p>&copy; 2026 0Dopamine &middot; <a href="/">Back to home</a> &middot; <a href="privacy.html">Privacy</a> &middot; <a href="terms.html">Terms</a></p>
+      &copy; 2026 0Dopamine
+      <span class="foot-sep">·</span>
+      <a href="/">Back to home</a>
+      <span class="foot-sep">·</span>
+      <a href="faq.html">FAQ</a>
+      <span class="foot-sep">·</span>
+      <a href="privacy.html">Privacy</a>
+      <span class="foot-sep">·</span>
+      <a href="terms.html">Terms</a>
     </div>
   </footer>
 
-  <script>
-  (function() {
-    var ENDPOINT = 'https://script.google.com/macros/s/AKfycbyytIFY3r54hTdMLM2mlwvg_pLhG5SOaH-SZlUvatkV8rKg-UhLLmJJlLnDaD0YJaMJ/exec';
-    var GROUP_URL = 'https://groups.google.com/g/zerodopamine-beta';
-    var STORAGE_KEY = '0d_beta_email';
-    var savedEmail = '';
-    try { savedEmail = localStorage.getItem(STORAGE_KEY) || ''; } catch(_) {}
-
-    function pushStage(stage, email) {
-      if (!ENDPOINT) return;
-      try {
-        var body = new FormData();
-        body.append('email', email || '');
-        body.append('source', '0dopamine.com/install:' + stage);
-        body.append('lang', document.documentElement.lang || 'es');
-        if (navigator.sendBeacon) {
-          navigator.sendBeacon(ENDPOINT, body);
-        } else {
-          fetch(ENDPOINT, { method: 'POST', body: body, mode: 'no-cors', keepalive: true });
-        }
-      } catch(_) {}
-    }
-
-    function setStep(n) {
-      document.querySelectorAll('[data-step]').forEach(function(el) {
-        el.classList.toggle('active', el.getAttribute('data-step') === String(n));
-      });
-    }
-
-    function showGroupFallback(blocked) {
-      document.querySelectorAll('[data-popup-ok]').forEach(function(el) {
-        el.style.display = blocked ? 'none' : '';
-      });
-      document.querySelectorAll('[data-popup-blocked]').forEach(function(el) {
-        el.style.display = blocked ? '' : 'none';
-      });
-      document.querySelectorAll('[data-group-fallback]').forEach(function(el) {
-        el.style.display = blocked ? '' : 'none';
-      });
-    }
-
-    if (savedEmail) {
-      showGroupFallback(true);
-      setStep(2);
-      pushStage('step2_view_returning', savedEmail);
-    }
-
-    document.querySelectorAll('[data-beta-go]').forEach(function(el) {
-      el.addEventListener('click', function() { pushStage('play_click', savedEmail); });
-    });
-    document.querySelectorAll('[data-group-fallback]').forEach(function(el) {
-      el.addEventListener('click', function() { pushStage('group_click', savedEmail); });
-    });
-
-    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-    document.querySelectorAll('[data-beta-form]').forEach(function(form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var input = form.querySelector('.input');
-        var hp = form.querySelector('input[name="website"]');
-        var btn = form.querySelector('.submit');
-        var email = (input.value || '').trim().toLowerCase();
-
-        if (hp && hp.value) { showGroupFallback(false); setStep(2); return; }
-
-        if (!email || email.length > 254 || !EMAIL_RE.test(email)) {
-          input.classList.add('error');
-          input.setAttribute('aria-invalid', 'true');
-          input.focus();
-          return;
-        }
-        input.classList.remove('error');
-        input.removeAttribute('aria-invalid');
-        btn.disabled = true;
-
-        var popup = window.open(GROUP_URL, '_blank', 'noopener');
-        var popupBlocked = !popup;
-
-        function advance() {
-          btn.disabled = false;
-          savedEmail = email;
-          try { localStorage.setItem(STORAGE_KEY, email); } catch(_) {}
-          showGroupFallback(popupBlocked);
-          setStep(2);
-          pushStage('step2_view', email);
-        }
-
-        var body = new FormData();
-        body.append('email', email);
-        body.append('source', '0dopamine.com/install');
-        body.append('lang', document.documentElement.lang || 'es');
-        if (hp) body.append('website', hp.value || '');
-
-        fetch(ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
-          .then(advance)
-          .catch(advance);
-      });
-    });
-  })();
-
-  function showLang(lang) {
-    document.querySelectorAll('.lang-es').forEach(function(el) {
-      el.classList.toggle('visible', lang === 'es');
-    });
-    document.querySelectorAll('.lang-en').forEach(function(el) {
-      el.classList.toggle('visible', lang === 'en');
-    });
-    document.getElementById('btn-es').classList.toggle('active', lang === 'es');
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-    document.documentElement.lang = lang;
-  }
-
-  // Auto-detect browser language on first load
-  (function() {
-    var lang = (navigator.language || 'es').slice(0, 2).toLowerCase();
-    if (lang === 'en') showLang('en');
-  })();
-  </script>
+  <script src="assets/signup.js" defer></script>
 </body>
 </html>

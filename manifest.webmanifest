@@ -1,0 +1,27 @@
+{
+  "name": "0Dopamine",
+  "short_name": "0D",
+  "description": "Bloquea Shorts, Reels y TikTok en Android. Recupera tu tiempo con una respiración 4-7-8 antes de cada apertura.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0A1628",
+  "theme_color": "#0A1628",
+  "lang": "es",
+  "dir": "ltr",
+  "categories": ["productivity", "lifestyle", "health"],
+  "icons": [
+    { "src": "/assets/logo-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/logo-256.png", "sizes": "256x256", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/logo-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.zerodopamine",
+      "id": "com.zerodopamine"
+    }
+  ],
+  "prefer_related_applications": true
+}
