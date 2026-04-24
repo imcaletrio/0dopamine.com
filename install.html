@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Instalar 0D — Beta para Android</title>
   <meta name="description" content="Únete a la beta de 0Dopamine en Google Play. Dos pasos: email + unirse al grupo de testers." />
 
@@ -10,6 +10,7 @@
   <meta name="robots" content="noindex, follow" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#050607" />
 
   <link rel="canonical" href="https://0dopamine.com/install.html" />
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
@@ -17,285 +18,190 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
-  <meta name="theme-color" content="#0A1628" />
 
   <meta property="og:title" content="Instalar 0D — Beta para Android" />
   <meta property="og:description" content="Únete a la beta de 0Dopamine en Google Play en dos pasos." />
   <meta property="og:image" content="https://0dopamine.com/assets/logo-512.png" />
-  <meta property="og:image:width" content="512" />
-  <meta property="og:image:height" content="512" />
   <meta property="og:image:alt" content="Logo de 0Dopamine" />
   <meta property="og:url" content="https://0dopamine.com/install.html" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="0Dopamine" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://script.google.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&family=Varela+Round&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&family=Varela+Round&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&family=Varela+Round&display=swap" /></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" />
+  <link rel="stylesheet" href="assets/base.css" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --navy: #F2F2F7; --blue: #FFFFFF; --blue-l: #E5E5EA;
-      --surface: #111E33; --bg: #0A1628;
-      --fog: #98989D; --slate: #C7C7CC;
-      --accent: #7B79E0; --accent-soft: #A8A6F0; --accent-dark: #4A47C7;
-      --border: #3A3A3C; --green: #34C759; --red: #FF3B30;
-    }
-
-    html, body { min-height: 100%; }
-    body {
-      font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg); color: var(--navy); line-height: 1.6; -webkit-font-smoothing: antialiased;
-      display: flex; flex-direction: column;
-    }
-
-    :focus { outline: none; }
-    :focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 2px; border-radius: 6px; }
-
-    .skip-link { position: absolute; left: -9999px; top: 0; background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 0 0 8px 0; font-weight: 700; z-index: 10000; text-decoration: none; }
-    .skip-link:focus { left: 0; }
-
-    nav {
-      padding: 14px 24px; border-bottom: 1px solid var(--border); background: rgba(10,22,40,.72);
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .nav-logo {
-      font-family: "Varela Round", "Nunito Sans", sans-serif;
-      font-size: 1.2rem; font-weight: 700; color: var(--navy);
-      letter-spacing: .5px; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 10px;
-    }
-    .nav-logo img { width: 30px; height: 30px; border-radius: 7px; display: block; }
-    .nav-right { display: flex; align-items: center; gap: 12px; }
-
-    .lang-toggle { display: inline-flex; gap: 4px; }
-    .lang-toggle button {
-      padding: 5px 10px; border-radius: 8px; font-size: .72rem; font-weight: 600;
-      color: var(--slate); border: 1.5px solid var(--border); background: transparent;
-      cursor: pointer; font-family: inherit;
-    }
-    .lang-toggle button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
-
-    .wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px 60px; }
-
-    .card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 24px;
-      max-width: 520px; width: 100%; padding: 40px 32px 32px;
-      box-shadow: 0 40px 80px rgba(0,0,0,.45);
-    }
-    .badge {
-      display: inline-block;
-      background: rgba(123,121,224,.18); color: var(--accent-soft);
-      padding: 6px 12px; border-radius: 100px;
-      font-size: .72rem; font-weight: 800; text-transform: uppercase;
-      letter-spacing: .06em; margin-bottom: 16px;
-    }
-    h1 {
-      font-family: "Varela Round", "Nunito Sans", sans-serif;
-      font-size: 1.75rem; font-weight: 700; line-height: 1.2;
-      color: var(--navy); margin-bottom: 10px;
-    }
-    .desc { color: var(--slate); font-size: .95rem; margin-bottom: 18px; line-height: 1.5; }
-    .preview { list-style: none; display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
-    .preview li {
-      font-size: .7rem; color: var(--slate); padding: 4px 10px;
-      border: 1px solid var(--border); border-radius: 100px; background: rgba(255,255,255,.03);
-    }
-    .submit {
-      background: var(--blue); color: #000; font-weight: 800;
-      border: none; border-radius: 14px;
-      padding: 14px 28px; font-size: 1rem; font-family: inherit;
-      cursor: pointer; transition: background .15s, transform .15s;
-      text-decoration: none; text-align: center; display: block;
-      width: 100%;
-    }
-    .submit:hover { background: var(--blue-l); transform: translateY(-1px); }
-    .submit:disabled { opacity: .6; cursor: wait; transform: none; }
-    .input {
-      background: rgba(0,0,0,.3); border: 1.5px solid var(--border); border-radius: 14px;
-      padding: 14px 16px; color: var(--navy); font-size: 1rem; font-family: inherit;
-      transition: border-color .15s, background .15s; width: 100%; margin-top: 8px;
-    }
-    .input:focus { outline: none; border-color: var(--accent); background: rgba(0,0,0,.4); box-shadow: 0 0 0 3px rgba(123,121,224,.35); }
-    .input::placeholder { color: var(--fog); }
-    .input.error, .input[aria-invalid="true"] { border-color: var(--red); }
-    .input-error { color: var(--red); font-size: .78rem; margin-top: 6px; min-height: 1em; }
-    .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
-    .step-block { display: none; }
-    .step-block.active { display: block; }
-    .note { margin-top: 14px; font-size: .78rem; color: var(--fog); text-align: center; line-height: 1.5; }
-    .note a { color: var(--accent-soft); }
-    .step-row {
-      background: rgba(255,255,255,.04); border: 1px solid var(--border); border-radius: 12px;
-      padding: 12px 14px; margin-bottom: 8px;
-      display: flex; gap: 12px; align-items: flex-start;
-      font-size: .9rem; color: var(--navy); line-height: 1.45;
-    }
-    .step-num {
-      background: var(--accent); color: white;
-      width: 22px; height: 22px; border-radius: 50%;
-      flex-shrink: 0; font-weight: 800; font-size: .78rem;
+    .install-wrap {
+      min-height: calc(100dvh - var(--nav-h) - 120px);
       display: flex; align-items: center; justify-content: center;
+      padding: clamp(40px, 8vh, 80px) 20px;
+      position: relative;
+      overflow: hidden;
     }
-    .cta-row { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
-
-    footer {
-      text-align: center; padding: 14px 24px;
-      font-size: .74rem; color: rgba(255,255,255,.55);
-      border-top: 1px solid var(--border); background: #000;
+    .install-wrap::before {
+      content: "";
+      position: absolute; inset: -20%;
+      background: radial-gradient(ellipse 40% 50% at 50% 20%, rgba(91,142,240,.14), transparent 60%);
+      z-index: 0; pointer-events: none;
     }
-    footer a { color: rgba(255,255,255,.7); text-decoration: none; }
-    footer a:hover { color: #fff; }
-    footer .foot-sep { margin: 0 6px; opacity: .5; }
-
-    .lang-es, .lang-en { display: none; }
-    .lang-es.visible, .lang-en.visible { display: block; }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+    .install-card {
+      position: relative; z-index: 1;
+      width: 100%; max-width: 520px;
+      background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-xl);
+      padding: clamp(32px, 5vw, 44px);
+      box-shadow: 0 40px 80px -20px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.03) inset;
+    }
+    .install-card h1 {
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      margin-bottom: var(--s-2);
+      letter-spacing: -.025em;
     }
   </style>
 </head>
 <body>
-  <a href="#main" class="skip-link lang-es visible">Saltar al contenido</a>
-  <a href="#main" class="skip-link lang-en">Skip to content</a>
+  <a href="#main" class="skip-link">
+    <span data-lang="es">Saltar al contenido</span>
+    <span data-lang="en">Skip to content</span>
+  </a>
 
-  <nav aria-label="Primary">
-    <a class="nav-logo" href="/"><img src="assets/logo-192.png" alt="Logo 0Dopamine" width="30" height="30" decoding="async" />0Dopamine</a>
-    <div class="nav-right">
-      <div class="lang-toggle" role="group" aria-label="Idioma">
-        <button type="button" class="active" id="btn-es" aria-pressed="true" onclick="showLang('es')">ES</button>
-        <button type="button" id="btn-en" aria-pressed="false" onclick="showLang('en')">EN</button>
+  <header class="site-header">
+    <div class="nav">
+      <div class="nav-left">
+        <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+      <div class="nav-center">
+        <a class="nav-logo" href="/" aria-label="0Dopamine">
+          <img src="assets/logo-192.png" alt="0Dopamine" width="40" height="40" decoding="async" />
+        </a>
+      </div>
+      <div class="nav-right">
+        <a class="nav-cta" href="/">
+          <span data-lang="es">Inicio</span>
+          <span data-lang="en">Home</span>
+        </a>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <main id="main" class="wrap">
-    <div class="card" data-signup-card>
+  <main id="main" class="install-wrap">
+    <div class="install-card" data-signup-card>
+      <span class="badge">
+        <span data-lang="es">Programa de testers</span>
+        <span data-lang="en">Tester program</span>
+      </span>
+      <h1>
+        <span data-lang="es">Instala 0D en tu Android</span>
+        <span data-lang="en">Install 0D on your Android</span>
+      </h1>
 
-      <!-- ES -->
-      <div class="lang-es visible">
-        <span class="badge">Programa de testers</span>
-        <h1>Instala 0D en tu Android</h1>
-
-        <div class="step-block active" data-step="1">
-          <p class="desc">Estás a 2 pasos de la beta:</p>
-          <ol class="preview">
-            <li>1. Email (1 min)</li>
-            <li>2. Grupo + Play (~5 min)</li>
-          </ol>
-          <form data-beta-form novalidate>
-            <label for="install-email-es" class="sr-only">Email</label>
-            <input id="install-email-es" class="input" type="email" name="email" placeholder="tu@email.com" required autocomplete="email" maxlength="254" aria-describedby="install-email-es-error" />
-            <p id="install-email-es-error" class="input-error" aria-live="polite"></p>
-            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
-            <button class="submit" type="submit" style="margin-top:8px">Siguiente paso &rarr;</button>
-          </form>
-          <p class="note">Solo usamos tu email para avisarte de la beta. Sin spam. Ver <a href="privacy.html">política de privacidad</a>.</p>
-        </div>
-
-        <div class="step-block" data-step="2">
-          <p class="desc" data-popup-ok>Te abrimos una pestaña para unirte al grupo de testers. Confirma ahí y vuelve:</p>
-          <p class="desc" data-popup-blocked style="display:none">Tu navegador bloqueó la pestaña. Únete al grupo primero:</p>
-          <div class="cta-row">
-            <div class="step-row"><span class="step-num">1</span><span>Confirma «Unirme al grupo» en la pestaña que se abrió.</span></div>
-            <div class="step-row"><span class="step-num">2</span><span>Espera ~5 minutos para que Google active tu acceso.</span></div>
-            <div class="step-row"><span class="step-num">3</span><span>Toca el botón y descarga la beta en tu móvil.</span></div>
-          </div>
-          <a class="submit" data-group-fallback
-             href="https://groups.google.com/g/zerodopamine-beta"
-             target="_blank" rel="noopener noreferrer"
-             style="margin-top:18px;display:none">
-            Abrir grupo de testers primero &rarr;
-          </a>
-          <a class="submit" data-beta-go
-             href="https://play.google.com/apps/testing/com.zerodopamine"
-             target="_blank" rel="noopener noreferrer"
-             style="margin-top:18px">
-            Abrir Play Store para instalar &rarr;
-          </a>
-          <p class="note">Usa la misma cuenta Google en el grupo y en tu móvil Android.</p>
-        </div>
+      <!-- Step 1 -->
+      <div class="step active" data-step="1">
+        <p class="modal-desc">
+          <span data-lang="es">Estás a 2 pasos de la beta:</span>
+          <span data-lang="en">You&rsquo;re 2 steps away from the beta:</span>
+        </p>
+        <ul class="modal-preview" aria-hidden="true">
+          <li data-lang="es">1. Email (1 min)</li>
+          <li data-lang="en">1. Email (1 min)</li>
+          <li data-lang="es">2. Grupo + Play (~5 min)</li>
+          <li data-lang="en">2. Group + Play (~5 min)</li>
+        </ul>
+        <form data-beta-form novalidate class="field-stack">
+          <label for="install-email" class="sr-only">
+            <span data-lang="es">Email</span>
+            <span data-lang="en">Email</span>
+          </label>
+          <input id="install-email" class="field" type="email" name="email" required autocomplete="email" inputmode="email" maxlength="254" aria-describedby="install-email-error" />
+          <p id="install-email-error" class="field-error" aria-live="polite"></p>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot" />
+          <button type="submit" class="btn btn-primary btn-block">
+            <span data-lang="es">Siguiente paso</span>
+            <span data-lang="en">Next step</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+        <p class="modal-note">
+          <span data-lang="es">Solo usamos tu email para avisarte de la beta. Sin spam. Ver <a href="privacy.html">privacidad</a>.</span>
+          <span data-lang="en">We only use your email for beta updates. No spam. See <a href="privacy.html">privacy</a>.</span>
+        </p>
       </div>
 
-      <!-- EN -->
-      <div class="lang-en">
-        <span class="badge">Tester program</span>
-        <h1>Install 0D on your Android</h1>
-
-        <div class="step-block active" data-step="1">
-          <p class="desc">You're 2 steps from the beta:</p>
-          <ol class="preview">
-            <li>1. Email (1 min)</li>
-            <li>2. Group + Play (~5 min)</li>
-          </ol>
-          <form data-beta-form novalidate>
-            <label for="install-email-en" class="sr-only">Email</label>
-            <input id="install-email-en" class="input" type="email" name="email" placeholder="you@email.com" required autocomplete="email" maxlength="254" aria-describedby="install-email-en-error" />
-            <p id="install-email-en-error" class="input-error" aria-live="polite"></p>
-            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
-            <button class="submit" type="submit" style="margin-top:8px">Next step &rarr;</button>
-          </form>
-          <p class="note">We only use your email for beta updates. No spam. See <a href="privacy.html">privacy policy</a>.</p>
+      <!-- Step 2 -->
+      <div class="step" data-step="2">
+        <p class="modal-desc" data-popup-ok>
+          <span data-lang="es">Te abrimos una pestaña para unirte al grupo de testers. Confirma ahí y vuelve:</span>
+          <span data-lang="en">We opened a tab for you to join the tester group. Confirm there and come back:</span>
+        </p>
+        <p class="modal-desc" data-popup-blocked hidden>
+          <span data-lang="es">Tu navegador bloqueó la pestaña. Únete al grupo primero:</span>
+          <span data-lang="en">Your browser blocked the tab. Join the group first:</span>
+        </p>
+        <div class="step-list">
+          <div class="step-row"><span class="step-num">1</span><span><span data-lang="es">Confirma «Unirme al grupo» en la pestaña que se abrió.</span><span data-lang="en">Confirm &ldquo;Join group&rdquo; in the tab that just opened.</span></span></div>
+          <div class="step-row"><span class="step-num">2</span><span><span data-lang="es">Espera ~5 minutos para que Google active tu acceso.</span><span data-lang="en">Wait ~5 minutes for Google to activate your access.</span></span></div>
+          <div class="step-row"><span class="step-num">3</span><span><span data-lang="es">Toca el botón y descarga la beta en tu móvil.</span><span data-lang="en">Tap the button and install the beta on your phone.</span></span></div>
         </div>
-
-        <div class="step-block" data-step="2">
-          <p class="desc" data-popup-ok>We opened a tab for you to join the tester group. Confirm there and come back:</p>
-          <p class="desc" data-popup-blocked style="display:none">Your browser blocked the tab. Join the group first:</p>
-          <div class="cta-row">
-            <div class="step-row"><span class="step-num">1</span><span>Confirm "Join group" in the tab that just opened.</span></div>
-            <div class="step-row"><span class="step-num">2</span><span>Wait ~5 minutes for Google to activate your access.</span></div>
-            <div class="step-row"><span class="step-num">3</span><span>Tap the button and install the beta on your phone.</span></div>
-          </div>
-          <a class="submit" data-group-fallback
+        <div class="cta-stack">
+          <a class="btn btn-ghost btn-block" data-group-fallback
              href="https://groups.google.com/g/zerodopamine-beta"
-             target="_blank" rel="noopener noreferrer"
-             style="margin-top:18px;display:none">
-            Open tester group first &rarr;
+             target="_blank" rel="noopener noreferrer" hidden>
+            <span data-lang="es">Abrir grupo de testers primero</span>
+            <span data-lang="en">Open tester group first</span>
           </a>
-          <a class="submit" data-beta-go
+          <a class="btn btn-primary btn-block" data-beta-go
              href="https://play.google.com/apps/testing/com.zerodopamine"
-             target="_blank" rel="noopener noreferrer"
-             style="margin-top:18px">
-            Open Play Store to install &rarr;
+             target="_blank" rel="noopener noreferrer">
+            <span data-lang="es">Abrir Play Store para instalar</span>
+            <span data-lang="en">Open Play Store to install</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           </a>
-          <p class="note">Use the same Google account in the group and on your Android phone.</p>
         </div>
+        <p class="modal-note">
+          <span data-lang="es">Usa la misma cuenta Google en el grupo y en tu móvil Android.</span>
+          <span data-lang="en">Use the same Google account in the group and on your Android phone.</span>
+        </p>
       </div>
-
     </div>
   </main>
 
-  <footer>
-    <div class="lang-es visible">
-      &copy; 2026 0Dopamine
-      <span class="foot-sep">·</span>
-      <a href="/">Volver al inicio</a>
-      <span class="foot-sep">·</span>
-      <a href="faq.html">FAQ</a>
-      <span class="foot-sep">·</span>
-      <a href="privacy.html">Privacidad</a>
-      <span class="foot-sep">·</span>
-      <a href="terms.html">Términos</a>
-    </div>
-    <div class="lang-en">
-      &copy; 2026 0Dopamine
-      <span class="foot-sep">·</span>
-      <a href="/">Back to home</a>
-      <span class="foot-sep">·</span>
-      <a href="faq.html">FAQ</a>
-      <span class="foot-sep">·</span>
-      <a href="privacy.html">Privacy</a>
-      <span class="foot-sep">·</span>
-      <a href="terms.html">Terms</a>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: 0;">
+        <span>&copy; 2026 0Dopamine</span>
+        <span>
+          <a href="/" style="color: var(--ink-2);"><span data-lang="es">Inicio</span><span data-lang="en">Home</span></a>
+          &nbsp;·&nbsp;
+          <a href="faq.html" style="color: var(--ink-2);">FAQ</a>
+          &nbsp;·&nbsp;
+          <a href="privacy.html" style="color: var(--ink-2);"><span data-lang="es">Privacidad</span><span data-lang="en">Privacy</span></a>
+          &nbsp;·&nbsp;
+          <a href="terms.html" style="color: var(--ink-2);"><span data-lang="es">Términos</span><span data-lang="en">Terms</span></a>
+        </span>
+      </div>
     </div>
   </footer>
 
-  <script src="assets/signup.js" defer></script>
+  <script>
+    (function () {
+      function applyPlaceholder() {
+        var lang = document.documentElement.lang || 'es';
+        var el = document.getElementById('install-email');
+        if (el) el.placeholder = lang === 'en' ? 'you@email.com' : 'tu@email.com';
+      }
+      if (document.readyState !== 'loading') applyPlaceholder();
+      else document.addEventListener('DOMContentLoaded', applyPlaceholder);
+      window.addEventListener('zd:lang', applyPlaceholder);
+    })();
+  </script>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>
