@@ -380,6 +380,38 @@
     strip.addEventListener('pointercancel', endDrag);
   }
 
+  // ---------- Theme toggle (dark default, light opt-in, persisted) ----------
+  var THEME_KEY = 'zd-theme';
+  function currentTheme() {
+    return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  }
+  function applyTheme(theme) {
+    var t = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    safeSet(THEME_KEY, t);
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', t === 'light' ? '#FAF9F6' : '#0B0B0D');
+    var isEN = (document.documentElement.lang || 'es').slice(0, 2) === 'en';
+    var label = t === 'light'
+      ? (isEN ? 'Switch to dark theme' : 'Cambiar a tema oscuro')
+      : (isEN ? 'Switch to light theme' : 'Cambiar a tema claro');
+    document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+      b.setAttribute('aria-label', label);
+      b.setAttribute('aria-pressed', t === 'light' ? 'true' : 'false');
+    });
+  }
+  function initThemeToggle() {
+    // Sync meta/labels with whatever the early inline script applied.
+    applyTheme(currentTheme());
+    document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        applyTheme(currentTheme() === 'light' ? 'dark' : 'light');
+      });
+    });
+    // Keep aria-label in sync with language changes.
+    window.addEventListener('zd:lang', function () { applyTheme(currentTheme()); });
+  }
+
   // ---------- Scroll reveal ----------
   function initReveal() {
     if (!('IntersectionObserver' in window)) {
@@ -418,5 +450,6 @@
     }
     initReveal();
     initAppsInteraction();
+    initThemeToggle();
   });
 })();

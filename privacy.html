@@ -9,8 +9,18 @@
   <meta name="author" content="0Dopamine" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#050607" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0B0B0D" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('zd-theme');
+        document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m && t === 'light') m.setAttribute('content', '#FAF9F6');
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+    })();
+  </script>
 
   <link rel="canonical" href="https://0dopamine.com/privacy.html" />
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
@@ -42,7 +52,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="assets/base.css" />
   <style>
     .doc {
@@ -106,8 +116,8 @@
     .manifesto {
       margin-bottom: var(--s-6);
       padding: clamp(18px, 2.4vw, 26px);
-      background: linear-gradient(160deg, rgba(91,142,240,.1), var(--bg-1));
-      border: 1px solid rgba(91,142,240,.28);
+      background: color-mix(in srgb, var(--accent) 8%, var(--bg-1));
+      border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent);
       border-left: 3px solid var(--accent);
       border-radius: var(--r-md);
     }
@@ -136,6 +146,10 @@
         </a>
       </div>
       <div class="nav-right">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Cambiar tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
         <a class="nav-cta" href="/">
           <span data-lang="es">Inicio</span>
           <span data-lang="en">Home</span>

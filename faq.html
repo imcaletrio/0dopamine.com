@@ -9,8 +9,18 @@
   <meta name="author" content="0Dopamine" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#050607" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0B0B0D" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('zd-theme');
+        document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m && t === 'light') m.setAttribute('content', '#FAF9F6');
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+    })();
+  </script>
 
   <link rel="canonical" href="https://0dopamine.com/faq.html" />
   <link rel="icon" href="assets/favicon.ico" sizes="any" />
@@ -35,7 +45,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" />
 
   <script type="application/ld+json">
   {
@@ -155,8 +165,9 @@
     summary::after {
       content: "";
       width: 16px; height: 16px;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238FB4FF' stroke-width='2' stroke-linecap='round'><path d='M6 9l6 6 6-6'/></svg>");
-      background-size: contain; background-repeat: no-repeat;
+      background-color: var(--accent-2);
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'><path d='M6 9l6 6 6-6'/></svg>") center / contain no-repeat;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'><path d='M6 9l6 6 6-6'/></svg>") center / contain no-repeat;
       flex-shrink: 0;
       transition: transform var(--dur) var(--ease);
     }
@@ -179,12 +190,14 @@
       display: inline-flex; align-items: center; gap: var(--s-2);
       margin-top: var(--s-7);
       padding: 12px 22px;
-      background: var(--ink); color: var(--bg);
+      background: var(--accent); color: var(--on-accent);
       border-radius: var(--r-full);
-      font-weight: 600;
-      transition: transform var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+      font-family: "Baloo 2", system-ui, sans-serif;
+      font-weight: 700;
+      box-shadow: var(--shadow-btn);
+      transition: transform var(--dur-fast) var(--ease), filter var(--dur-fast) var(--ease);
     }
-    .back:hover { background: #fff; transform: translateY(-1px); }
+    .back:hover { filter: brightness(1.06); transform: translateY(-1px); }
   </style>
 </head>
 <body>
@@ -207,6 +220,10 @@
         </a>
       </div>
       <div class="nav-right">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Cambiar tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
         <a class="nav-cta" href="/">
           <span data-lang="es">Inicio</span>
           <span data-lang="en">Home</span>
