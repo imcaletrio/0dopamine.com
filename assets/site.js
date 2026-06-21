@@ -98,7 +98,10 @@
   function showGroupFallback(root, blocked) {
     root.querySelectorAll('[data-popup-ok]').forEach(function (el) { el.hidden = blocked; });
     root.querySelectorAll('[data-popup-blocked]').forEach(function (el) { el.hidden = !blocked; });
-    root.querySelectorAll('[data-group-fallback]').forEach(function (el) { el.hidden = !blocked; });
+    // El botón de unirse al grupo SIEMPRE visible (window.open no es fiable en
+    // móvil: a veces no abre nada pero reporta éxito → el usuario se quedaba sin
+    // forma de unirse). Es el paso obligatorio, así que siempre debe estar.
+    root.querySelectorAll('[data-group-fallback]').forEach(function (el) { el.hidden = false; });
   }
 
   function clearError(input) {
