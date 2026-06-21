@@ -70,9 +70,14 @@ function doPost(e) {
     // Always log the event (including duplicates — useful for funnel analytics)
     sheet.appendRow([new Date(), email, source, lang]);
 
-    // Send welcome email only on first real signup
+    // Send welcome email only on first real signup.
+    // Wrapped so a mail failure never makes the signup itself report ok:false.
     if (!isStageEvent && !alreadySignedUp) {
-      sendWelcomeEmail_(email, lang);
+      try {
+        sendWelcomeEmail_(email, lang);
+      } catch (mailErr) {
+        Logger.log('sendWelcomeEmail_ failed: ' + mailErr);
+      }
     }
 
     return json_({ ok: true });
@@ -83,6 +88,67 @@ function doPost(e) {
 
 function doGet() {
   return json_({ ok: true, service: '0d-beta-signup' });
+}
+
+/**
+ * Run this ONCE from the Apps Script editor (▶ Run) to grant the missing
+ * `script.external_request` permission (the one that was blocking Resend).
+ * Google will show a consent screen — Review permissions → Allow.
+ * It also sends the welcome email directly to TEST_TO, bypassing the sheet
+ * dedup, so a tester already logged in the sheet still gets their email.
+ * Edit TEST_TO before running, then check the Logs (View → Logs).
+ */
+function authorizeAndSend() {
+  var TEST_TO = 'danielgonzalezcaletrio@gmail.com';
+  var key = PropertiesService.getScriptProperties().getProperty('RESEND_API_KEY');
+  if (!key) {
+    Logger.log('authorizeAndSend: RESEND_API_KEY VACIO en Script Properties — no se envio nada. Configuralo y reintenta.');
+    return;
+  }
+  sendWelcomeEmail_(TEST_TO, 'es');
+  Logger.log('authorizeAndSend: enviado a ' + TEST_TO);
+}
+
+/**
+ * Reenvío de recuperación: manda el welcome email a TODOS los testers reales
+ * ya registrados en la hoja, saltándose el dedup. Úsalo UNA vez tras arreglar
+ * el permiso, porque durante el bug de `script.external_request` NADIE recibió
+ * el correo. Filtra: emails válidos, sin stage-events (source con ':'),
+ * sin duplicados, y omite direcciones de prueba.
+ * Revisa los Logs (View → Logs) al terminar.
+ */
+function resendToAllReal() {
+  var key = PropertiesService.getScriptProperties().getProperty('RESEND_API_KEY');
+  if (!key) { Logger.log('resendToAllReal: RESEND_API_KEY VACIO — abortado.'); return; }
+
+  var sheetId = PropertiesService.getScriptProperties().getProperty('SHEET_ID');
+  var sheet = SpreadsheetApp.openById(sheetId).getSheets()[0];
+  var last = sheet.getLastRow();
+  if (last < 2) { Logger.log('resendToAllReal: hoja vacia.'); return; }
+
+  // Columnas: B email | C source | D lang
+  var rows = sheet.getRange(2, 2, last - 1, 3).getValues();
+  var SKIP = { 'zdtest+probe@gmail.com': true };  // direcciones de prueba a ignorar
+  var seen = {}, sent = 0, skipped = 0;
+
+  for (var i = 0; i < rows.length; i++) {
+    var email  = String(rows[i][0] || '').trim().toLowerCase();
+    var source = String(rows[i][1] || '');
+    var lang   = String(rows[i][2] || 'es');
+    if (!email || !EMAIL_RE.test(email)) { skipped++; continue; }   // vacío/invalí­do
+    if (source.indexOf(':') >= 0) { skipped++; continue; }           // stage event
+    if (SKIP[email] || seen[email]) { skipped++; continue; }         // prueba o duplicado
+    seen[email] = true;
+    try {
+      sendWelcomeEmail_(email, lang);
+      sent++;
+      Logger.log('resendToAllReal: enviado -> ' + email);
+    } catch (err) {
+      Logger.log('resendToAllReal: FALLO -> ' + email + ' : ' + err);
+    }
+    Utilities.sleep(400);  // suave con el límite de Resend (100/día free)
+  }
+  Logger.log('resendToAllReal: total enviados=' + sent + ', omitidos=' + skipped);
 }
 
 function sendWelcomeEmail_(to, lang) {

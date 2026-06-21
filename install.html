@@ -137,6 +137,9 @@
           <input id="install-email" class="field" type="email" name="email" required autocomplete="email" inputmode="email" maxlength="254" aria-describedby="install-email-error" />
           <p id="install-email-error" class="field-error" aria-live="polite"></p>
           <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot" />
+          <!-- FASE B (Turnstile): descomenta y pon la Site Key real para activar el anti-abuso.
+          <div class="cf-turnstile" data-sitekey="TURNSTILE_SITE_KEY" data-theme="auto" data-size="flexible" data-action="beta-signup" style="margin:8px 0"></div>
+          -->
           <button type="submit" class="btn btn-primary btn-block">
             <span data-lang="es">Siguiente paso</span>
             <span data-lang="en">Next step</span>
@@ -216,6 +219,9 @@
       window.addEventListener('zd:lang', applyPlaceholder);
     })();
   </script>
+  <!-- FASE B (Turnstile): descomenta para cargar el widget de Cloudflare.
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  -->
   <script src="assets/site.js" defer></script>
 </body>
 </html>

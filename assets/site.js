@@ -9,6 +9,8 @@
   var LANG_KEY    = '0d_lang';
   var EMAIL_KEY   = '0d_beta_email';
   var ENDPOINT    = 'https://script.google.com/macros/s/AKfycbyytIFY3r54hTdMLM2mlwvg_pLhG5SOaH-SZlUvatkV8rKg-UhLLmJJlLnDaD0YJaMJ/exec';
+  // Envío instantáneo del welcome email vía Resend (función serverless en Vercel)
+  var WELCOME_ENDPOINT = 'https://zerodopamine-auth-email.vercel.app/api/beta-welcome';
   var GROUP_URL   = 'https://groups.google.com/g/zerodopamine-beta';
   var EMAIL_RE    = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -183,6 +185,20 @@
 
         fetch(ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
           .then(advance, advance); // advance on success *or* network error
+
+        // Fire-and-forget: dispara el welcome email al instante (Resend en Vercel).
+        // Endpoint con CORS para https://0dopamine.com; no rompe el flujo si falla.
+        // El token de Cloudflare Turnstile lo inyecta el widget como input oculto
+        // cf-turnstile-response dentro del form; el endpoint lo verifica server-side.
+        try {
+          var tsField = form.querySelector('[name="cf-turnstile-response"]');
+          var tsToken = tsField ? tsField.value : '';
+          fetch(WELCOME_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, lang: (document.documentElement.lang || 'es'), website: (hp ? hp.value : ''), turnstileToken: tsToken })
+          }).catch(function () {});
+        } catch (e) {}
       });
     });
   }
