@@ -204,7 +204,7 @@ function textEs_(to) {
     'Si algo no funciona, responde a este correo y te echo una mano.',
     '',
     'Gracias por ayudarme a mejorar la app,',
-    'Manuel — 0Dopamine',
+    '0Dopamine',
     '',
     '---',
     'Recibes este correo porque te registraste en 0dopamine.com. Si no fuiste tu, ignora este mensaje.'
@@ -230,7 +230,7 @@ function textEn_(to) {
     'If anything does not work, just reply to this email and I will help.',
     '',
     'Thanks for helping me improve the app,',
-    'Manuel — 0Dopamine',
+    '0Dopamine',
     '',
     '---',
     'You received this email because you signed up at 0dopamine.com. If this was not you, please ignore.'
@@ -246,7 +246,7 @@ function htmlEs_(to) {
     'Instalar la beta',
     'Importante: usa la misma cuenta Google en el grupo y en tu movil.',
     'Si algo no funciona, responde a este correo y te echo una mano.',
-    'Gracias por ayudarme a mejorar la app,<br>Manuel — 0Dopamine',
+    'Gracias por ayudarme a mejorar la app,<br>0Dopamine',
     'Recibes este correo porque te registraste en 0dopamine.com. Si no fuiste tu, ignora este mensaje.'
   );
 }
@@ -260,7 +260,7 @@ function htmlEn_(to) {
     'Install the beta',
     'Important: use the same Google account in the group and on your phone.',
     'If anything does not work, just reply to this email and I will help.',
-    'Thanks for helping me improve the app,<br>Manuel — 0Dopamine',
+    'Thanks for helping me improve the app,<br>0Dopamine',
     'You received this email because you signed up at 0dopamine.com. If this was not you, please ignore.'
   );
 }
