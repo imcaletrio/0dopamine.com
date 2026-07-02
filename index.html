@@ -155,7 +155,7 @@
       width: clamp(68px, 10vh, 112px);
       height: auto;
       border-radius: clamp(16px, 2.4vh, 24px);
-      box-shadow: 0 16px 36px rgba(120,108,180,.20), 0 0 0 1px rgba(0,0,0,.04);
+      box-shadow: 0 16px 36px color-mix(in srgb, #0E1D2D 28%, transparent), 0 0 0 1px rgba(0,0,0,.04);
     }
     .brand-name {
       font-family: 'Baloo 2', system-ui, sans-serif;
@@ -220,16 +220,12 @@
     .pricing-note strong { color: var(--ink-2); font-weight: 500; }
 
     .plan {
-      position: relative;
       padding: clamp(10px, 1.3vh, 14px) clamp(12px, 1.4vw, 18px);
-      background: var(--bg-1);
-      border: 1px solid var(--border);
       border-radius: var(--r-lg);
       display: flex; flex-direction: column; gap: clamp(4px, .7vh, 8px);
-      transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease),
-                  transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
     }
-    .plan:hover { border-color: var(--border-2); transform: translateY(-2px); }
+    .plan:hover { transform: translateY(-2px); }
     .plan-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
     .plan-name {
       font-size: .72rem;
@@ -261,14 +257,21 @@
     .plan-feats li { display: flex; align-items: center; gap: 6px; line-height: 1.25; }
     .plan-feats svg { width: 11px; height: 11px; color: var(--accent-2); flex-shrink: 0; }
 
-    /* Premium — destacado */
+    /* Premium — destacado (vidrio tintado con el acento) */
     .plan.featured {
-      background: color-mix(in srgb, #5856D6 7%, var(--bg-1));
-      border-color: color-mix(in srgb, #5856D6 45%, transparent);
-      box-shadow: 0 16px 38px color-mix(in srgb, #5856D6 16%, transparent), 0 0 0 1px color-mix(in srgb, #5856D6 14%, transparent) inset;
+      background: color-mix(in srgb, #4A7FB8 12%, var(--glass-bg));
+      box-shadow: 0 16px 38px color-mix(in srgb, #4A7FB8 20%, transparent),
+                  0 0 0 1px color-mix(in srgb, #4A7FB8 18%, transparent) inset,
+                  var(--glass-highlight);
       transform: translateY(-4px) scale(1.015);
     }
-    .plan.featured:hover { transform: translateY(-7px) scale(1.015); box-shadow: 0 22px 46px color-mix(in srgb, #5856D6 22%, transparent); }
+    .plan.featured::before {
+      background: linear-gradient(135deg,
+        color-mix(in srgb, #4A7FB8 55%, rgba(255,255,255,.6)) 0%,
+        color-mix(in srgb, #4A7FB8 28%, rgba(255,255,255,.2)) 50%,
+        color-mix(in srgb, #4A7FB8 38%, rgba(255,255,255,.3)) 100%);
+    }
+    .plan.featured:hover { transform: translateY(-7px) scale(1.015); box-shadow: 0 22px 46px color-mix(in srgb, #4A7FB8 26%, transparent), var(--glass-highlight); }
     .plan.featured .plan-name { color: var(--accent-2); }
     .plan.featured .plan-badge {
       position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
@@ -286,12 +289,17 @@
     .plan.featured .plan-price { font-size: clamp(1.35rem, 2vw, 1.7rem); }
     .plan.featured .plan-feats svg { color: var(--accent); }
 
-    /* Lifetime — dorado (token --gold theme-aware) */
+    /* Lifetime — dorado (vidrio tintado, token --gold theme-aware) */
     .plan.gold {
-      background: color-mix(in srgb, var(--gold) 9%, var(--bg-1));
-      border-color: color-mix(in srgb, var(--gold) 38%, transparent);
+      background: color-mix(in srgb, var(--gold) 14%, var(--glass-bg));
     }
-    .plan.gold:hover { box-shadow: 0 18px 40px color-mix(in srgb, var(--gold) 20%, transparent); }
+    .plan.gold::before {
+      background: linear-gradient(135deg,
+        color-mix(in srgb, var(--gold) 60%, rgba(255,255,255,.6)) 0%,
+        color-mix(in srgb, var(--gold) 32%, rgba(255,255,255,.2)) 50%,
+        color-mix(in srgb, var(--gold) 42%, rgba(255,255,255,.3)) 100%);
+    }
+    .plan.gold:hover { box-shadow: 0 18px 40px color-mix(in srgb, var(--gold) 22%, transparent), var(--glass-highlight); }
     .plan.gold .plan-name { color: var(--gold); }
     .plan.gold .plan-price {
       background: none;
@@ -327,15 +335,11 @@
     .app-chip {
       display: flex; align-items: center; gap: 10px;
       padding: clamp(6px, 1vh, 10px) clamp(12px, 1.4vw, 18px);
-      background: var(--bg-2);
-      border: 1px solid var(--border);
       border-radius: var(--r-md);
-      transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease),
-                  filter var(--dur) var(--ease);
+      transition: filter var(--dur) var(--ease);
       flex-shrink: 0;
       filter: grayscale(var(--g, 1)) brightness(var(--b, 1));
     }
-    .app-chip:hover { border-color: var(--border-2); }
     .app-chip .logo {
       width: clamp(28px, 3.2vh, 32px); height: clamp(28px, 3.2vh, 32px);
       border-radius: 8px;

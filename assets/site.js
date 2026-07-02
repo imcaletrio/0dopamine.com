@@ -29,8 +29,8 @@
     } catch (_) {}
     var saved = safeGet(LANG_KEY);
     if (saved === 'es' || saved === 'en') return saved;
-    var nav = (navigator.language || 'es').slice(0, 2).toLowerCase();
-    return nav === 'en' ? 'en' : 'es';
+    // Por defecto SIEMPRE español (no autodetectar el idioma del navegador).
+    return 'es';
   }
 
   function applyLang(lang) {
