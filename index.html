@@ -558,6 +558,11 @@
       .site-footer-slim {
         padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
       }
+      /* Los enlaces del pie son navegación real y medían 18px de alto. */
+      .site-footer-slim a {
+        display: inline-flex; align-items: center;
+        min-height: 44px; padding: 0 2px;
+      }
     }
     @media (max-width: 420px) {
       .float-ui.right .nav-cta { padding: 0 13px; font-size: .76rem; }
@@ -573,6 +578,16 @@
     }
     @media (max-width: 420px) and (min-height: 501px) {
       main.stage { padding-top: calc(68px + env(safe-area-inset-top, 0px)); }
+    }
+
+    /* Con "reducir movimiento" el carrusel deja de desplazarse y la cinta
+       pasa a flex-wrap, así que se veían los 18 chips: los 9 reales MÁS
+       los 9 duplicados que solo existen para que el bucle no tenga costura.
+       En móvil eso eran 301px de logos repetidos (la tira mide 61px). */
+    @media (prefers-reduced-motion: reduce) and (max-width: 640px) {
+      .apps-track .app-chip[aria-hidden="true"] { display: none; }
+      .apps-track { justify-content: center; gap: 8px; }
+      .apps-strip { padding: 10px 12px; }
     }
   </style>
   <script>

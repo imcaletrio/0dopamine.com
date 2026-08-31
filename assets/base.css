@@ -719,6 +719,10 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
   }
   .nav-center { flex-shrink: 0; }
   .nav-logo img { width: 34px; height: 34px; }
+  /* El logo es un enlace a la home: el icono se queda en 34px pero el
+     área pulsable sube a 44. */
+  .nav-logo { min-width: 44px; min-height: 44px; display: inline-flex;
+              align-items: center; justify-content: center; }
 
   /* --- Objetivos táctiles: 44px reales --------------------------
      La media query antigua de 560px los ENCOGÍA (el CTA pasaba de
@@ -792,7 +796,10 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
     padding-top: var(--s-4);
     line-height: 2;
   }
-  .footer-bottom a { padding: 2px 0; }
+  .footer-bottom a {
+    display: inline-flex; align-items: center;
+    min-height: 44px; padding: 0 2px;
+  }
   .footer-bottom > span:last-child {
     display: flex; flex-wrap: wrap;
     justify-content: center; align-items: center;
@@ -827,6 +834,7 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
   div.doc article code, article.doc article code { word-break: break-all; }
   .doc .manifesto { padding: 16px 18px; }
   .doc .breadcrumb { font-size: .8rem; }
+  .doc .breadcrumb a { display: inline-block; padding: 11px 2px; margin: -11px 0; }
   .doc .back { min-height: 48px; padding: 12px 22px; display: inline-flex; align-items: center; }
 
   /* FAQ: acordeón con más superficie táctil y aire entre preguntas */
