@@ -584,6 +584,17 @@
        pasa a flex-wrap, así que se veían los 18 chips: los 9 reales MÁS
        los 9 duplicados que solo existen para que el bucle no tenga costura.
        En móvil eso eran 301px de logos repetidos (la tira mide 61px). */
+    /* En un móvil el :hover se queda "pegado" tras tocar, así que un simple
+       toque en la tira PARABA el carrusel y no volvía a arrancar hasta tocar
+       en otro sitio. Lo mismo con el relieve de las tarjetas de precio, que
+       se quedaba levantado. Esos efectos solo tienen sentido con ratón. */
+    @media (hover: none) {
+      .apps-strip:hover .apps-track { animation-play-state: running; }
+      .plan:hover,
+      .plan.featured:hover,
+      .plan.gold:hover { transform: none; }
+    }
+
     @media (prefers-reduced-motion: reduce) and (max-width: 640px) {
       .apps-track .app-chip[aria-hidden="true"] { display: none; }
       .apps-track { justify-content: center; gap: 8px; }
