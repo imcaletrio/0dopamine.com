@@ -656,3 +656,223 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
     scroll-behavior: auto !important;
   }
 }
+
+/* ===================================================================
+   CAPA MÓVIL — 2026-08-31
+   Todo lo de aquí abajo vive dentro de media queries de ancho, salvo la
+   regla `.footer-bottom .fsep` de justo debajo, que acompaña al cambio de
+   marcado del pie y está calibrada para no alterar el aspecto en escritorio.
+   Objetivo: respiración limpia, jerarquía clara y cero desbordes.
+   =================================================================== */
+
+/* Separador del pie. Antes era `&nbsp;·&nbsp;`: la fila ya podía partir por
+   los espacios colapsados, pero el punto quedaba pegado a su enlace y el
+   hueco no era ajustable. Con un elemento propio el contenedor puede ser
+   flex en móvil. `.25em` por lado ≈ el ancho que daban los dos &nbsp;. */
+.footer-bottom .fsep { margin: 0 .31em; }
+
+@media (max-width: 640px) {
+
+  /* --- Escala propia de móvil -----------------------------------
+     Los clamp() originales saturaban en su mínimo por debajo de
+     640px: un iPhone SE y un Pro Max renderizaban el mismo cuerpo.
+     Aquí la escala vuelve a ser fluida en el rango que importa. */
+  :root, html[data-theme="light"] {
+    --fs-h1:   clamp(1.65rem, 7.4vw, 2.3rem);
+    --fs-h2:   clamp(1.3rem,  5.2vw, 1.65rem);
+    --fs-h3:   clamp(1.05rem, 4.1vw, 1.22rem);
+    --fs-lead: clamp(.97rem,  3.8vw, 1.08rem);
+    --fs-sm:   .92rem;
+
+    --nav-h: 60px;
+
+    /* Menos blur = scroll fluido en gama media/baja.
+       Va también en [data-theme=light] porque ese selector es más
+       específico que :root y si no, el tema claro se quedaba en 16px. */
+    --glass-blur: 12px;
+  }
+
+  /* --- Nada se sale de la pantalla, pase lo que pase ------------- */
+  h1, h2, h3, h4, p, li, summary, a, .btn, .badge, code {
+    overflow-wrap: break-word;
+  }
+  h1, h2, h3 { letter-spacing: -.015em; }
+  p, li { text-wrap: pretty; }
+
+  /* --- Rendimiento de scroll ------------------------------------
+     background-attachment:fixed repinta 5 gradientes en cada frame
+     y en iOS Safari además da saltos. En móvil, fondo normal. */
+  body { background-attachment: scroll; }
+
+  /* --- Cabecera: más baja, sin blur anidado --------------------- */
+  .site-header {
+    /* El blur del header era sticky: se recomponía en cada frame,
+       y encima sus hijos glass llevaban otro blur encima. */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .nav {
+    gap: var(--s-2);
+    padding-inline: max(14px, env(safe-area-inset-left, 0px));
+  }
+  .nav-center { flex-shrink: 0; }
+  .nav-logo img { width: 34px; height: 34px; }
+
+  /* --- Objetivos táctiles: 44px reales --------------------------
+     La media query antigua de 560px los ENCOGÍA (el CTA pasaba de
+     45 a 38px). Aquí crecen, sin cambiar el tamaño de letra. */
+  .nav-right .nav-cta,
+  .lang-switch,
+  .lang-toggle button {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-right .nav-cta { padding: 0 16px; font-size: .85rem; }
+  .lang-switch        { padding: 0 14px; font-size: .82rem; }
+  .lang-toggle { padding: 2px; }
+  .lang-toggle button { padding: 0 12px; font-size: .8rem; }
+  .theme-toggle { width: 44px; height: 44px; }
+  .modal-close  { width: 44px; height: 44px; top: 8px; right: 8px; }
+
+  .container { padding-inline: 20px; }
+
+  /* --- Botones: el texto ya puede partir ------------------------
+     white-space:nowrap + .btn-block (width:100%) hacía que
+     "Unirme al grupo de testers (obligatorio)" se saliera del
+     rectángulo por ambos lados. Es el botón del funnel. */
+  .btn {
+    white-space: normal;
+    text-wrap: balance;
+    min-width: 0;
+    padding: 13px 20px;
+    font-size: .97rem;
+    line-height: 1.3;
+    min-height: 48px;
+  }
+  .btn-lg { padding: 15px 24px; font-size: 1rem; }
+  .btn > svg { flex-shrink: 0; }
+
+  /* --- Modal / tarjeta de alta: ganar ancho útil ----------------
+     Con 20px de overlay + 32px de padding sólo quedaban 269px de
+     375. Turnstile pide 300px mínimos y se salía. */
+  .modal-overlay { padding: 12px; }
+  .modal {
+    padding: 26px 18px 22px;
+    border-radius: var(--r-lg);
+    max-height: calc(100dvh - 24px);
+  }
+  .modal-desc  { font-size: .95rem; }
+  .modal-note  { font-size: .8rem; }
+  .modal-note a { padding: 4px 0; display: inline-block; }
+
+  /* Turnstile nunca desborda su contenedor */
+  .cf-turnstile {
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* --- Formulario ------------------------------------------------ */
+  .field { min-height: 50px; }          /* 1rem se mantiene: sin zoom en iOS */
+  .field-stack { gap: 10px; }
+
+  /* --- Pie: legible y con separación táctil ---------------------- */
+  .site-footer {
+    padding-block: clamp(32px, 6vw, 44px) max(20px, env(safe-area-inset-bottom, 0px));
+  }
+  .footer-bottom {
+    justify-content: center;
+    text-align: center;
+    gap: var(--s-2) var(--s-3);
+    padding-top: var(--s-4);
+    line-height: 2;
+  }
+  .footer-bottom a { padding: 2px 0; }
+  .footer-bottom > span:last-child {
+    display: flex; flex-wrap: wrap;
+    justify-content: center; align-items: center;
+    gap: 0 2px;
+  }
+  .footer-bottom .fsep { margin: 0 .2em; }
+
+  /* --- Documentos legales y FAQ ---------------------------------
+     Especificidad deliberada (`div.doc` / `article.doc`) para pisar
+     el <style> embebido de cada página, que va después en cascada. */
+  div.doc, article.doc {
+    padding: clamp(28px, 7vw, 40px) 20px clamp(48px, 11vw, 72px);
+  }
+  div.doc h1, article.doc h1 {
+    font-size: clamp(1.7rem, 7.6vw, 2.1rem);
+    line-height: 1.12;
+    letter-spacing: -.025em;
+  }
+  div.doc .lead, article.doc .lead { font-size: 1rem; line-height: 1.6; }
+  div.doc article h2,
+  article.doc article h2 {
+    font-size: 1.08rem;
+    margin-top: var(--s-6);
+    margin-bottom: var(--s-2);
+  }
+  div.doc article p,  article.doc article p,
+  div.doc article li, article.doc article li {
+    font-size: .95rem;                  /* 14.4px era demasiado pequeño */
+    line-height: 1.72;
+  }
+  div.doc article ul, article.doc article ul { padding-left: var(--s-4); }
+  div.doc article code, article.doc article code { word-break: break-all; }
+  .doc .manifesto { padding: 16px 18px; }
+  .doc .breadcrumb { font-size: .8rem; }
+  .doc .back { min-height: 48px; padding: 12px 22px; display: inline-flex; align-items: center; }
+
+  /* FAQ: acordeón con más superficie táctil y aire entre preguntas */
+  .doc .faq-list { gap: 10px; }
+  .doc .faq-list summary {
+    padding: 15px 14px;
+    font-size: .97rem;
+    line-height: 1.4;
+    min-height: 52px;
+  }
+  .doc .faq-list details > div.answer {
+    padding: 0 14px 16px;
+    font-size: .92rem;
+    line-height: 1.7;
+  }
+
+  /* --- Badges y píldoras ---------------------------------------- */
+  .badge { font-size: .7rem; padding: 5px 11px; }
+  .modal-preview li { font-size: .74rem; }
+  .step-list { gap: 10px; }
+  .step-row { font-size: .92rem; line-height: 1.5; }
+}
+
+/* --- Móviles estrechos (≤ 400px) ------------------------------- */
+@media (max-width: 400px) {
+  .modal { padding: 24px 15px 20px; max-height: calc(100dvh - 20px); }
+  .modal-overlay { padding: 10px; }
+  .nav { padding-inline: max(12px, env(safe-area-inset-left, 0px)); }
+  .nav-right .nav-cta { padding: 0 13px; font-size: .82rem; }
+  .btn:not(.btn-lg) { padding: 12px 16px; font-size: .94rem; }
+  .btn-lg { padding: 14px 20px; font-size: .97rem; }
+  div.doc, article.doc { padding-inline: 16px; }
+  .container { padding-inline: 16px; }
+}
+
+/* --- Red de seguridad por debajo de ~352px ---------------------
+   Turnstile exige 300px rígidos y ahí ya no caben ni vaciando el
+   padding. Se escala EL IFRAME, no su contenedor: escalar el
+   contenedor encogería también su propio recorte y el widget
+   seguiría cortado igual. El clip del padre se queda, así el
+   desborde de layout de 300px no llega al viewport. */
+@media (max-width: 360px) {
+  .cf-turnstile > * {
+    transform: scale(.85);
+    transform-origin: 50% 0;
+  }
+  /* El transform no encoge la caja de layout: se recupera el hueco. */
+  .cf-turnstile { margin-bottom: -10px; }
+}

@@ -528,6 +528,52 @@
       .apps-strip { -webkit-mask-image: none; mask-image: none; overflow: visible; }
       .plan.featured { transform: none; }
     }
+
+    /* ---------- Afinado móvil (2026-08-31) ----------
+       Va al final a propósito: gana el desempate de cascada frente a
+       las media queries de arriba, sin tocar ninguna de ellas. */
+    @media (max-width: 640px) {
+      /* Los controles flotantes vuelven a ser pulsables (44px reales) */
+      .float-ui.right .nav-cta {
+        min-height: 44px; padding: 0 15px; font-size: .8rem;
+        display: inline-flex; align-items: center;
+      }
+      .float-ui .lang-switch { min-height: 44px; padding: 0 14px; display: inline-flex; align-items: center; }
+      .float-ui .theme-toggle { width: 44px; height: 44px; }
+
+      /* Respeta el notch y la barra de gestos (el viewport es fit=cover) */
+      .float-ui       { top: max(14px, env(safe-area-inset-top, 0px)); }
+      .float-ui.left  { left: max(14px, env(safe-area-inset-left, 0px)); }
+      .float-ui.right { right: max(14px, env(safe-area-inset-right, 0px)); }
+
+      /* Las tarjetas se alineaban 14px por dentro del h1: mismo eje ya.
+         Y algo más de aire: con 10px la insignia "Más popular" rozaba el
+         borde de la tarjeta de arriba. */
+      .pricing { max-width: 100%; gap: 15px; }
+
+      /* Menos ruido: el aire manda la jerarquía */
+      .hero { margin-bottom: 4px; }
+      .pricing-note { font-size: .74rem; opacity: .85; max-width: 34ch; margin-inline: auto; }
+
+      .site-footer-slim {
+        padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+      }
+    }
+    @media (max-width: 420px) {
+      .float-ui.right .nav-cta { padding: 0 13px; font-size: .76rem; }
+    }
+
+    /* El padding superior va aparte y acotado por altura: si se metiera en el
+       bloque de ≤640px pisaría a la media query de horizontal (max-height:500),
+       que compacta a 54px — y 640x360 apaisado es el viewport Android típico.
+       Suma el safe-area porque los controles flotantes también lo suman: sin
+       esto, en PWA instalada el CTA cae encima del logo del hero. */
+    @media (max-width: 640px) and (min-height: 501px) {
+      main.stage { padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
+    }
+    @media (max-width: 420px) and (min-height: 501px) {
+      main.stage { padding-top: calc(68px + env(safe-area-inset-top, 0px)); }
+    }
   </style>
   <script>
     // Feature card spotlight follows cursor

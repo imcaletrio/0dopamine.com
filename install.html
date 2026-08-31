@@ -72,6 +72,29 @@
       margin-bottom: var(--s-2);
       letter-spacing: -.025em;
     }
+
+    /* ---------- Móvil (añadido 2026-08-31) ---------- */
+    @media (max-width: 640px) {
+      .install-wrap {
+        min-height: 0;
+        padding: 24px 14px 40px;
+        align-items: flex-start;
+        /* El clip se queda: el ::before de abajo sangra ~75px por lado. */
+      }
+      .install-wrap::before { inset: -10% -20% 0; }
+      .install-card {
+        padding: 22px 18px 24px;    /* deja ~309px útiles en 375px */
+        border-radius: var(--r-lg);
+      }
+      .install-card h1 {
+        font-size: clamp(1.5rem, 6.6vw, 1.8rem);
+        line-height: 1.15;
+      }
+    }
+    @media (max-width: 400px) {
+      .install-wrap { padding-inline: 10px; }
+      .install-card { padding: 20px 15px 22px; }
+    }
   </style>
 </head>
 <body>
@@ -195,11 +218,11 @@
         <span>&copy; 2026 0Dopamine</span>
         <span>
           <a href="/" style="color: var(--ink-2);"><span data-lang="es">Inicio</span><span data-lang="en">Home</span></a>
-          &nbsp;·&nbsp;
+          <span class="fsep" aria-hidden="true">·</span>
           <a href="faq.html" style="color: var(--ink-2);">FAQ</a>
-          &nbsp;·&nbsp;
+          <span class="fsep" aria-hidden="true">·</span>
           <a href="privacy.html" style="color: var(--ink-2);"><span data-lang="es">Privacidad</span><span data-lang="en">Privacy</span></a>
-          &nbsp;·&nbsp;
+          <span class="fsep" aria-hidden="true">·</span>
           <a href="terms.html" style="color: var(--ink-2);"><span data-lang="es">Términos</span><span data-lang="en">Terms</span></a>
         </span>
       </div>
