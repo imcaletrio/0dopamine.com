@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Política de privacidad — 0Dopamine (0D)</title>
-  <meta name="description" content="Política de privacidad de 0Dopamine (0D). La configuración se almacena en tu dispositivo. Solo el email opcional del programa beta se envía a servidores." />
+  <meta name="description" content="Política de privacidad de 0Dopamine (0D): qué se queda en tu móvil, qué datos de la cuenta opcional, compras, anuncios y fallos se procesan, y cómo borrarlos." />
 
   <meta name="author" content="0Dopamine" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -30,7 +30,7 @@
   <link rel="manifest" href="/manifest.webmanifest" />
 
   <meta property="og:title" content="0D — Política de privacidad" />
-  <meta property="og:description" content="Política de privacidad de 0Dopamine. Datos de configuración locales, cero tracking." />
+  <meta property="og:description" content="Política de privacidad de 0Dopamine: qué datos se usan y cómo borrarlos." />
   <meta property="og:image" content="https://0dopamine.com/assets/logo-512.png" />
   <meta property="og:image:alt" content="Logo de 0Dopamine" />
   <meta property="og:url" content="https://0dopamine.com/privacy.html" />
@@ -171,15 +171,15 @@
         <span data-lang="en">Privacy policy</span>
       </h1>
       <p class="date">
-        <span data-lang="es">Última actualización: 15 de abril de 2026</span>
-        <span data-lang="en">Last updated: April 15, 2026</span>
+        <span data-lang="es">Última actualización: 6 de octubre de 2026</span>
+        <span data-lang="en">Last updated: October 6, 2026</span>
       </p>
 
       <div class="manifesto">
         <p data-lang="es"><strong>0Dopamine es un proyecto personal.</strong> Las redes sociales adictivas son un problema común &mdash; y creemos que la solución no debería ser otro producto que se lucra con tu atención.</p>
         <p data-lang="en"><strong>0Dopamine is a personal project.</strong> Addictive social apps are a common problem &mdash; and we believe the solution should not be yet another product that profits from your attention.</p>
-        <p data-lang="es">Por eso 0D está diseñado para que <strong>tus datos nunca salgan de tu móvil.</strong> Podríamos vender datos, poner anuncios o rastrear tu uso. Se podría ganar mucho dinero con ello. <strong>No lo vamos a hacer.</strong> Esta política lo explica en detalle.</p>
-        <p data-lang="en">That is why 0D is designed so that <strong>your data never leaves your phone.</strong> We could sell data, show ads, or track your usage. A lot of money could be made that way. <strong>We will not.</strong> This policy explains that in detail.</p>
+        <p data-lang="es">Por eso 0D está diseñado para que <strong>lo que haces en tu móvil no salga de tu móvil.</strong> Podríamos vender datos, poner anuncios o rastrear tu uso. Se podría ganar mucho dinero con ello. <strong>No lo vamos a hacer.</strong> Esta política lo explica en detalle.</p>
+        <p data-lang="en">That is why 0D is designed so that <strong>what you do on your phone stays on your phone.</strong> We could sell data, show ads, or track your usage. A lot of money could be made that way. <strong>We will not.</strong> This policy explains that in detail.</p>
       </div>
 
       <article>
@@ -189,8 +189,8 @@
         </h2>
         <p data-lang="es"><strong>0Dopamine</strong> (en adelante «0D», «la app» o «nosotros») es una aplicación de bienestar digital para Android desarrollada por 0Dopamine. Esta política explica qué datos recoge la app, cómo los usa y qué derechos tienes sobre ellos.</p>
         <p data-lang="en"><strong>0Dopamine</strong> (hereinafter &ldquo;0D&rdquo;, &ldquo;the app&rdquo; or &ldquo;we&rdquo;) is a digital wellbeing application for Android developed by 0Dopamine. This policy explains what data the app collects, how it uses it, and what rights you have over it.</p>
-        <p data-lang="es">Nombre del paquete: <code>com.zerodopamine</code></p>
-        <p data-lang="en">Package name: <code>com.zerodopamine</code></p>
+        <p data-lang="es">Nombre del paquete: <code>com.zerodopamine.android</code> (y <code>com.zerodopamine</code>, versión anterior)</p>
+        <p data-lang="en">Package name: <code>com.zerodopamine.android</code> (and <code>com.zerodopamine</code>, previous version)</p>
 
         <h2>
           <span data-lang="es">2. Datos que recopilamos</span>
@@ -289,13 +289,13 @@
         <ul data-lang="es">
           <li>No recopilamos tu nombre, número de teléfono ni otros datos personales más allá del email (solo si verificas tu cuenta voluntariamente).</li>
           <li>No compartimos datos con terceros (salvo lo indicado en la sección 6).</li>
-          <li>No usamos analytics, telemetría ni rastreo.</li>
+          <li>No rastreamos tu actividad entre apps ni webs de otras empresas, y no vendemos datos. Solo usamos estadísticas de uso de la propia app e informes de fallos (sección 6).</li>
           <li>No leemos ni almacenamos el contenido de otras apps (mensajes, fotos, contraseñas).</li>
         </ul>
         <ul data-lang="en">
           <li>We do not collect your name, phone number, or personal data beyond your email (only if you voluntarily verify your account).</li>
           <li>We do not share data with third parties (except as noted in section 6).</li>
-          <li>We do not use analytics, telemetry, or tracking.</li>
+          <li>We do not track your activity across other companies&rsquo; apps or websites, and we do not sell data. We only use in-app usage statistics and crash reports (section 6).</li>
           <li>We do not read or store the content of other apps (messages, photos, passwords).</li>
         </ul>
 
@@ -307,21 +307,27 @@
         <p data-lang="en">The app integrates the following SDKs that may collect data according to their own privacy policies:</p>
         <ul data-lang="es">
           <li><strong>Firebase Authentication y Firestore</strong> &mdash; gestionan el inicio de sesión sin contraseña y el almacenamiento del perfil de usuario (email, dispositivo activo, código de referido). Datos procesados según la <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de Firebase</a>.</li>
-          <li><strong>Google AdMob</strong> &mdash; cuando se activen los anuncios, este SDK puede recopilar identificadores de dispositivo, datos de interacción con anuncios y otra información según la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de Google</a>.</li>
-          <li><strong>Google Play Billing</strong> &mdash; gestiona las compras y suscripciones dentro de la app. Los datos de pago son procesados por Google Play según sus propias políticas.</li>
+          <li><strong>Google AdMob</strong> &mdash; muestra los anuncios recompensados que eliges ver (por ejemplo, para tener Premium un día). Este SDK puede recopilar el identificador de publicidad del dispositivo, la dirección IP (ubicación aproximada), datos de interacción con anuncios y diagnósticos, según la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Política de privacidad de Google</a>.</li>
+          <li><strong>Google Play Billing</strong> &mdash; gestiona las compras y suscripciones dentro de la app. Los datos de pago son procesados por Google Play según sus propias políticas. Para activar Premium, nuestro servidor verifica con Google el comprobante de la compra y lo asocia a tu cuenta.</li>
+          <li><strong>Firebase Analytics</strong> &mdash; estadísticas de uso de la propia app (por ejemplo, qué pasos de configuración se completan o qué plan interesa) con un identificador de instancia de la app. No incluye qué apps usas ni el contenido que ves.</li>
+          <li><strong>Firebase Crashlytics</strong> &mdash; informes de fallos (traza del error, modelo de dispositivo y versión de Android) para corregir errores.</li>
         </ul>
         <ul data-lang="en">
           <li><strong>Firebase Authentication and Firestore</strong> &mdash; manage passwordless sign-in and user profile storage (email, active device, referral code). Data processed per the <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase Privacy Policy</a>.</li>
-          <li><strong>Google AdMob</strong> &mdash; when ads are enabled, this SDK may collect device identifiers, ad interaction data and other information per <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google&rsquo;s Privacy Policy</a>.</li>
-          <li><strong>Google Play Billing</strong> &mdash; handles in-app purchases and subscriptions. Payment data is processed by Google Play under its own policies.</li>
+          <li><strong>Google AdMob</strong> &mdash; serves the rewarded ads you choose to watch (for example, to get Premium for a day). This SDK may collect the device advertising ID, IP address (approximate location), ad interaction data and diagnostics, per <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google&rsquo;s Privacy Policy</a>.</li>
+          <li><strong>Google Play Billing</strong> &mdash; handles in-app purchases and subscriptions. Payment data is processed by Google Play under its own policies. To unlock Premium, our server verifies the purchase receipt with Google and links it to your account.</li>
+          <li><strong>Firebase Analytics</strong> &mdash; usage statistics of the app itself (for example, which setup steps are completed or which plan is of interest) with an app instance identifier. It does not include which apps you use or the content you see.</li>
+          <li><strong>Firebase Crashlytics</strong> &mdash; crash reports (error trace, device model and Android version) to fix bugs.</li>
         </ul>
 
         <h2>
           <span data-lang="es">7. Almacenamiento y eliminación</span>
           <span data-lang="en">7. Storage and deletion</span>
         </h2>
-        <p data-lang="es">Todos los datos de la app se almacenan en el almacenamiento interno de tu dispositivo Android. <strong>Desinstalar la app elimina automáticamente todos los datos.</strong> También puedes borrar los datos desde Ajustes del sistema &gt; Aplicaciones &gt; 0Dopamine &gt; Almacenamiento &gt; Borrar datos.</p>
-        <p data-lang="en">All app data is stored in your Android device&rsquo;s internal storage. <strong>Uninstalling the app automatically deletes all data.</strong> You can also clear data from System Settings &gt; Apps &gt; 0Dopamine &gt; Storage &gt; Clear data.</p>
+        <p data-lang="es">La configuración de bloqueo, las preferencias y las estadísticas se guardan solo en tu dispositivo: <strong>desinstalar la app las elimina</strong>, igual que Ajustes del sistema &gt; Aplicaciones &gt; 0Dopamine &gt; Almacenamiento &gt; Borrar datos.</p>
+        <p data-lang="es">Si creaste una cuenta, puedes <strong>borrarla junto con sus datos</strong> desde la app (Ajustes &gt; Eliminar cuenta, al final de la pantalla) o pidiéndolo por correo. Todos los pasos están en <a href="/delete-account.html">0dopamine.com/delete-account</a>.</p>
+        <p data-lang="en">Block settings, preferences and statistics are stored only on your device: <strong>uninstalling the app deletes them</strong>, as does System Settings &gt; Apps &gt; 0Dopamine &gt; Storage &gt; Clear data.</p>
+        <p data-lang="en">If you created an account, you can <strong>delete it together with its data</strong> from the app (Settings &gt; Delete account, at the bottom of the screen) or by email. All the steps are at <a href="/delete-account.html">0dopamine.com/delete-account</a>.</p>
 
         <h2>
           <span data-lang="es">8. Menores de edad</span>
@@ -360,6 +366,8 @@
           <a href="mailto:hola@0dopamine.com" style="color: var(--ink-2);"><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></a>
           <span class="fsep" aria-hidden="true">·</span>
           <a href="terms.html" style="color: var(--ink-2);"><span data-lang="es">Términos</span><span data-lang="en">Terms</span></a>
+          <span class="fsep" aria-hidden="true">·</span>
+          <a href="delete-account.html" style="color: var(--ink-2);"><span data-lang="es">Eliminar cuenta</span><span data-lang="en">Delete account</span></a>
         </span>
       </div>
     </div>
