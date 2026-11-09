@@ -60,7 +60,7 @@
       { "@type": "Question", "name": "¿Por qué necesita el Servicio de Accesibilidad?",
         "acceptedAnswer": { "@type": "Answer", "text": "Para saber qué app está en primer plano y distinguir un Short de un vídeo normal. No lee mensajes, fotos ni contraseñas — solo el nombre de la actividad y los IDs de elementos de interfaz públicos." } },
       { "@type": "Question", "name": "¿Puede 0D ver mis mensajes o mi actividad?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. Solo lee el nombre de la app activa y los IDs de elementos de interfaz públicos. Ningún dato de uso sale de tu dispositivo, salvo el email opcional del programa beta." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Solo lee el nombre de la app activa y los IDs públicos de elementos de la interfaz, y eso no sale de tu móvil. Lo único que se envía son estadísticas de uso de la propia app y los informes de fallos (Firebase), sin saber qué apps usas ni lo que ves." } },
       { "@type": "Question", "name": "¿Puedo bloquear TikTok, Instagram y WhatsApp a ciertas horas?",
         "acceptedAnswer": { "@type": "Answer", "text": "Sí. Configura un horario automático por cada app: bloqueo en horario de trabajo, por la noche, fines de semana o a tu medida. TikTok, Instagram, WhatsApp, X, YouTube, Snapchat, Facebook, LinkedIn y Pinterest son compatibles de forma nativa, y cualquier otra app puede bloquearse por completo." } },
       { "@type": "Question", "name": "¿Es gratis? ¿Tiene anuncios o tracking?",
@@ -89,7 +89,7 @@
       { "@type": "Question", "name": "Why does it need the Accessibility Service?",
         "acceptedAnswer": { "@type": "Answer", "text": "To know which app is in the foreground and tell a Short from a regular video. It does not read messages, photos or passwords — only the activity name and public view IDs." } },
       { "@type": "Question", "name": "Can 0D see my messages or activity?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No. It only reads the active app name and public view IDs. Usage data never leaves your device, except the optional email for the beta program." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "No. It only reads the active app name and public view IDs, and that never leaves your phone. The only things sent are usage statistics of the app itself and crash reports (Firebase), without knowing which apps you use or what you see." } },
       { "@type": "Question", "name": "Can I block TikTok, Instagram and WhatsApp at specific hours?",
         "acceptedAnswer": { "@type": "Answer", "text": "Yes. Set an automatic schedule per app: block during work hours, at night, on weekends, or custom. TikTok, Instagram, WhatsApp, X, YouTube, Snapchat, Facebook, LinkedIn and Pinterest are natively supported, and any other app can be fully blocked." } },
       { "@type": "Question", "name": "Is 0D free? Does it have ads or tracking?",
@@ -284,8 +284,8 @@
             <span data-lang="en">Can 0D see my messages or activity?</span>
           </summary>
           <div class="answer">
-            <p data-lang="es">No. Ningún dato de uso sale de tu dispositivo. Lo único que enviamos a un servidor es el email opcional del programa beta (si lo introduces en el formulario de la web). Todo lo demás se queda en tu móvil.</p>
-            <p data-lang="en">No. No usage data leaves your device. The only thing sent to a server is the optional email for the beta program (if you enter it in the website form). Everything else stays on your phone.</p>
+            <p data-lang="es">No. Lo que la app mira para funcionar (qué app está abierta y los IDs públicos de la interfaz) se queda en tu móvil. Lo único que se envía son estadísticas de uso de la propia app y los informes de fallos (Firebase), sin saber qué apps usas ni lo que ves. Detalle en la <a href="privacy.html">política de privacidad</a>.</p>
+            <p data-lang="en">No. What the app looks at to work (which app is open and public UI view IDs) stays on your phone. The only things sent are usage statistics of the app itself and crash reports (Firebase), without knowing which apps you use or what you see. Details in the <a href="privacy.html">privacy policy</a>.</p>
           </div>
         </details>
         <details>

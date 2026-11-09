@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Instalar 0D — Beta para Android</title>
-  <meta name="description" content="Únete a la beta de 0Dopamine en Google Play. Dos pasos: email + unirse al grupo de testers." />
+  <title>Descargar 0D — Google Play (Android)</title>
+  <meta name="description" content="Descarga 0Dopamine gratis desde Google Play y déjalo listo en un minuto: instala, activa el permiso de accesibilidad y elige qué apps frenar." />
 
   <meta name="author" content="0Dopamine" />
-  <meta name="robots" content="noindex, follow" />
+  <meta name="robots" content="index, follow" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#0B0B0D" />
@@ -29,8 +29,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="/manifest.webmanifest" />
 
-  <meta property="og:title" content="Instalar 0D — Beta para Android" />
-  <meta property="og:description" content="Únete a la beta de 0Dopamine en Google Play en dos pasos." />
+  <meta property="og:title" content="Descargar 0D — ya en Google Play" />
+  <meta property="og:description" content="0Dopamine ya está en Google Play. Gratis para Android 8.0 o superior." />
   <meta property="og:image" content="https://0dopamine.com/assets/logo-512.png" />
   <meta property="og:image:alt" content="Logo de 0Dopamine" />
   <meta property="og:url" content="https://0dopamine.com/install.html" />
@@ -41,7 +41,6 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://script.google.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" />
   <link rel="stylesheet" href="assets/base.css" />
   <style>
@@ -95,6 +94,25 @@
       .install-wrap { padding-inline: 10px; }
       .install-card { padding: 20px 15px 22px; }
     }
+    /* ---------- Descarga (2026-11-09) ---------- */
+    .install-card { text-align: center; }
+    .install-card .badge { margin-bottom: var(--s-3); }
+    .install-lead { color: var(--ink-2); margin: 0 auto var(--s-5); max-width: 40ch; }
+    .dl-row { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .play-badge { display: inline-flex; line-height: 0; border-radius: 12px; transition: transform .2s ease;
+      box-shadow: 0 10px 28px color-mix(in srgb, #000 30%, transparent); }
+    .play-badge img { height: 60px; width: auto; border-radius: 12px; }
+    .play-badge:hover { transform: translateY(-2px); }
+    .play-badge:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 4px; }
+    .qr-frame { display: block; background: #fff; border-radius: 12px; padding: 5px; line-height: 0; }
+    .qr-code { width: 92px; height: auto; display: block; }
+    .qr-col { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: .76rem; color: var(--ink-3); }
+    @media (max-width: 900px), (hover: none), (pointer: coarse) { .qr-col { display: none; } }
+    .setup { text-align: left; margin-top: var(--s-6, 28px); padding-top: var(--s-5, 22px); border-top: 1px solid var(--border-2); }
+    .setup h2 { font-size: 1.05rem; margin-bottom: var(--s-3); }
+    .setup .step-list { margin-top: 0; }
+    .install-note { margin-top: var(--s-4); font-size: .82rem; color: var(--ink-3); }
+    .install-note a { color: var(--accent-2); text-decoration: underline; text-underline-offset: 2px; }
   </style>
 </head>
 <body>
@@ -130,85 +148,43 @@
   </header>
 
   <main id="main" class="install-wrap">
-    <div class="install-card" data-signup-card>
+    <div class="install-card">
       <span class="badge">
-        <span data-lang="es">Programa de testers</span>
-        <span data-lang="en">Tester program</span>
+        <span data-lang="es">Ya en Google Play</span>
+        <span data-lang="en">Now on Google Play</span>
       </span>
       <h1>
         <span data-lang="es">Instala 0D en tu Android</span>
         <span data-lang="en">Install 0D on your Android</span>
       </h1>
+      <p class="install-lead">
+        <span data-lang="es">Gratis, sin registro y sin root. Descárgala desde Google Play como cualquier otra app.</span>
+        <span data-lang="en">Free, no sign-up, no root. Get it from Google Play like any other app.</span>
+      </p>
 
-      <!-- Step 1 -->
-      <div class="step active" data-step="1">
-        <p class="modal-desc">
-          <span data-lang="es">Estás a 2 pasos de la beta:</span>
-          <span data-lang="en">You&rsquo;re 2 steps away from the beta:</span>
-        </p>
-        <ul class="modal-preview" aria-hidden="true">
-          <li data-lang="es">1. Email (1 min)</li>
-          <li data-lang="en">1. Email (1 min)</li>
-          <li data-lang="es">2. Grupo + Play (~5 min)</li>
-          <li data-lang="en">2. Group + Play (~5 min)</li>
-        </ul>
-        <form data-beta-form novalidate class="field-stack">
-          <label for="install-email" class="sr-only">
-            <span data-lang="es">Email</span>
-            <span data-lang="en">Email</span>
-          </label>
-          <input id="install-email" class="field" type="email" name="email" required autocomplete="email" inputmode="email" maxlength="254" aria-describedby="install-email-error" />
-          <p id="install-email-error" class="field-error" aria-live="polite"></p>
-          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="honeypot" />
-          <!-- FASE B (Turnstile): widget anti-abuso ACTIVO. -->
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADosX92dDZj3N6sL" data-theme="auto" data-size="flexible" data-action="beta-signup" style="margin:8px 0"></div>
-          <button type="submit" class="btn btn-primary btn-block">
-            <span data-lang="es">Siguiente paso</span>
-            <span data-lang="en">Next step</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </button>
-        </form>
-        <p class="modal-note">
-          <span data-lang="es">Solo usamos tu email para avisarte de la beta. Sin spam. Ver <a href="privacy.html">privacidad</a>.</span>
-          <span data-lang="en">We only use your email for beta updates. No spam. See <a href="privacy.html">privacy</a>.</span>
-        </p>
+      <div class="dl-row">
+        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.zerodopamine&amp;referrer=utm_source%3D0dopamine.com%26utm_medium%3Dinstall" target="_blank" rel="noopener">
+          <img data-lang="es" src="assets/google-play-badge-es.png" width="646" height="192" alt="Disponible en Google Play" decoding="async" />
+          <img data-lang="en" src="assets/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" decoding="async" />
+        </a>
+        <div class="qr-col">
+          <span class="qr-frame"><svg class="qr-code" viewBox="-2 -2 41 41" shape-rendering="crispEdges" aria-hidden="true"><path fill="#0B0B0D" d="M0 0h7v1h-7zM9 0h2v1h-2zM12 0h1v1h-1zM14 0h1v1h-1zM16 0h1v1h-1zM18 0h1v1h-1zM21 0h3v1h-3zM25 0h1v1h-1zM28 0h1v1h-1zM30 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h2v1h-2zM17 1h2v1h-2zM25 1h4v1h-4zM30 1h1v1h-1zM36 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h1v1h-1zM13 2h2v1h-2zM16 2h1v1h-1zM19 2h1v1h-1zM21 2h3v1h-3zM26 2h2v1h-2zM30 2h1v1h-1zM32 2h3v1h-3zM36 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM12 3h2v1h-2zM15 3h4v1h-4zM20 3h1v1h-1zM22 3h2v1h-2zM25 3h3v1h-3zM30 3h1v1h-1zM32 3h3v1h-3zM36 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h3v1h-3zM12 4h2v1h-2zM16 4h8v1h-8zM25 4h1v1h-1zM28 4h1v1h-1zM30 4h1v1h-1zM32 4h3v1h-3zM36 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h2v1h-2zM11 5h1v1h-1zM14 5h1v1h-1zM17 5h1v1h-1zM26 5h3v1h-3zM30 5h1v1h-1zM36 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM28 6h1v1h-1zM30 6h7v1h-7zM8 7h3v1h-3zM12 7h2v1h-2zM16 7h3v1h-3zM21 7h3v1h-3zM26 7h1v1h-1zM28 7h1v1h-1zM0 8h1v1h-1zM2 8h5v1h-5zM9 8h2v1h-2zM12 8h5v1h-5zM20 8h1v1h-1zM22 8h2v1h-2zM25 8h2v1h-2zM30 8h5v1h-5zM0 9h1v1h-1zM2 9h3v1h-3zM7 9h2v1h-2zM11 9h2v1h-2zM15 9h1v1h-1zM17 9h5v1h-5zM28 9h1v1h-1zM31 9h1v1h-1zM35 9h1v1h-1zM0 10h2v1h-2zM3 10h2v1h-2zM6 10h3v1h-3zM12 10h1v1h-1zM14 10h4v1h-4zM20 10h3v1h-3zM25 10h3v1h-3zM30 10h1v1h-1zM32 10h2v1h-2zM35 10h2v1h-2zM0 11h4v1h-4zM5 11h1v1h-1zM9 11h1v1h-1zM11 11h2v1h-2zM14 11h2v1h-2zM21 11h1v1h-1zM26 11h2v1h-2zM30 11h1v1h-1zM32 11h2v1h-2zM36 11h1v1h-1zM0 12h1v1h-1zM6 12h2v1h-2zM10 12h8v1h-8zM20 12h1v1h-1zM22 12h6v1h-6zM29 12h4v1h-4zM34 12h3v1h-3zM0 13h1v1h-1zM2 13h2v1h-2zM5 13h1v1h-1zM8 13h3v1h-3zM12 13h2v1h-2zM16 13h1v1h-1zM18 13h3v1h-3zM23 13h3v1h-3zM28 13h1v1h-1zM31 13h1v1h-1zM0 14h1v1h-1zM2 14h1v1h-1zM4 14h3v1h-3zM8 14h1v1h-1zM10 14h1v1h-1zM14 14h2v1h-2zM18 14h1v1h-1zM22 14h1v1h-1zM27 14h7v1h-7zM35 14h2v1h-2zM1 15h1v1h-1zM3 15h1v1h-1zM5 15h1v1h-1zM7 15h2v1h-2zM10 15h3v1h-3zM15 15h2v1h-2zM21 15h2v1h-2zM26 15h1v1h-1zM28 15h5v1h-5zM35 15h2v1h-2zM2 16h2v1h-2zM6 16h1v1h-1zM9 16h3v1h-3zM14 16h1v1h-1zM18 16h1v1h-1zM20 16h1v1h-1zM22 16h11v1h-11zM34 16h1v1h-1zM0 17h2v1h-2zM3 17h3v1h-3zM11 17h6v1h-6zM19 17h2v1h-2zM22 17h2v1h-2zM25 17h1v1h-1zM28 17h2v1h-2zM31 17h1v1h-1zM34 17h2v1h-2zM0 18h4v1h-4zM5 18h2v1h-2zM8 18h1v1h-1zM10 18h1v1h-1zM12 18h1v1h-1zM20 18h1v1h-1zM22 18h1v1h-1zM24 18h1v1h-1zM26 18h4v1h-4zM32 18h1v1h-1zM35 18h2v1h-2zM1 19h2v1h-2zM5 19h1v1h-1zM7 19h2v1h-2zM10 19h1v1h-1zM12 19h1v1h-1zM16 19h1v1h-1zM18 19h1v1h-1zM20 19h3v1h-3zM28 19h1v1h-1zM30 19h3v1h-3zM36 19h1v1h-1zM0 20h1v1h-1zM3 20h1v1h-1zM6 20h1v1h-1zM9 20h1v1h-1zM13 20h2v1h-2zM17 20h1v1h-1zM19 20h2v1h-2zM22 20h1v1h-1zM24 20h3v1h-3zM29 20h2v1h-2zM32 20h3v1h-3zM0 21h4v1h-4zM5 21h1v1h-1zM10 21h1v1h-1zM12 21h1v1h-1zM14 21h1v1h-1zM16 21h8v1h-8zM25 21h1v1h-1zM28 21h1v1h-1zM33 21h1v1h-1zM1 22h6v1h-6zM8 22h2v1h-2zM12 22h2v1h-2zM15 22h3v1h-3zM20 22h3v1h-3zM25 22h3v1h-3zM30 22h4v1h-4zM35 22h2v1h-2zM0 23h1v1h-1zM7 23h4v1h-4zM12 23h4v1h-4zM17 23h2v1h-2zM21 23h3v1h-3zM28 23h1v1h-1zM31 23h2v1h-2zM35 23h1v1h-1zM1 24h2v1h-2zM4 24h3v1h-3zM14 24h1v1h-1zM16 24h1v1h-1zM20 24h1v1h-1zM22 24h2v1h-2zM25 24h2v1h-2zM29 24h2v1h-2zM32 24h1v1h-1zM34 24h2v1h-2zM0 25h2v1h-2zM4 25h1v1h-1zM7 25h3v1h-3zM13 25h1v1h-1zM15 25h1v1h-1zM18 25h2v1h-2zM21 25h3v1h-3zM28 25h1v1h-1zM33 25h1v1h-1zM0 26h1v1h-1zM6 26h1v1h-1zM11 26h3v1h-3zM15 26h2v1h-2zM20 26h1v1h-1zM26 26h2v1h-2zM30 26h2v1h-2zM34 26h3v1h-3zM0 27h1v1h-1zM2 27h1v1h-1zM7 27h1v1h-1zM9 27h4v1h-4zM15 27h1v1h-1zM20 27h2v1h-2zM26 27h7v1h-7zM36 27h1v1h-1zM0 28h1v1h-1zM2 28h1v1h-1zM4 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM10 28h1v1h-1zM13 28h3v1h-3zM17 28h1v1h-1zM22 28h1v1h-1zM24 28h2v1h-2zM27 28h9v1h-9zM8 29h1v1h-1zM13 29h1v1h-1zM16 29h1v1h-1zM19 29h3v1h-3zM23 29h1v1h-1zM27 29h2v1h-2zM32 29h2v1h-2zM35 29h1v1h-1zM0 30h7v1h-7zM10 30h1v1h-1zM13 30h4v1h-4zM18 30h1v1h-1zM20 30h1v1h-1zM26 30h1v1h-1zM28 30h1v1h-1zM30 30h1v1h-1zM32 30h1v1h-1zM34 30h1v1h-1zM36 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM8 31h8v1h-8zM19 31h3v1h-3zM23 31h2v1h-2zM26 31h3v1h-3zM32 31h2v1h-2zM35 31h1v1h-1zM0 32h1v1h-1zM2 32h3v1h-3zM6 32h1v1h-1zM8 32h2v1h-2zM11 32h1v1h-1zM13 32h1v1h-1zM15 32h1v1h-1zM18 32h2v1h-2zM22 32h1v1h-1zM25 32h1v1h-1zM27 32h6v1h-6zM34 32h1v1h-1zM36 32h1v1h-1zM0 33h1v1h-1zM2 33h3v1h-3zM6 33h1v1h-1zM8 33h1v1h-1zM10 33h2v1h-2zM14 33h3v1h-3zM19 33h3v1h-3zM23 33h1v1h-1zM25 33h1v1h-1zM29 33h2v1h-2zM32 33h1v1h-1zM34 33h1v1h-1zM36 33h1v1h-1zM0 34h1v1h-1zM2 34h3v1h-3zM6 34h1v1h-1zM8 34h2v1h-2zM11 34h4v1h-4zM20 34h3v1h-3zM24 34h6v1h-6zM34 34h3v1h-3zM0 35h1v1h-1zM6 35h1v1h-1zM10 35h1v1h-1zM13 35h2v1h-2zM16 35h1v1h-1zM18 35h2v1h-2zM21 35h3v1h-3zM27 35h3v1h-3zM32 35h1v1h-1zM36 35h1v1h-1zM0 36h7v1h-7zM8 36h1v1h-1zM12 36h1v1h-1zM17 36h1v1h-1zM24 36h3v1h-3zM29 36h1v1h-1zM32 36h5v1h-5z"/></svg></span>
+          <span data-lang="es">Escanéalo con tu móvil</span><span data-lang="en">Scan with your phone</span>
+        </div>
       </div>
 
-      <!-- Step 2 -->
-      <div class="step" data-step="2">
-        <p class="modal-desc" data-popup-ok>
-          <span data-lang="es">Únete al grupo de testers (es obligatorio) y vuelve para instalar:</span>
-          <span data-lang="en">Join the tester group (required), then come back to install:</span>
-        </p>
-        <p class="modal-desc" data-popup-blocked hidden>
-          <span data-lang="es">Tu navegador bloqueó la pestaña. Únete al grupo primero:</span>
-          <span data-lang="en">Your browser blocked the tab. Join the group first:</span>
-        </p>
+      <section class="setup" aria-labelledby="setup-title">
+        <h2 id="setup-title"><span data-lang="es">Listo en un minuto</span><span data-lang="en">Ready in a minute</span></h2>
         <div class="step-list">
-          <div class="step-row"><span class="step-num">1</span><span><span data-lang="es">Confirma «Unirme al grupo» en la pestaña que se abrió.</span><span data-lang="en">Confirm &ldquo;Join group&rdquo; in the tab that just opened.</span></span></div>
-          <div class="step-row"><span class="step-num">2</span><span><span data-lang="es">Espera ~5 minutos para que Google active tu acceso.</span><span data-lang="en">Wait ~5 minutes for Google to activate your access.</span></span></div>
-          <div class="step-row"><span class="step-num">3</span><span><span data-lang="es">Toca el botón y descarga la beta en tu móvil.</span><span data-lang="en">Tap the button and install the beta on your phone.</span></span></div>
+          <div class="step-row"><span class="step-num">1</span><span><span data-lang="es">Instálala desde Google Play y ábrela.</span><span data-lang="en">Install it from Google Play and open it.</span></span></div>
+          <div class="step-row"><span class="step-num">2</span><span><span data-lang="es">Activa el servicio de accesibilidad cuando la app te lo pida: es lo que le deja detectar Shorts y Reels.</span><span data-lang="en">Turn on the accessibility service when the app asks: it&rsquo;s how it detects Shorts and Reels.</span></span></div>
+          <div class="step-row"><span class="step-num">3</span><span><span data-lang="es">Elige qué apps frenar y cómo: solo vídeos cortos, horario, límite diario o bloqueo total.</span><span data-lang="en">Pick which apps to slow down and how: short videos only, schedule, daily limit or full block.</span></span></div>
         </div>
-        <div class="cta-stack">
-          <a class="btn btn-primary btn-block" data-group-fallback
-             href="https://groups.google.com/g/zerodopamine-beta"
-             target="_blank" rel="noopener noreferrer">
-            <span data-lang="es">Unirme al grupo de testers (obligatorio)</span>
-            <span data-lang="en">Join the tester group (required)</span>
-          </a>
-          <a class="btn btn-ghost btn-block" data-beta-go
-             href="https://play.google.com/apps/testing/com.zerodopamine"
-             target="_blank" rel="noopener noreferrer">
-            <span data-lang="es">Abrir Play Store para instalar</span>
-            <span data-lang="en">Open Play Store to install</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-        <p class="modal-note">
-          <span data-lang="es">Usa la misma cuenta Google en el grupo y en tu móvil Android.</span>
-          <span data-lang="en">Use the same Google account in the group and on your Android phone.</span>
+        <p class="install-note">
+          <span data-lang="es">Android 8.0 o superior. ¿Dudas con el permiso? Lo explicamos en las <a href="faq.html">preguntas frecuentes</a>.</span>
+          <span data-lang="en">Android 8.0 or newer. Questions about the permission? See the <a href="faq.html">FAQ</a>.</span>
         </p>
-      </div>
+      </section>
     </div>
   </main>
 
@@ -229,20 +205,6 @@
     </div>
   </footer>
 
-  <script>
-    (function () {
-      function applyPlaceholder() {
-        var lang = document.documentElement.lang || 'es';
-        var el = document.getElementById('install-email');
-        if (el) el.placeholder = lang === 'en' ? 'you@email.com' : 'tu@email.com';
-      }
-      if (document.readyState !== 'loading') applyPlaceholder();
-      else document.addEventListener('DOMContentLoaded', applyPlaceholder);
-      window.addEventListener('zd:lang', applyPlaceholder);
-    })();
-  </script>
-  <!-- FASE B (Turnstile): script de Cloudflare ACTIVO. -->
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   <script src="assets/site.js" defer></script>
 </body>
 </html>

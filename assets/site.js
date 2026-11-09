@@ -1,18 +1,13 @@
 /* 0Dopamine — shared site JS
    - i18n: showLang + localStorage persistence + zd:lang event
-   - signup flow: email capture + Google Group popup + Play Store CTA
-   - modal: focus trap, ESC, restore focus, dynamic aria-labelledby
+   - theme toggle, apps carousel, scroll reveal
+   (2026-11-09) La app ya está publicada en Google Play: fuera el registro
+   de la beta, el grupo de testers, Turnstile y la telemetría a la hoja.
 */
 (function () {
   'use strict';
 
   var LANG_KEY    = '0d_lang';
-  var EMAIL_KEY   = '0d_beta_email';
-  var ENDPOINT    = 'https://script.google.com/macros/s/AKfycbyytIFY3r54hTdMLM2mlwvg_pLhG5SOaH-SZlUvatkV8rKg-UhLLmJJlLnDaD0YJaMJ/exec';
-  // Envío instantáneo del welcome email vía Resend (función serverless en Vercel)
-  var WELCOME_ENDPOINT = 'https://zerodopamine-auth-email.vercel.app/api/beta-welcome';
-  var GROUP_URL   = 'https://groups.google.com/g/zerodopamine-beta';
-  var EMAIL_RE    = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
   function safeGet(key)       { try { return localStorage.getItem(key) || ''; } catch (_) { return ''; } }
   function safeSet(key, val)  { try { localStorage.setItem(key, val); } catch (_) {} }
@@ -40,12 +35,6 @@
       var isActive = btn.getAttribute('data-lang') === lang;
       btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     });
-    // Re-point modal aria-labelledby to the active-language title
-    var modal = document.getElementById('beta-modal');
-    if (modal) {
-      var titleId = lang === 'en' ? 'beta-title-en' : 'beta-title-es';
-      modal.setAttribute('aria-labelledby', titleId);
-    }
     try { window.dispatchEvent(new CustomEvent('zd:lang', { detail: lang })); } catch (_) {}
   }
 
@@ -75,214 +64,6 @@
       });
     });
   });
-
-  // ---------- Telemetry ----------
-  function pushStage(prefix, stage, email) {
-    try {
-      var body = new FormData();
-      body.append('email', email || '');
-      body.append('source', '0dopamine.com' + (prefix === 'install' ? '/install' : '') + ':' + stage);
-      body.append('lang', document.documentElement.lang || 'es');
-      if (navigator.sendBeacon) navigator.sendBeacon(ENDPOINT, body);
-      else fetch(ENDPOINT, { method: 'POST', body: body, mode: 'no-cors', keepalive: true });
-    } catch (_) {}
-  }
-
-  // ---------- Signup helpers ----------
-  function setStep(root, n) {
-    root.querySelectorAll('[data-step]').forEach(function (el) {
-      el.classList.toggle('active', el.getAttribute('data-step') === String(n));
-    });
-  }
-
-  function showGroupFallback(root, blocked) {
-    root.querySelectorAll('[data-popup-ok]').forEach(function (el) { el.hidden = blocked; });
-    root.querySelectorAll('[data-popup-blocked]').forEach(function (el) { el.hidden = !blocked; });
-    // El botón de unirse al grupo SIEMPRE visible (window.open no es fiable en
-    // móvil: a veces no abre nada pero reporta éxito → el usuario se quedaba sin
-    // forma de unirse). Es el paso obligatorio, así que siempre debe estar.
-    root.querySelectorAll('[data-group-fallback]').forEach(function (el) { el.hidden = false; });
-  }
-
-  function clearError(input) {
-    input.classList.remove('error');
-    input.removeAttribute('aria-invalid');
-    var err = input.getAttribute('aria-describedby') && document.getElementById(input.getAttribute('aria-describedby'));
-    if (err) err.textContent = '';
-  }
-  function setError(input, msg) {
-    input.classList.add('error');
-    input.setAttribute('aria-invalid', 'true');
-    var err = input.getAttribute('aria-describedby') && document.getElementById(input.getAttribute('aria-describedby'));
-    if (err) err.textContent = msg;
-    input.focus();
-  }
-
-  function errorMsg(kind) {
-    var isEN = (document.documentElement.lang || 'es').slice(0, 2) === 'en';
-    if (kind === 'invalid')  return isEN ? 'Please enter a valid email address.' : 'Introduce un email válido.';
-    if (kind === 'tooLong')  return isEN ? 'That email is too long.'               : 'Ese email es demasiado largo.';
-    if (kind === 'network')  return isEN ? 'Network error. Your email is saved — try again or continue.'
-                                         : 'Error de red. Tu email queda guardado — inténtalo otra vez o continúa.';
-    return '';
-  }
-
-  // ---------- Signup init ----------
-  function initSignupForms(opts) {
-    opts = opts || {};
-    var root   = opts.root || document;
-    var prefix = opts.telemetryPrefix || 'index';
-
-    // data-beta-go click → Play store telemetry
-    root.querySelectorAll('[data-beta-go]').forEach(function (el) {
-      el.addEventListener('click', function () {
-        pushStage(prefix, 'play_click', safeGet(EMAIL_KEY));
-      });
-    });
-    // data-group-fallback click → group telemetry
-    root.querySelectorAll('[data-group-fallback]').forEach(function (el) {
-      el.addEventListener('click', function () {
-        pushStage(prefix, 'group_click', safeGet(EMAIL_KEY));
-      });
-    });
-
-    // Form submit
-    root.querySelectorAll('[data-beta-form]').forEach(function (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        var input = form.querySelector('input[type="email"]');
-        var hp    = form.querySelector('input[name="website"]');
-        var btn   = form.querySelector('button[type="submit"]');
-        var email = (input.value || '').trim().toLowerCase();
-
-        // Honeypot → silent advance
-        if (hp && hp.value) { showGroupFallback(root, false); setStep(root, 2); return; }
-
-        if (!email || !EMAIL_RE.test(email)) { setError(input, errorMsg('invalid'));  return; }
-        if (email.length > 254)              { setError(input, errorMsg('tooLong')); return; }
-        clearError(input);
-        btn.disabled = true;
-
-        // Open group tab synchronously inside user gesture (popup-blocker safe)
-        var popup = null;
-        if (opts.autoOpenPopup !== false) {
-          try { popup = window.open(GROUP_URL, '_blank'); } catch (_) {}
-        }
-        var popupBlocked = !popup;
-
-        var body = new FormData();
-        body.append('email', email);
-        body.append('source', '0dopamine.com' + (prefix === 'install' ? '/install' : ''));
-        body.append('lang', document.documentElement.lang || 'es');
-        if (hp) body.append('website', hp.value || '');
-
-        // Persist locally immediately — guarantees step2 on reload
-        safeSet(EMAIL_KEY, email);
-
-        function advance() {
-          btn.disabled = false;
-          showGroupFallback(root, popupBlocked);
-          setStep(root, 2);
-          pushStage(prefix, 'step2_view', email);
-        }
-
-        fetch(ENDPOINT, { method: 'POST', body: body, mode: 'no-cors' })
-          .then(advance, advance); // advance on success *or* network error
-
-        // Fire-and-forget: dispara el welcome email al instante (Resend en Vercel).
-        // Endpoint con CORS para https://0dopamine.com; no rompe el flujo si falla.
-        // El token de Cloudflare Turnstile lo inyecta el widget como input oculto
-        // cf-turnstile-response dentro del form; el endpoint lo verifica server-side.
-        try {
-          var tsField = form.querySelector('[name="cf-turnstile-response"]');
-          var tsToken = tsField ? tsField.value : '';
-          fetch(WELCOME_ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email, lang: (document.documentElement.lang || 'es'), website: (hp ? hp.value : ''), turnstileToken: tsToken })
-          }).catch(function () {});
-        } catch (e) {}
-      });
-    });
-  }
-
-  // ---------- Modal ----------
-  function initModal(modal) {
-    if (!modal) return;
-    var lastTrigger = null;
-    var betaEmitted = false;
-
-    function getFocusables() {
-      var q = 'a[href],button:not([disabled]),input:not([disabled]),[tabindex]:not([tabindex="-1"])';
-      return Array.prototype.filter.call(
-        modal.querySelectorAll(q),
-        function (el) { return el.offsetParent !== null; }
-      );
-    }
-    function trapFocus(e) {
-      if (e.key !== 'Tab') return;
-      var f = getFocusables();
-      if (!f.length) return;
-      var first = f[0], last = f[f.length - 1];
-      if (e.shiftKey && document.activeElement === first) { last.focus(); e.preventDefault(); }
-      else if (!e.shiftKey && document.activeElement === last) { first.focus(); e.preventDefault(); }
-    }
-    function onKey(e) {
-      if (e.key === 'Escape') close();
-      else trapFocus(e);
-    }
-
-    function open(trigger) {
-      lastTrigger = trigger || document.activeElement;
-      modal.querySelectorAll('[data-beta-form]').forEach(function (f) { f.reset(); });
-      modal.querySelectorAll('input[type="email"]').forEach(function (i) {
-        i.classList.remove('error'); i.removeAttribute('aria-invalid');
-        var err = i.getAttribute('aria-describedby') && document.getElementById(i.getAttribute('aria-describedby'));
-        if (err) err.textContent = '';
-      });
-
-      var saved = safeGet(EMAIL_KEY);
-      if (saved) {
-        showGroupFallback(modal, true);
-        setStep(modal, 2);
-        if (!betaEmitted) { pushStage('index', 'step2_view_returning', saved); betaEmitted = true; }
-      } else {
-        setStep(modal, 1);
-      }
-
-      modal.classList.add('open');
-      document.documentElement.style.overflow = 'hidden';
-      document.addEventListener('keydown', onKey);
-      setTimeout(function () {
-        var target = modal.querySelector('.step.active input[type="email"]')
-                  || modal.querySelector('.step.active [data-beta-go]')
-                  || modal.querySelector('.modal-close');
-        if (target) target.focus();
-      }, 30);
-    }
-
-    function close() {
-      if (!modal.classList.contains('open')) return;
-      modal.classList.remove('open');
-      document.documentElement.style.overflow = '';
-      document.removeEventListener('keydown', onKey);
-      if (lastTrigger && typeof lastTrigger.focus === 'function') lastTrigger.focus();
-    }
-
-    document.querySelectorAll('[data-beta-open]').forEach(function (el) {
-      el.addEventListener('click', function (e) { e.preventDefault(); open(el); });
-    });
-    modal.querySelectorAll('[data-beta-close]').forEach(function (el) {
-      el.addEventListener('click', function (e) { e.preventDefault(); close(); });
-    });
-    modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
-
-    // Re-localize close button label on lang change
-    window.addEventListener('zd:lang', function (e) {
-      var closeBtn = modal.querySelector('.modal-close');
-      if (closeBtn) closeBtn.setAttribute('aria-label', e.detail === 'en' ? 'Close' : 'Cerrar');
-    });
-  }
 
   // ---------- Apps carousel: spotlight + drag/flick to steer ----------
   function initAppsInteraction() {
@@ -451,22 +232,6 @@
     else document.addEventListener('DOMContentLoaded', fn);
   }
   ready(function () {
-    var modal = document.getElementById('beta-modal');
-    if (modal) {
-      initModal(modal);
-      initSignupForms({ root: modal, telemetryPrefix: 'index', autoOpenPopup: true });
-    }
-    var card = document.querySelector('[data-signup-card]');
-    if (card) {
-      initSignupForms({ root: card, telemetryPrefix: 'install', autoOpenPopup: true });
-      // Returning user on /install: pre-advance to step 2
-      var saved = safeGet(EMAIL_KEY);
-      if (saved) {
-        showGroupFallback(card, true);
-        setStep(card, 2);
-        pushStage('install', 'step2_view_returning', saved);
-      }
-    }
     initReveal();
     initAppsInteraction();
     initThemeToggle();
