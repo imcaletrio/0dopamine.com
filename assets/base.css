@@ -35,11 +35,11 @@ html[data-theme="dark"] {
   /* Ink */
   --ink:         #F2F2F7;
   --ink-2:       #9A95A6;
-  --ink-3:       #76727F;
-  --ink-4:       #5A5660;
+  --ink-3:       #8C8898;   /* AA (2026-11-10) */
+  --ink-4:       #858190;   /* AA (2026-11-10) */
 
   /* Acento — azul de la app (logo). Aclarado en oscuro para que resalte. */
-  --accent:      #5C93C9;   /* azul de la app un punto más claro sobre negro */
+  --accent:      #4577AA;   /* azul app; AA con texto blanco (2026-11-10) */
   --on-accent:   #FFFFFF;
   --accent-2:    #93BCE2;   /* aclarado para texto/enlaces sobre oscuro */
   --accent-3:    #3C6A99;
@@ -91,11 +91,11 @@ html[data-theme="light"] {
   --border-3:    #D7CFC3;
 
   --ink:         #1C1C1E;
-  --ink-2:       #857F92;
-  --ink-3:       #9A93A6;
-  --ink-4:       #B3ADBE;
+  --ink-2:       #6B6578;   /* AA (2026-11-10) */
+  --ink-3:       #716B7E;   /* AA (2026-11-10) */
+  --ink-4:       #726C7F;   /* AA (2026-11-10) */
 
-  --accent:      #4A7FB8;   /* azul de la app (logo) — exacto sobre marfil */
+  --accent:      #4577AA;   /* azul app; AA con texto blanco (2026-11-10) */
   --on-accent:   #FFFFFF;
   --accent-2:    #3A6698;   /* oscurecido para texto/enlaces sobre claro */
   --accent-3:    #2E5279;
@@ -899,4 +899,11 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
   }
   /* El transform no encoge la caja de layout: se recupera el hueco. */
   .cf-turnstile { margin-bottom: -10px; }
+}
+
+/* (2026-11-10) Objetivos táctiles de 44 px también en tabletas (>640 px): solo
+   con puntero táctil, para no cambiar nada en escritorio con ratón. */
+@media (pointer: coarse) {
+  .lang-toggle a, .lang-toggle button { min-height: 44px; display: inline-flex; align-items: center; }
+  .theme-toggle { width: 44px; height: 44px; }
 }
