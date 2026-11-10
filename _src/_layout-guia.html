@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="author" content="0Dopamine" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0B0B0D" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('zd-theme');
+        document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m && t === 'light') m.setAttribute('content', '#FAF9F6');
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+    })();
+  </script>
+
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <link rel="stylesheet" href="assets/base.css" />
+  <style>
+    .doc {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(40px, 6vw, 72px) clamp(20px, 4vw, 40px) clamp(72px, 10vw, 120px);
+    }
+    .breadcrumb { font-size: var(--fs-xs); color: var(--ink-3); margin-bottom: var(--s-4); letter-spacing: .02em; }
+    .breadcrumb a { color: var(--ink-2); }
+    .breadcrumb a:hover { color: var(--accent-2); }
+    .breadcrumb .sep { margin: 0 8px; opacity: .5; }
+
+    .doc h1 { font-size: clamp(2rem, 4.5vw, 2.9rem); line-height: 1.08; letter-spacing: -.03em; margin-bottom: var(--s-3); }
+    .doc h2 { font-size: clamp(1.35rem, 2.6vw, 1.7rem); line-height: 1.2; letter-spacing: -.02em; margin: clamp(36px, 5vw, 52px) 0 var(--s-3); }
+    .doc h3 { font-size: 1.08rem; line-height: 1.3; margin: var(--s-5) 0 var(--s-2); }
+    .doc .lead { font-size: 1.1rem; color: var(--ink-2); margin-bottom: var(--s-5); max-width: 60ch; }
+    .doc p, .doc li { color: var(--ink-2); line-height: 1.7; }
+    .doc p + p { margin-top: var(--s-3); }
+    .doc strong { color: var(--ink); font-weight: 600; }
+    .doc ul, .doc ol { padding-left: 1.3em; margin: var(--s-3) 0; display: grid; gap: 8px; }
+    .doc ul { list-style: disc; }
+    .doc ol { list-style: decimal; }
+    .doc ol li::marker { color: var(--accent-2); font-weight: 700; }
+    .doc p a, .doc li a, .doc td a { color: var(--accent-2); text-decoration: underline; text-underline-offset: 2px; }
+    .doc p a:hover, .doc li a:hover { color: var(--ink); }
+
+    .guide-meta { font-size: var(--fs-xs); color: var(--ink-3); margin-bottom: var(--s-5); }
+
+    .guide-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin: var(--s-4) 0 var(--s-5); }
+    .guide-cta .play-badge img { display: block; height: 56px; width: auto; }
+    .guide-cta .cta-note { font-size: var(--fs-xs); color: var(--ink-3); max-width: 34ch; line-height: 1.5; }
+
+    .guide-shot { margin: var(--s-5) auto; display: flex; justify-content: center; gap: 20px; }
+    .guide-shot img { width: min(240px, 44vw); height: auto; border-radius: 26px; border: 1px solid var(--border-2); box-shadow: var(--shadow-lg, 0 18px 50px rgba(0,0,0,.35)); }
+    .guide-shot figcaption { display: none; }
+    .guide-shot-caption { text-align: center; font-size: var(--fs-xs); color: var(--ink-3); margin-top: -8px; }
+
+    .callout { margin: var(--s-4) 0; padding: 16px 18px; border-radius: var(--r-md); background: var(--bg-1); border: 1px solid var(--border); }
+    .callout p { margin: 0; }
+
+    .compare { width: 100%; border-collapse: collapse; margin: var(--s-4) 0; font-size: var(--fs-sm); }
+    .compare th, .compare td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--ink-2); }
+    .compare th { color: var(--ink); font-weight: 600; }
+    .compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .related { margin-top: clamp(40px, 6vw, 64px); padding-top: var(--s-5); border-top: 1px solid var(--border); }
+    .related h2 { margin-top: 0; font-size: 1.2rem; }
+    .related ul { list-style: none; padding: 0; display: grid; gap: 10px; }
+    .related a { display: block; padding: 14px 16px; border-radius: var(--r-md); background: var(--bg-1); border: 1px solid var(--border); color: var(--ink); font-weight: 600; text-decoration: none; }
+    .related a:hover { border-color: var(--accent); }
+    .related a span { display: block; font-weight: 400; color: var(--ink-3); font-size: var(--fs-xs); margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">
+    <span data-lang="es">Saltar al contenido</span>
+    <span data-lang="en">Skip to content</span>
+  </a>
+
+  <header class="site-header">
+    <div class="nav">
+      <div class="nav-left">
+        <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+      <div class="nav-center">
+        <a class="nav-logo" href="/" aria-label="0Dopamine">
+          <img src="assets/logo-192.png" alt="0Dopamine" width="40" height="40" decoding="async" />
+        </a>
+      </div>
+      <div class="nav-right">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Cambiar tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a class="nav-cta" href="{{PLAY}}" target="_blank" rel="noopener">
+          <span data-lang="es">Descargar gratis</span>
+          <span data-lang="en">Get it free</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="doc">
+{{CONTENT}}
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: 0;">
+        <span>&copy; 2026 0Dopamine</span>
+        <span>
+          <a href="/" style="color: var(--ink-2);"><span data-lang="es">Inicio</span><span data-lang="en">Home</span></a>
+          <span class="fsep" aria-hidden="true">·</span>
+          <a href="guias.html" style="color: var(--ink-2);"><span data-lang="es">Guías</span><span data-lang="en">Guides</span></a>
+          <span class="fsep" aria-hidden="true">·</span>
+          <a href="faq.html" style="color: var(--ink-2);">FAQ</a>
+          <span class="fsep" aria-hidden="true">·</span>
+          <a href="privacy.html" style="color: var(--ink-2);"><span data-lang="es">Privacidad</span><span data-lang="en">Privacy</span></a>
+          <span class="fsep" aria-hidden="true">·</span>
+          <a href="terms.html" style="color: var(--ink-2);"><span data-lang="es">Términos</span><span data-lang="en">Terms</span></a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/site.js" defer></script>
+</body>
+</html>

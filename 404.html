@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Página no encontrada — 0Dopamine</title>
+  <meta name="robots" content="noindex" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0B0B0D" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('zd-theme');
+        document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+    })();
+  </script>
+  <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <link rel="stylesheet" href="/assets/base.css" />
+  <style>
+    main { min-height: 100dvh; display: grid; place-items: center; padding: 40px 20px; text-align: center; }
+    .box { max-width: 520px; }
+    .box img { margin: 0 auto 20px; }
+    .box h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); margin-bottom: 10px; }
+    .box p { color: var(--ink-2); line-height: 1.6; }
+    .box .en { color: var(--ink-3); font-size: var(--fs-sm); margin-top: 6px; }
+    .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 28px; }
+    .links a { padding: 12px 18px; border-radius: var(--r-full); border: 1px solid var(--border-2); color: var(--ink); font-weight: 600; text-decoration: none; }
+    .links a.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="box">
+      <img src="/assets/logo-192.png" alt="0Dopamine" width="72" height="72" />
+      <h1>Esta página no existe</h1>
+      <p>Puede que el enlace esté mal escrito o que la página se haya movido.</p>
+      <p class="en" lang="en">This page doesn&rsquo;t exist. The link may be wrong or the page may have moved.</p>
+      <div class="links">
+        <a class="primary" href="/">Ir al inicio</a>
+        <a href="/guias.html">Guías</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/en/" lang="en">English</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

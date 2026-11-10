@@ -6,7 +6,7 @@
 /* SITE */
   Language: Español / English
   Doctype: HTML5
-  Components: vanilla HTML/CSS/JS (no framework)
+  Components: vanilla HTML/CSS/JS; páginas generadas con _tools/build.py desde _src/
   Standards: HTML5, CSS3, WCAG 2.1 AA
   Hosting: GitHub Pages
-  Last updated: 2026/04/23
+  Last updated: 2026/11/10

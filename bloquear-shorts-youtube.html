@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!-- GENERADO por _tools/build.py desde _src/guias/bloquear-shorts-youtube.html (es). No editar aquí: editar la fuente y volver a generar. -->
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Cómo bloquear los Shorts de YouTube en Android (sin root) — 0Dopamine</title>
+  <meta name="description" content="Quita los Shorts de YouTube en Android sin desinstalar la app ni root: qué opciones trae YouTube, sus límites y cómo bloquear solo los Shorts con 0Dopamine." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://0dopamine.com/bloquear-shorts-youtube.html" />
+  <link rel="alternate" hreflang="es" href="https://0dopamine.com/bloquear-shorts-youtube.html" />
+  <link rel="alternate" hreflang="en" href="https://0dopamine.com/en/block-youtube-shorts.html" />
+  <link rel="alternate" hreflang="x-default" href="https://0dopamine.com/bloquear-shorts-youtube.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="0Dopamine" />
+  <meta property="og:title" content="Cómo bloquear los Shorts de YouTube en Android (sin root) — 0Dopamine" />
+  <meta property="og:description" content="Quita los Shorts de YouTube en Android sin desinstalar la app ni root: qué opciones trae YouTube, sus límites y cómo bloquear solo los Shorts con 0Dopamine." />
+  <meta property="og:url" content="https://0dopamine.com/bloquear-shorts-youtube.html" />
+  <meta property="og:image" content="https://0dopamine.com/assets/og/og-es.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="0Dopamine: bloquea Shorts, Reels y TikTok en Android" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cómo bloquear los Shorts de YouTube en Android (sin root) — 0Dopamine" />
+  <meta name="twitter:description" content="Quita los Shorts de YouTube en Android sin desinstalar la app ni root: qué opciones trae YouTube, sus límites y cómo bloquear solo los Shorts con 0Dopamine." />
+  <meta name="twitter:image" content="https://0dopamine.com/assets/og/og-es.png" />
+  <meta name="twitter:image:alt" content="0Dopamine: bloquea Shorts, Reels y TikTok en Android" />
+  <link rel="preload" href="/assets/fonts/baloo2-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/quicksand-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/fonts.css" />
+  <meta name="author" content="0Dopamine" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0B0B0D" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('zd-theme');
+        document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m && t === 'light') m.setAttribute('content', '#FAF9F6');
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+    })();
+  </script>
+
+  <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <link rel="stylesheet" href="/assets/base.css" />
+  <style>
+    .doc {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(40px, 6vw, 72px) clamp(20px, 4vw, 40px) clamp(72px, 10vw, 120px);
+    }
+    .breadcrumb { font-size: var(--fs-xs); color: var(--ink-3); margin-bottom: var(--s-4); letter-spacing: .02em; }
+    .breadcrumb a { color: var(--ink-2); }
+    .breadcrumb a:hover { color: var(--accent-2); }
+    .breadcrumb .sep { margin: 0 8px; opacity: .5; }
+
+    .doc h1 { font-size: clamp(2rem, 4.5vw, 2.9rem); line-height: 1.08; letter-spacing: -.03em; margin-bottom: var(--s-3); }
+    .doc h2 { font-size: clamp(1.35rem, 2.6vw, 1.7rem); line-height: 1.2; letter-spacing: -.02em; margin: clamp(36px, 5vw, 52px) 0 var(--s-3); }
+    .doc h3 { font-size: 1.08rem; line-height: 1.3; margin: var(--s-5) 0 var(--s-2); }
+    .doc .lead { font-size: 1.1rem; color: var(--ink-2); margin-bottom: var(--s-5); max-width: 60ch; }
+    .doc p, .doc li { color: var(--ink-2); line-height: 1.7; }
+    .doc p + p { margin-top: var(--s-3); }
+    .doc strong { color: var(--ink); font-weight: 600; }
+    .doc ul, .doc ol { padding-left: 1.3em; margin: var(--s-3) 0; display: grid; gap: 8px; }
+    .doc ul { list-style: disc; }
+    .doc ol { list-style: decimal; }
+    .doc ol li::marker { color: var(--accent-2); font-weight: 700; }
+    .doc p a, .doc li a, .doc td a { color: var(--accent-2); text-decoration: underline; text-underline-offset: 2px; }
+    .doc p a:hover, .doc li a:hover { color: var(--ink); }
+
+    .guide-meta { font-size: var(--fs-xs); color: var(--ink-3); margin-bottom: var(--s-5); }
+
+    .guide-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin: var(--s-4) 0 var(--s-5); }
+    .guide-cta .play-badge img { display: block; height: 56px; width: auto; }
+    .guide-cta .cta-note { font-size: var(--fs-xs); color: var(--ink-3); max-width: 34ch; line-height: 1.5; }
+
+    .guide-shot { margin: var(--s-5) auto; display: flex; justify-content: center; gap: 20px; }
+    .guide-shot img { width: min(240px, 44vw); height: auto; border-radius: 26px; border: 1px solid var(--border-2); box-shadow: var(--shadow-lg, 0 18px 50px rgba(0,0,0,.35)); }
+    .guide-shot figcaption { display: none; }
+    .guide-shot-caption { text-align: center; font-size: var(--fs-xs); color: var(--ink-3); margin-top: -8px; }
+
+    .callout { margin: var(--s-4) 0; padding: 16px 18px; border-radius: var(--r-md); background: var(--bg-1); border: 1px solid var(--border); }
+    .callout p { margin: 0; }
+
+    .compare { width: 100%; border-collapse: collapse; margin: var(--s-4) 0; font-size: var(--fs-sm); }
+    .compare th, .compare td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--ink-2); }
+    .compare th { color: var(--ink); font-weight: 600; }
+    .compare-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    .related { margin-top: clamp(40px, 6vw, 64px); padding-top: var(--s-5); border-top: 1px solid var(--border); }
+    .related h2 { margin-top: 0; font-size: 1.2rem; }
+    .related ul { list-style: none; padding: 0; display: grid; gap: 10px; }
+    .related a { display: block; padding: 14px 16px; border-radius: var(--r-md); background: var(--bg-1); border: 1px solid var(--border); color: var(--ink); font-weight: 600; text-decoration: none; }
+    .related a:hover { border-color: var(--accent); }
+    .related a span { display: block; font-weight: 400; color: var(--ink-3); font-size: var(--fs-xs); margin-top: 2px; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://0dopamine.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guías",
+      "item": "https://0dopamine.com/guias.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Bloquear Shorts de YouTube",
+      "item": "https://0dopamine.com/bloquear-shorts-youtube.html"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cómo bloquear los Shorts de YouTube en Android (sin root)",
+  "description": "Quita los Shorts de YouTube en Android sin desinstalar la app ni root: qué opciones trae YouTube, sus límites y cómo bloquear solo los Shorts con 0Dopamine.",
+  "inLanguage": "es",
+  "mainEntityOfPage": "https://0dopamine.com/bloquear-shorts-youtube.html",
+  "image": [
+    "https://0dopamine.com/assets/og/og-es.png",
+    "https://0dopamine.com/assets/img/app-inicio-oscuro.webp"
+  ],
+  "datePublished": "2026-11-10",
+  "dateModified": "2026-11-10",
+  "author": {
+    "@type": "Organization",
+    "name": "0Dopamine",
+    "url": "https://0dopamine.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "0Dopamine",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://0dopamine.com/assets/logo-512.png"
+    }
+  },
+  "about": {
+    "@type": "MobileApplication",
+    "name": "0Dopamine",
+    "operatingSystem": "Android",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://0dopamine.com/"
+  }
+}
+</script>
+</head>
+<body>
+  <a href="#main" class="skip-link">
+    <span data-lang="es">Saltar al contenido</span>
+  </a>
+
+  <header class="site-header">
+    <div class="nav">
+      <div class="nav-left">
+        <nav class="lang-toggle" aria-label="Idioma / Language">
+          <a href="/bloquear-shorts-youtube.html" hreflang="es" lang="es" aria-current="page">ES</a>
+          <a href="/en/block-youtube-shorts.html" hreflang="en" lang="en">EN</a>
+        </nav>
+      </div>
+      <div class="nav-center">
+        <a class="nav-logo" href="/" aria-label="0Dopamine">
+          <img src="/assets/logo-192.png" alt="0Dopamine" width="40" height="40" decoding="async" />
+        </a>
+      </div>
+      <div class="nav-right">
+        <button type="button" class="theme-toggle" data-theme-toggle aria-label="Cambiar tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.zerodopamine&referrer=utm_source%3D0dopamine.com%26utm_medium%3Dguia" target="_blank" rel="noopener">
+          <span data-lang="es">Descargar gratis</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="doc">
+      <div data-lang="es">
+        <nav class="breadcrumb" aria-label="Migas de pan">
+          <a href="/">Inicio</a><span class="sep">/</span><a href="/guias.html">Guías</a><span class="sep">/</span>Shorts de YouTube
+        </nav>
+        <h1>Cómo bloquear los Shorts de YouTube en Android</h1>
+        <p class="guide-meta">Actualizado el <time datetime="2026-11-10">10 de noviembre de 2026</time> · 5 min de lectura</p>
+        <p class="lead">Quieres seguir usando YouTube para tutoriales, música o tus canales de siempre, pero cada vez que entras acabas veinte minutos deslizando Shorts. Aquí tienes lo que permite YouTube, por qué no basta y cómo quitar <strong>solo</strong> los Shorts sin desinstalar nada ni rootear el móvil.</p>
+
+        <div class="guide-cta">
+          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.zerodopamine&referrer=utm_source%3D0dopamine.com%26utm_medium%3Dguia" target="_blank" rel="noopener"><img src="/assets/google-play-badge-es.png" width="646" height="192" alt="Disponible en Google Play" loading="lazy" decoding="async" /></a>
+          <p class="cta-note">Android 8.0 o superior · sin root · prueba de Premium de 7 días</p>
+        </div>
+
+        <h2>¿Se pueden desactivar los Shorts desde YouTube?</h2>
+        <p>No hay un interruptor oficial para quitarlos. Lo que existe son parches:</p>
+        <ul>
+          <li><strong>«No me interesa»</strong> en la fila de Shorts de la página de inicio. La esconde una temporada, pero vuelve.</li>
+          <li><strong>Pausar el historial de reproducciones.</strong> Vacía las recomendaciones de la página de inicio, pero la pestaña de Shorts sigue ahí, a un toque.</li>
+          <li><strong>Recordatorios de descanso y límites de tiempo</strong> en los ajustes de YouTube. Son avisos que se cierran con un toque, justo cuando menos ganas tienes de parar.</li>
+          <li><strong>Usar YouTube desde el navegador</strong> o apps modificadas. Funciona a medias, pierdes funciones y las apps modificadas suponen un riesgo para tu cuenta.</li>
+        </ul>
+        <p>El problema de fondo es que YouTube gana más cuanto más tiempo pasas dentro. Ningún ajuste suyo va a ser un freno de verdad.</p>
+
+        <h2>Bloquear solo los Shorts con 0Dopamine</h2>
+        <p>0Dopamine detecta cuándo entras en la sección de Shorts, sea desde la pestaña, desde un Short que aparece en el inicio o desde un enlace que te pasan, y te saca de ahí. El resto de YouTube funciona igual: búsquedas, suscripciones, vídeos largos y listas.</p>
+        <ol>
+          <li><strong>Instala 0Dopamine</strong> desde Google Play y activa el permiso de accesibilidad que te pide. Es lo que le deja saber qué pantalla tienes delante; todo se procesa en el móvil.</li>
+          <li><strong>Añade YouTube</strong> a tus apps.</li>
+          <li><strong>Activa «Bloquear Shorts».</strong> Si quieres, ponle horario: por ejemplo, Shorts bloqueados de lunes a viernes y libres el fin de semana.</li>
+        </ol>
+
+        <figure class="guide-shot">
+          <img src="/assets/img/app-inicio-oscuro.webp" width="420" height="1008" alt="Pantalla principal de 0Dopamine: TikTok con horario, Instagram con bloqueo total y 55 minutos recuperados hoy" loading="lazy" decoding="async" />
+        </figure>
+
+        <h2>Qué pasa cuando abres un Short</h2>
+        <p>En lugar del vídeo, te aparece una pregunta sencilla: <strong>«¿Realmente quieres verlo?»</strong>. Tienes tres salidas:</p>
+        <ul>
+          <li><strong>Volver</strong> a donde estabas en YouTube.</li>
+          <li><strong>Cerrar YouTube</strong> del todo.</li>
+          <li><strong>Ver solo este y se cierra</strong>: si alguien te ha mandado un Short concreto, lo ves; al deslizar al siguiente, la app se cierra sola. Así un vídeo no se convierte en cuarenta.</li>
+        </ul>
+        <p>Si prefieres no tener ni esa opción, el <strong>modo estricto</strong> cierra YouTube en cuanto detecta un Short, sin pantalla ni botones.</p>
+
+        <h2>¿Es gratis?</h2>
+        <p>La versión gratuita de 0Dopamine controla una app completa con todos los modos (pausa, bloqueo total, horario, límite diario y respiración 4-7-8), con hasta 2 horas de bloqueo al día. El bloqueo de Shorts y Reels dentro de la app y el «Ver solo este» forman parte de <strong>Premium: 1 €/mes con 7 días de prueba</strong>, o 59,99 € en un único pago. Los anuncios son opcionales: puedes ver uno para tener Premium un día.</p>
+
+        <div class="callout"><p><strong>Privacidad:</strong> 0Dopamine no lee tus mensajes, contraseñas ni lo que ves. Solo comprueba qué app y qué pantalla están abiertas, y eso no sale del móvil. Más detalles en la <a href="/privacy.html">política de privacidad</a>.</p></div>
+
+        <h2>Preguntas rápidas</h2>
+        <h3>¿Funciona con YouTube Premium o YouTube Kids?</h3>
+        <p>Funciona con la app oficial de YouTube, tengas Premium o no. YouTube Kids es otra app: puedes bloquearla entera o ponerle horario.</p>
+        <h3>¿Y en el navegador?</h3>
+        <p>0Dopamine está pensado para las apps. Si sueles ver Shorts en Chrome, puedes ponerle a Chrome un límite diario o una pausa antes de abrirlo.</p>
+        <h3>¿Necesito root?</h3>
+        <p>No. Usa el servicio de accesibilidad estándar de Android y funciona en cualquier móvil con Android 8.0 o superior.</p>
+
+        <section class="related">
+          <h2>Sigue leyendo</h2>
+          <ul>
+            <li><a href="/bloquear-reels-instagram.html">Cómo bloquear los Reels de Instagram<span>Lo mismo, para Instagram y Facebook.</span></a></li>
+            <li><a href="/detox-dopamina.html">Detox de dopamina con el móvil<span>Por qué el vídeo corto engancha y un plan de 7 días.</span></a></li>
+            <li><a href="/alternativa-bienestar-digital.html">¿Y Bienestar Digital de Google?<span>Qué hace y por qué no puede bloquear solo los Shorts.</span></a></li>
+          </ul>
+        </section>
+      </div>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border-top: 0;">
+        <span>&copy; 2026 0Dopamine</span>
+        <span>
+          <a href="/" style="color: var(--ink-2);"><span data-lang="es">Inicio</span></a>
+          <span class="fsep" aria-hidden="true">·</span>
+          <a href="/guias.html" style="color: var(--ink-2);"><span data-lang="es">Guías</span></a>
+          <span class="fsep" aria-hidden="true">·</span>
+          <a href="/faq.html" style="color: var(--ink-2);">FAQ</a>
+          <span class="fsep" aria-hidden="true">·</span>
+          <a href="/privacy.html" style="color: var(--ink-2);"><span data-lang="es">Privacidad</span></a>
+          <span class="fsep" aria-hidden="true">·</span>
+          <a href="/terms.html" style="color: var(--ink-2);"><span data-lang="es">Términos</span></a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>

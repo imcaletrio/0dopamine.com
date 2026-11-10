@@ -382,6 +382,19 @@ html[lang="en"] .lang-switch .lang-opt--es { color: var(--ink-4); }
   background: var(--accent);
   color: var(--on-accent);
 }
+/* (2026-11-10) Cada idioma tiene su URL: el selector son enlaces, no botones. */
+a.lang-switch { color: var(--ink); text-decoration: none; }
+.lang-toggle a {
+  padding: 6px 13px;
+  border-radius: var(--r-full);
+  font-family: "Baloo 2", system-ui, sans-serif;
+  font-size: .8rem; font-weight: 600;
+  color: var(--ink-3);
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.lang-toggle a:hover { color: var(--ink); }
+.lang-toggle a[aria-current="page"] { background: var(--accent); color: var(--on-accent); }
 
 /* Theme toggle — discreet sun/moon button (every page) */
 .theme-toggle {
@@ -421,6 +434,7 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
   .nav { gap: var(--s-2); padding-inline: 14px; }
   .lang-switch { padding: 7px 12px; font-size: .78rem; }
   .lang-toggle button { padding: 6px 10px; font-size: .76rem; }
+  .lang-toggle a { padding: 6px 10px; font-size: .76rem; }
   .nav-right .nav-cta { padding: 9px 14px; font-size: .8rem; }
 }
 
@@ -729,7 +743,8 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
      45 a 38px). Aquí crecen, sin cambiar el tamaño de letra. */
   .nav-right .nav-cta,
   .lang-switch,
-  .lang-toggle button {
+  .lang-toggle button,
+  .lang-toggle a {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
@@ -739,6 +754,7 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
   .lang-switch        { padding: 0 14px; font-size: .82rem; }
   .lang-toggle { padding: 2px; }
   .lang-toggle button { padding: 0 12px; font-size: .8rem; }
+  .lang-toggle a { padding: 0 12px; font-size: .8rem; }
   .theme-toggle { width: 44px; height: 44px; }
   .modal-close  { width: 44px; height: 44px; top: 8px; right: 8px; }
 

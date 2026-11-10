@@ -1,5 +1,5 @@
 /* 0Dopamine — shared site JS
-   - i18n: showLang + localStorage persistence + zd:lang event
+   - i18n: cada idioma en su URL (/ y /en/); solo redirige el ?lang= antiguo
    - theme toggle, apps carousel, scroll reveal
    (2026-11-09) La app ya está publicada en Google Play: fuera el registro
    de la beta, el grupo de testers, Turnstile y la telemetría a la hoja.
@@ -7,63 +7,21 @@
 (function () {
   'use strict';
 
-  var LANG_KEY    = '0d_lang';
-
-  function safeGet(key)       { try { return localStorage.getItem(key) || ''; } catch (_) { return ''; } }
   function safeSet(key, val)  { try { localStorage.setItem(key, val); } catch (_) {} }
 
   // ---------- i18n ----------
-  function resolveInitialLang() {
-    // URL override: ?lang=es|en  (useful for share links / testing)
+  // (2026-11-10) Cada idioma tiene su propia URL (español en la raíz, inglés
+  // bajo /en/) y el HTML ya viene en un solo idioma: aquí no se cambia nada.
+  // Solo se respetan los enlaces antiguos con ?lang=xx, que llevan a la URL
+  // del idioma pedido (la declarada en <link rel="alternate" hreflang>).
+  (function legacyLangParam() {
     try {
       var q = new URLSearchParams(window.location.search).get('lang');
-      if (q === 'es' || q === 'en') {
-        safeSet(LANG_KEY, q);
-        return q;
-      }
+      if ((q !== 'es' && q !== 'en') || q === document.documentElement.lang) return;
+      var alt = document.querySelector('link[rel="alternate"][hreflang="' + q + '"]');
+      if (alt) window.location.replace(alt.href + window.location.hash);
     } catch (_) {}
-    var saved = safeGet(LANG_KEY);
-    if (saved === 'es' || saved === 'en') return saved;
-    // Por defecto SIEMPRE español (no autodetectar el idioma del navegador).
-    return 'es';
-  }
-
-  function applyLang(lang) {
-    document.documentElement.lang = lang;
-    // Legacy grouped toggle buttons
-    document.querySelectorAll('.lang-toggle button').forEach(function (btn) {
-      var isActive = btn.getAttribute('data-lang') === lang;
-      btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-    });
-    try { window.dispatchEvent(new CustomEvent('zd:lang', { detail: lang })); } catch (_) {}
-  }
-
-  function setLang(lang) {
-    if (lang !== 'es' && lang !== 'en') return;
-    safeSet(LANG_KEY, lang);
-    applyLang(lang);
-  }
-
-  // Expose for inline onclick handlers (legacy) and external callers
-  window.setLang = setLang;
-  window.showLang = setLang;
-
-  // Set lang ASAP (html[lang] flips before first paint of content) and wire up toggle buttons
-  applyLang(resolveInitialLang());
-  document.addEventListener('DOMContentLoaded', function () {
-    applyLang(document.documentElement.lang || 'es');
-    // Legacy two-button toggle
-    document.querySelectorAll('.lang-toggle button[data-lang]').forEach(function (btn) {
-      btn.addEventListener('click', function () { setLang(btn.getAttribute('data-lang')); });
-    });
-    // New single-button switch (toggles between es and en)
-    document.querySelectorAll('[data-lang-toggle]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var current = document.documentElement.lang === 'en' ? 'en' : 'es';
-        setLang(current === 'en' ? 'es' : 'en');
-      });
-    });
-  });
+  })();
 
   // ---------- Apps carousel: spotlight + drag/flick to steer ----------
   function initAppsInteraction() {
@@ -208,8 +166,6 @@
         applyTheme(currentTheme() === 'light' ? 'dark' : 'light');
       });
     });
-    // Keep aria-label in sync with language changes.
-    window.addEventListener('zd:lang', function () { applyTheme(currentTheme()); });
   }
 
   // ---------- Scroll reveal ----------

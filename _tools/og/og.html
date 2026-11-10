@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../../assets/fonts.css">
+<style>
+  @font-face { font-family:'Baloo 2'; src:url(../../assets/fonts/baloo2-latin.woff2) format('woff2'); font-weight:400 800; }
+  @font-face { font-family:'Quicksand'; src:url(../../assets/fonts/quicksand-latin.woff2) format('woff2'); font-weight:300 700; }
+  html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+  body{background:#0B0B0D;color:#F2F2F4;font-family:'Quicksand',sans-serif;position:relative}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55}
+  .b1{width:520px;height:520px;background:#4A7FB8;left:-140px;top:-160px}
+  .b2{width:460px;height:460px;background:#2c4f78;right:120px;bottom:-220px}
+  .wrap{position:absolute;inset:0;display:flex;align-items:center;padding:0 0 0 84px;gap:40px}
+  .txt{flex:1;max-width:640px}
+  .brand{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+  .brand img{width:64px;height:64px;border-radius:16px}
+  .brand span{font-family:'Baloo 2';font-weight:800;font-size:40px;letter-spacing:-.02em}
+  h1{font-family:'Baloo 2';font-weight:800;font-size:66px;line-height:1.02;letter-spacing:-.03em;margin:0 0 22px}
+  h1 em{font-style:normal;color:#7FB0E3}
+  p{font-size:27px;line-height:1.35;color:#C9CBD3;margin:0 0 30px;font-weight:600}
+  .pill{display:inline-flex;align-items:center;gap:10px;background:#4A7FB8;color:#fff;font-family:'Baloo 2';font-weight:700;font-size:26px;padding:12px 26px;border-radius:999px}
+  .phone{width:330px;margin-right:70px;transform:rotate(4deg);border-radius:38px;border:3px solid #2a2d36;box-shadow:0 30px 80px rgba(0,0,0,.6);overflow:hidden;height:560px;margin-top:150px}
+  .phone img{width:100%;display:block}
+</style></head>
+<body>
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <div class="txt">
+      <div class="brand"><img src="../../assets/logo-512.png"><span>0Dopamine</span></div>
+      <h1 id="h"></h1>
+      <p id="p"></p>
+      <span class="pill" id="c"></span>
+    </div>
+    <div class="phone"><img src="../../assets/img/app-inicio-oscuro.webp"></div>
+  </div>
+<script>
+  var T={es:{h:'Bloquea Shorts, Reels y <em>TikTok</em> sin borrar las apps.',p:'Respiración 4-7-8 antes de abrir, horarios y límites diarios. Para Android.',c:'Gratis en Google Play'},
+         en:{h:'Block Shorts, Reels and <em>TikTok</em> without deleting apps.',p:'A 4-7-8 breath before opening, schedules and daily limits. For Android.',c:'Free on Google Play'}};
+  var l=(location.hash||'#es').slice(1), t=T[l];
+  document.getElementById('h').innerHTML=t.h; document.getElementById('p').textContent=t.p; document.getElementById('c').textContent=t.c;
+</script>
+</body></html>

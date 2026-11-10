@@ -1,39 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://0dopamine.com/</loc>
-    <lastmod>2026-11-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/"/>
   </url>
   <url>
-    <loc>https://0dopamine.com/install.html</loc>
-    <lastmod>2026-11-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://0dopamine.com/en/</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/guias.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/guias.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/guides.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/guias.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/en/guides.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/guias.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/guides.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/guias.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/bloquear-shorts-youtube.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/bloquear-shorts-youtube.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/block-youtube-shorts.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/bloquear-shorts-youtube.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/en/block-youtube-shorts.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/bloquear-shorts-youtube.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/block-youtube-shorts.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/bloquear-shorts-youtube.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/bloquear-reels-instagram.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/bloquear-reels-instagram.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/block-instagram-reels.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/bloquear-reels-instagram.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/en/block-instagram-reels.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/bloquear-reels-instagram.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/block-instagram-reels.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/bloquear-reels-instagram.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/limitar-tiktok.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/limitar-tiktok.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/limit-tiktok.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/limitar-tiktok.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/en/limit-tiktok.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/limitar-tiktok.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/limit-tiktok.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/limitar-tiktok.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/alternativa-bienestar-digital.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/alternativa-bienestar-digital.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/digital-wellbeing-alternative.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/alternativa-bienestar-digital.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/en/digital-wellbeing-alternative.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/alternativa-bienestar-digital.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/digital-wellbeing-alternative.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/alternativa-bienestar-digital.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/detox-dopamina.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/detox-dopamina.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/dopamine-detox.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/detox-dopamina.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/en/dopamine-detox.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/detox-dopamina.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/dopamine-detox.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/detox-dopamina.html"/>
   </url>
   <url>
     <loc>https://0dopamine.com/faq.html</loc>
-    <lastmod>2026-11-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/en/faq.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/faq.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/faq.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/install.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/install.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/install.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/install.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/en/install.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/install.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/install.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/install.html"/>
   </url>
   <url>
     <loc>https://0dopamine.com/privacy.html</loc>
-    <lastmod>2026-11-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/privacy.html"/>
   </url>
   <url>
-    <loc>https://0dopamine.com/delete-account.html</loc>
-    <lastmod>2026-10-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <loc>https://0dopamine.com/en/privacy.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/privacy.html"/>
   </url>
   <url>
     <loc>https://0dopamine.com/terms.html</loc>
-    <lastmod>2026-11-09</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/terms.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/en/terms.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/terms.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/delete-account.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/delete-account.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/delete-account.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/delete-account.html"/>
+  </url>
+  <url>
+    <loc>https://0dopamine.com/en/delete-account.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://0dopamine.com/delete-account.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://0dopamine.com/en/delete-account.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://0dopamine.com/delete-account.html"/>
   </url>
 </urlset>

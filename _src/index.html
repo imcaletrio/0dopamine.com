@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>0Dopamine — Elimina las distracciones en cualquier aplicación (Android)</title>
+  <meta name="description" content="0D ya está en Google Play: la app gratis para Android que elimina las distracciones de Shorts, Reels, TikTok y cualquier app. Respiración 4-7-8 antes de cada apertura. Sin anuncios forzados y sin vender tus datos." />
+
+  <meta name="author" content="0Dopamine" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0B0B0D" />
+  <script>
+    // Apply persisted theme before first paint (dark by default). No flash.
+    (function () {
+      try {
+        var t = localStorage.getItem('zd-theme');
+        document.documentElement.setAttribute('data-theme', t === 'light' ? 'light' : 'dark');
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m && t === 'light') m.setAttribute('content', '#FAF9F6');
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+    })();
+  </script>
+
+  <link rel="canonical" href="https://0dopamine.com/" />
+  <link rel="alternate" hreflang="es" href="https://0dopamine.com/" />
+  <link rel="alternate" hreflang="x-default" href="https://0dopamine.com/" />
+
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <meta property="og:title" content="0Dopamine — Elimina las distracciones en cualquier aplicación" />
+  <meta property="og:description" content="Ya disponible en Google Play. App gratis para Android: bloquea Shorts, Reels y TikTok sin desinstalar. Respiración 4-7-8 antes de cada apertura. Sin vender tus datos." />
+  <meta property="og:image" content="https://0dopamine.com/assets/logo-512.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="Logo de 0Dopamine" />
+  <meta property="og:url" content="https://0dopamine.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="0Dopamine" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="0Dopamine — Elimina las distracciones en cualquier aplicación" />
+  <meta name="twitter:description" content="Ya disponible en Google Play. App gratis para Android. Respiración 4-7-8 antes de cada apertura. Sin vender tus datos." />
+  <meta name="twitter:image" content="https://0dopamine.com/assets/logo-512.png" />
+  <meta name="twitter:image:alt" content="Logo de 0Dopamine" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="assets/logo-512.png" fetchpriority="high" type="image/png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "0Dopamine",
+    "alternateName": "0D",
+    "description": "App Android que elimina las distracciones de Shorts, Reels, TikTok y cualquier app. Respiración 4-7-8, horarios, límites diarios y bloqueo total.",
+    "applicationCategory": "UtilitiesApplication",
+    "applicationSubCategory": "DigitalWellbeing",
+    "operatingSystem": "Android 8.0+",
+    "url": "https://0dopamine.com/",
+    "downloadUrl": "https://play.google.com/store/apps/details?id=com.zerodopamine",
+    "installUrl": "https://play.google.com/store/apps/details?id=com.zerodopamine",
+    "softwareVersion": "1.3.35",
+    "datePublished": "2026-11-08",
+    "inLanguage": ["es", "en"],
+    "image": "https://0dopamine.com/assets/logo-512.png",
+    "author":    { "@type": "Organization", "name": "0Dopamine", "url": "https://0dopamine.com/" },
+    "publisher": { "@type": "Organization", "name": "0Dopamine", "url": "https://0dopamine.com/" },
+    "offers": [
+      { "@type": "Offer", "name": "Free",     "price": "0",    "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "category": "free" },
+      { "@type": "Offer", "name": "Premium",  "price": "1",    "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "category": "subscription" },
+      { "@type": "Offer", "name": "Lifetime", "price": "59.99", "priceCurrency": "EUR", "availability": "https://schema.org/InStock", "category": "one-time" }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "0Dopamine",
+    "url": "https://0dopamine.com/",
+    "logo": "https://0dopamine.com/assets/logo-512.png",
+    "email": "hola@0dopamine.com",
+    "sameAs": ["https://play.google.com/store/apps/details?id=com.zerodopamine"]
+  }
+  </script>
+
+  <link rel="stylesheet" href="assets/base.css" />
+  <style>
+    /* ============================================================
+       Landing-specific layout. El sistema "Soft Fusión" (tokens de
+       ambos temas + componentes compartidos) vive en base.css; aquí
+       solo va la composición single-viewport de la portada y sus
+       piezas propias, siempre en tokens del sistema → válido en
+       oscuro y claro.
+       ============================================================ */
+
+    /* ---------- Single-viewport layout ---------- */
+    html, body { height: 100dvh; overflow: hidden; }
+    body { display: flex; flex-direction: column; }
+
+    /* Floating UI (replaces fixed header) */
+    .float-ui {
+      position: fixed;
+      top: clamp(18px, 2.4vh, 28px);
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .float-ui.left  { left:  clamp(18px, 2.5vw, 32px); }
+    .float-ui.right { right: clamp(18px, 2.5vw, 32px); }
+    @media (max-width: 560px) {
+      .float-ui { top: 14px; }
+      .float-ui.left  { left: 14px; }
+      .float-ui.right { right: 14px; }
+    }
+
+    main.stage {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex; flex-direction: column;
+      gap: clamp(18px, 3.2vh, 40px);
+      padding: clamp(64px, 7.5vh, 92px) clamp(20px, 4vw, 48px) 0;
+      max-width: 1400px; width: 100%; margin-inline: auto;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    /* Extra breathing room right after the hero CTA block */
+    .hero { margin-bottom: clamp(14px, 3.2vh, 42px); }
+
+    /* Hero */
+    .hero {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      gap: clamp(12px, 2.2vh, 22px);
+      padding-top: 0;
+    }
+    .brand-lockup {
+      display: inline-flex; align-items: center;
+      gap: clamp(14px, 2vw, 22px);
+      margin-bottom: clamp(14px, 2.6vh, 30px);
+    }
+    .brand-logo {
+      width: clamp(68px, 10vh, 112px);
+      height: auto;
+      border-radius: clamp(16px, 2.4vh, 24px);
+      box-shadow: 0 16px 36px color-mix(in srgb, #0E1D2D 28%, transparent), 0 0 0 1px rgba(0,0,0,.04);
+    }
+    .brand-name {
+      font-family: 'Baloo 2', system-ui, sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -.028em;
+      color: var(--ink);
+      line-height: 1;
+    }
+    .hero h1 {
+      font-size: clamp(1.9rem, 4.6vw, 3.4rem);
+      line-height: 1.02;
+      letter-spacing: -.036em;
+      font-weight: 600;
+      max-width: 22ch;
+    }
+    .hero h1 em {
+      font-family: 'Baloo 2', system-ui, sans-serif;
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: -.01em;
+      font-size: 1.04em;
+      background: none;
+      color: var(--accent-ink);
+      -webkit-text-fill-color: var(--accent-ink);
+      padding-right: .05em;
+    }
+    .hero p.lead {
+      font-size: clamp(.98rem, 1.3vw, 1.15rem);
+      color: var(--ink-2);
+      max-width: 58ch;
+      line-height: 1.5;
+    }
+    .hero-cta-row { display: inline-flex; gap: var(--s-3); flex-wrap: wrap; justify-content: center; }
+    .trust {
+      display: inline-flex; flex-wrap: wrap; gap: clamp(12px, 2.5vw, 24px);
+      color: var(--ink-3); font-size: var(--fs-sm);
+    }
+    .trust span { display: inline-flex; align-items: center; gap: var(--s-2); }
+    .trust svg { width: 14px; height: 14px; color: var(--accent-2); flex-shrink: 0; }
+
+    /* ---------- Pricing: sales-funnel look (compact) ---------- */
+    .pricing-wrap {
+      flex-shrink: 0;
+      display: flex; flex-direction: column;
+      gap: clamp(8px, 1.2vh, 16px);
+    }
+    .pricing {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr 1fr;
+      gap: clamp(8px, 1vw, 14px);
+      align-items: stretch;
+    }
+    .pricing-note {
+      text-align: center;
+      font-size: clamp(.72rem, .78vw, .8rem);
+      color: var(--ink-4);
+      line-height: 1.5;
+      max-width: 64ch;
+      margin-inline: auto;
+    }
+    .pricing-note strong { color: var(--ink-2); font-weight: 500; }
+
+    .plan {
+      padding: clamp(10px, 1.3vh, 14px) clamp(12px, 1.4vw, 18px);
+      border-radius: var(--r-lg);
+      display: flex; flex-direction: column; gap: clamp(4px, .7vh, 8px);
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    .plan:hover { transform: translateY(-2px); }
+    .plan-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .plan-name {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 600;
+      color: var(--ink-3);
+    }
+    .plan-price {
+      font-size: clamp(1.2rem, 1.7vw, 1.5rem);
+      font-weight: 600;
+      letter-spacing: -.025em;
+      color: var(--ink);
+      display: inline-flex; align-items: baseline; gap: 3px;
+      line-height: 1;
+    }
+    .plan-price .per {
+      font-size: .68rem;
+      font-weight: 400;
+      color: var(--ink-3);
+      letter-spacing: 0;
+    }
+    .plan-feats {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 4px;
+      font-size: clamp(.72rem, .78vw, .8rem);
+      color: var(--ink-2);
+    }
+    .plan-feats li { display: flex; align-items: center; gap: 6px; line-height: 1.25; }
+    .plan-feats svg { width: 11px; height: 11px; color: var(--accent-2); flex-shrink: 0; }
+
+    /* Premium — destacado (vidrio tintado con el acento) */
+    .plan.featured {
+      background: color-mix(in srgb, #4A7FB8 12%, var(--glass-bg));
+      box-shadow: 0 16px 38px color-mix(in srgb, #4A7FB8 20%, transparent),
+                  0 0 0 1px color-mix(in srgb, #4A7FB8 18%, transparent) inset,
+                  var(--glass-highlight);
+      transform: translateY(-4px) scale(1.015);
+    }
+    .plan.featured::before {
+      background: linear-gradient(135deg,
+        color-mix(in srgb, #4A7FB8 55%, rgba(255,255,255,.6)) 0%,
+        color-mix(in srgb, #4A7FB8 28%, rgba(255,255,255,.2)) 50%,
+        color-mix(in srgb, #4A7FB8 38%, rgba(255,255,255,.3)) 100%);
+    }
+    .plan.featured:hover { transform: translateY(-7px) scale(1.015); box-shadow: 0 22px 46px color-mix(in srgb, #4A7FB8 26%, transparent), var(--glass-highlight); }
+    .plan.featured .plan-name { color: var(--accent-2); }
+    .plan.featured .plan-badge {
+      position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+      padding: 3px 11px;
+      background: var(--accent);
+      color: #fff;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border-radius: var(--r-full);
+      white-space: nowrap;
+      box-shadow: 0 4px 12px -2px var(--accent-glow);
+    }
+    .plan.featured .plan-price { font-size: clamp(1.35rem, 2vw, 1.7rem); }
+    .plan.featured .plan-feats svg { color: var(--accent); }
+
+    /* Lifetime — dorado (vidrio tintado, token --gold theme-aware) */
+    .plan.gold {
+      background: color-mix(in srgb, var(--gold) 14%, var(--glass-bg));
+    }
+    .plan.gold::before {
+      background: linear-gradient(135deg,
+        color-mix(in srgb, var(--gold) 60%, rgba(255,255,255,.6)) 0%,
+        color-mix(in srgb, var(--gold) 32%, rgba(255,255,255,.2)) 50%,
+        color-mix(in srgb, var(--gold) 42%, rgba(255,255,255,.3)) 100%);
+    }
+    .plan.gold:hover { box-shadow: 0 18px 40px color-mix(in srgb, var(--gold) 22%, transparent), var(--glass-highlight); }
+    .plan.gold .plan-name { color: var(--gold); }
+    .plan.gold .plan-price {
+      background: none;
+      color: var(--gold);
+      -webkit-text-fill-color: var(--gold);
+    }
+    .plan.gold .plan-feats svg { color: var(--gold); }
+
+    /* Apps carousel — auto-scroll + color spotlight + drag */
+    .apps-strip {
+      margin-top: auto; /* pin to bottom of main.stage, just above footer */
+      padding: clamp(10px, 1.5vh, 16px) 0 clamp(6px, 1vh, 12px);
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+              mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+      flex-shrink: 0;
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .apps-strip:active { cursor: grabbing; }
+    .apps-strip * { -webkit-tap-highlight-color: transparent; }
+    .apps-track {
+      display: flex; gap: clamp(10px, 1.4vw, 18px);
+      width: max-content;
+      animation: appsScroll 45s linear infinite;
+      will-change: transform;
+    }
+    .apps-strip:hover .apps-track { animation-play-state: paused; }
+    .app-chip {
+      display: flex; align-items: center; gap: 10px;
+      padding: clamp(6px, 1vh, 10px) clamp(12px, 1.4vw, 18px);
+      border-radius: var(--r-md);
+      transition: filter var(--dur) var(--ease);
+      flex-shrink: 0;
+      filter: grayscale(var(--g, 1)) brightness(var(--b, 1));
+    }
+    .app-chip .logo {
+      width: clamp(28px, 3.2vh, 32px); height: clamp(28px, 3.2vh, 32px);
+      border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.05);
+    }
+    .app-chip .logo svg { width: 60%; height: 60%; display: block; }
+    .app-chip span { font-size: clamp(.8rem, .9vw, .92rem); font-weight: 500; color: var(--ink); white-space: nowrap; }
+    @keyframes appsScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(-50% - 9px)); }
+    }
+
+    /* Footer centrado */
+    .site-footer-slim {
+      flex-shrink: 0;
+      padding: clamp(10px, 1.4vh, 14px) clamp(20px, 4vw, 40px);
+      border-top: 1px solid var(--border);
+      color: var(--ink-4);
+      font-size: var(--fs-xs);
+      display: flex; justify-content: center; align-items: center;
+      gap: clamp(14px, 2vw, 24px); flex-wrap: wrap;
+      text-align: center;
+      position: relative; z-index: 1;
+    }
+    .site-footer-slim a { color: var(--ink-3); }
+    .site-footer-slim a:hover { color: var(--ink); }
+    .site-footer-slim .sep { margin: 0; opacity: .45; color: var(--ink-4); }
+
+    /* ---- Tall viewports: grow hero + plans to fill space ---- */
+    @media (min-height: 980px) {
+      main.stage { gap: clamp(24px, 3vh, 40px); }
+      .hero { margin-bottom: clamp(12px, 2vh, 28px); gap: clamp(16px, 2.8vh, 28px); }
+      .brand-logo { width: clamp(80px, 9.5vh, 112px); border-radius: clamp(18px, 2.5vh, 26px); }
+      .brand-name { font-size: clamp(2.1rem, 3.4vw, 3.2rem); }
+      .brand-lockup { margin-bottom: clamp(14px, 2.2vh, 28px); }
+      .hero h1 { font-size: clamp(2.3rem, 5vw, 3.9rem); }
+      .hero p.lead { font-size: clamp(1.08rem, 1.4vw, 1.26rem); }
+      .plan { padding: clamp(16px, 2vh, 24px) clamp(16px, 1.8vw, 22px); gap: clamp(6px, 1vh, 10px); }
+      .plan-feats { gap: 6px; font-size: clamp(.78rem, .82vw, .88rem); }
+      .plan-price { font-size: clamp(1.4rem, 2vw, 1.75rem); }
+      .plan.featured .plan-price { font-size: clamp(1.55rem, 2.25vw, 1.95rem); }
+    }
+
+    /* 861-979 px de alto (1536x864, 1440x900): la tira de apps quedaba
+       tapada por el pie; se recorta aire del hero (2026-11-09). */
+    @media (min-height: 861px) and (max-height: 979px) {
+      .hero { margin-bottom: clamp(6px, 1vh, 12px); }
+      .brand-lockup { margin-bottom: clamp(10px, 1.6vh, 16px); }
+    }
+
+    /* ---- Height-responsive compactation ---- */
+    @media (max-height: 860px) {
+      main.stage { padding-top: 68px; gap: clamp(14px, 2.4vh, 24px); }
+      .hero { margin-bottom: clamp(6px, 1.2vh, 14px); gap: clamp(10px, 1.8vh, 16px); }
+      .brand-logo { width: clamp(58px, 8vh, 84px); }
+      .brand-name { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+      .brand-lockup { margin-bottom: clamp(10px, 1.8vh, 18px); gap: 14px; }
+      .hero h1 { font-size: clamp(1.6rem, 3.6vw, 2.5rem); }
+      .hero p.lead { font-size: clamp(.92rem, 1.2vw, 1.05rem); }
+    }
+    @media (max-height: 760px) {
+      main.stage { padding-top: 60px; gap: clamp(10px, 1.7vh, 16px); }
+      .hero { margin-bottom: 4px; gap: 8px; }
+      .hero .trust { display: none; }
+      .brand-logo { width: clamp(50px, 7vh, 68px); }
+      .brand-name { font-size: 1.55rem; }
+      .brand-lockup { margin-bottom: 6px; }
+      .hero h1 { font-size: clamp(1.45rem, 3.2vw, 2rem); }
+      .bt-display { min-height: 54px; }
+      .plan { padding: 9px 13px; gap: 4px; }
+      .plan-price { font-size: 1.1rem; }
+      .plan.featured { transform: translateY(-3px) scale(1.01); }
+      .plan.featured .plan-price { font-size: 1.3rem; }
+    }
+    @media (max-height: 680px) {
+      html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+      main.stage { overflow: visible; padding-top: 64px; }
+      .plan.featured { transform: none; }
+    }
+
+    /* ---- Width breakpoints (tablet + mobile) ---- */
+    /* Tablets en portrait y móviles: scroll libre, sin single-viewport */
+    @media (max-width: 900px) {
+      html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+      main.stage {
+        overflow: visible;
+        padding-top: clamp(64px, 9vh, 84px);
+        padding-bottom: clamp(20px, 3vh, 32px);
+        gap: clamp(20px, 3vh, 32px);
+        min-height: 0;
+        max-width: 100%;
+      }
+      .float-ui.right .nav-cta {
+        padding: 9px 16px;
+        font-size: .82rem;
+      }
+      .pricing { grid-template-columns: 1fr; gap: 10px; max-width: min(560px, 92%); margin-inline: auto; width: 100%; }
+      .plan.featured { transform: none; }
+      .plan.featured:hover { transform: translateY(-2px) scale(1); }
+      .hero h1 { font-size: clamp(1.8rem, 4.8vw, 2.6rem); max-width: 22ch; }
+      .hero p.lead { font-size: clamp(.95rem, 1.8vw, 1.1rem); max-width: 52ch; }
+      .brand-logo { width: clamp(68px, 8.5vw, 92px); }
+      .brand-name { font-size: clamp(1.75rem, 4.4vw, 2.4rem); }
+      .apps-track { animation-duration: 38s; }
+    }
+
+    /* Tablet pequeño / phablet / móvil grande */
+    @media (max-width: 640px) {
+      main.stage {
+        padding-top: 64px;
+        padding-inline: 18px;
+        padding-bottom: 24px;
+        gap: 20px;
+      }
+      .float-ui { top: 14px; }
+      .float-ui.left  { left: 14px; }
+      .float-ui.right { right: 14px; }
+      .float-ui.right .nav-cta { padding: 9px 14px; font-size: .78rem; }
+      .hero .trust { display: none; }
+      .brand-lockup { gap: 14px; }
+      .brand-logo { width: 68px; border-radius: 14px; }
+      .brand-name { font-size: clamp(1.55rem, 7vw, 1.95rem); }
+      .hero h1 { font-size: clamp(1.5rem, 6.4vw, 1.9rem); max-width: 20ch; }
+      .hero p.lead { font-size: .95rem; line-height: 1.5; max-width: 42ch; padding-inline: 4px; }
+      .pricing { grid-template-columns: 1fr; gap: 10px; }
+      .plan.featured { grid-column: auto; }
+      .plan { padding: 12px 14px; }
+      .plan-head { gap: 8px; }
+      .plan-feats { gap: 5px; font-size: .82rem; }
+      .plan-feats svg { width: 12px; height: 12px; }
+      .plan-price { font-size: 1.25rem; }
+      .plan.featured .plan-price { font-size: 1.4rem; }
+      .plan.featured .plan-badge { font-size: .58rem; padding: 2px 10px; top: -8px; }
+      .pricing-note { font-size: .76rem; padding-inline: 6px; }
+      .apps-strip { padding: 12px 0 10px; }
+      .apps-track { gap: 10px; animation-duration: 34s; }
+      .app-chip { padding: 7px 12px; gap: 8px; }
+      .app-chip .logo { width: 26px; height: 26px; border-radius: 7px; }
+      .app-chip span { font-size: .82rem; }
+      .site-footer-slim {
+        font-size: .72rem;
+        gap: 10px;
+        padding: 12px 16px;
+      }
+    }
+
+    /* Móviles pequeños */
+    @media (max-width: 420px) {
+      main.stage { padding-inline: 14px; padding-top: 60px; gap: 18px; }
+      .float-ui.right .nav-cta { padding: 8px 12px; font-size: .74rem; }
+      .brand-lockup { gap: 10px; }
+      .brand-logo { width: 60px; border-radius: 12px; }
+      .brand-name { font-size: 1.55rem; }
+      .hero h1 { font-size: 1.45rem; max-width: 18ch; }
+      .hero p.lead { font-size: .9rem; max-width: 36ch; }
+      .hero-cta-row .btn-lg { padding: 14px 22px; font-size: .98rem; }
+      .plan-name { font-size: .68rem; }
+      .app-chip .logo { width: 24px; height: 24px; }
+      .site-footer-slim .sep { display: none; }
+      .site-footer-slim { gap: 8px 14px; }
+    }
+
+    /* Móviles muy estrechos (320-360) — stack vertical del brand lockup */
+    @media (max-width: 360px) {
+      .brand-lockup { flex-direction: column; gap: 6px; margin-bottom: 10px; }
+      .brand-name { font-size: 1.5rem; }
+      .hero h1 { font-size: 1.35rem; }
+    }
+
+    /* Landscape móvil (alto muy bajo + ancho medio): forzar scroll compacto */
+    @media (orientation: landscape) and (max-height: 500px) {
+      html, body { height: auto; overflow-x: hidden; overflow-y: auto; }
+      main.stage {
+        overflow: visible;
+        padding-top: 54px;
+        padding-bottom: 20px;
+        gap: 16px;
+        min-height: 0;
+      }
+      .hero { gap: 10px; margin-bottom: 8px; }
+      .brand-lockup { margin-bottom: 8px; gap: 12px; }
+      .brand-logo { width: 56px; }
+      .brand-name { font-size: 1.6rem; }
+      .hero h1 { font-size: 1.5rem; }
+      .hero .trust { display: none; }
+      .plan.featured { transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .apps-track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; }
+      .apps-strip { -webkit-mask-image: none; mask-image: none; overflow: visible; }
+      .plan.featured { transform: none; }
+    }
+
+    /* ---------- Afinado móvil (2026-08-31) ----------
+       Va al final a propósito: gana el desempate de cascada frente a
+       las media queries de arriba, sin tocar ninguna de ellas. */
+    @media (max-width: 640px) {
+      /* Los controles flotantes vuelven a ser pulsables (44px reales) */
+      .float-ui.right .nav-cta {
+        min-height: 44px; padding: 0 15px; font-size: .8rem;
+        display: inline-flex; align-items: center;
+      }
+      .float-ui .lang-switch { min-height: 44px; padding: 0 14px; display: inline-flex; align-items: center; }
+      .float-ui .theme-toggle { width: 44px; height: 44px; }
+
+      /* Respeta el notch y la barra de gestos (el viewport es fit=cover) */
+      .float-ui       { top: max(14px, env(safe-area-inset-top, 0px)); }
+      .float-ui.left  { left: max(14px, env(safe-area-inset-left, 0px)); }
+      .float-ui.right { right: max(14px, env(safe-area-inset-right, 0px)); }
+
+      /* Las tarjetas se alineaban 14px por dentro del h1: mismo eje ya.
+         Y algo más de aire: con 10px la insignia "Más popular" rozaba el
+         borde de la tarjeta de arriba. */
+      .pricing { max-width: 100%; gap: 15px; }
+
+      /* Menos ruido: el aire manda la jerarquía */
+      .hero { margin-bottom: 4px; }
+      .pricing-note { font-size: .74rem; opacity: .85; max-width: 34ch; margin-inline: auto; }
+
+      .site-footer-slim {
+        padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+      }
+      /* Los enlaces del pie son navegación real y medían 18px de alto. */
+      .site-footer-slim a {
+        display: inline-flex; align-items: center;
+        min-height: 44px; padding: 0 2px;
+      }
+    }
+    @media (max-width: 420px) {
+      .float-ui.right .nav-cta { padding: 0 13px; font-size: .76rem; }
+    }
+
+    /* El padding superior va aparte y acotado por altura: si se metiera en el
+       bloque de ≤640px pisaría a la media query de horizontal (max-height:500),
+       que compacta a 54px — y 640x360 apaisado es el viewport Android típico.
+       Suma el safe-area porque los controles flotantes también lo suman: sin
+       esto, en PWA instalada el CTA cae encima del logo del hero. */
+    @media (max-width: 640px) and (min-height: 501px) {
+      main.stage { padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
+    }
+    @media (max-width: 420px) and (min-height: 501px) {
+      main.stage { padding-top: calc(68px + env(safe-area-inset-top, 0px)); }
+    }
+
+    /* Con "reducir movimiento" el carrusel deja de desplazarse y la cinta
+       pasa a flex-wrap, así que se veían los 18 chips: los 9 reales MÁS
+       los 9 duplicados que solo existen para que el bucle no tenga costura.
+       En móvil eso eran 301px de logos repetidos (la tira mide 61px). */
+    /* En un móvil el :hover se queda "pegado" tras tocar, así que un simple
+       toque en la tira PARABA el carrusel y no volvía a arrancar hasta tocar
+       en otro sitio. Lo mismo con el relieve de las tarjetas de precio, que
+       se quedaba levantado. Esos efectos solo tienen sentido con ratón. */
+    @media (hover: none) {
+      .apps-strip:hover .apps-track { animation-play-state: running; }
+      .plan:hover,
+      .plan.featured:hover,
+      .plan.gold:hover { transform: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) and (max-width: 640px) {
+      .apps-track .app-chip[aria-hidden="true"] { display: none; }
+      .apps-track { justify-content: center; gap: 8px; }
+      .apps-strip { padding: 10px 12px; }
+    }
+    /* ============================================================
+       Lanzamiento (2026-11-09): la app ya está en Google Play.
+       Aviso "ya disponible", badge oficial y QR para quien entra
+       desde el ordenador.
+       ============================================================ */
+    .nav-cta { display: inline-flex; align-items: center; gap: 7px; }
+    .nav-cta-play { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .avail-pill {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 6px 14px 6px 12px;
+      border-radius: 999px;
+      font-size: .82rem; font-weight: 600; letter-spacing: .01em;
+      color: var(--ink-2);
+      background: var(--glass-bg, color-mix(in srgb, var(--bg-2) 70%, transparent));
+      border: 1px solid var(--border-2);
+      margin-top: calc(-1 * clamp(4px, 1.2vh, 14px));
+    }
+    .avail-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #34C759;
+      box-shadow: 0 0 0 0 color-mix(in srgb, #34C759 60%, transparent);
+      animation: availPulse 2.4s ease-out infinite;
+    }
+    @keyframes availPulse {
+      0%   { box-shadow: 0 0 0 0 color-mix(in srgb, #34C759 55%, transparent); }
+      70%  { box-shadow: 0 0 0 8px color-mix(in srgb, #34C759 0%, transparent); }
+      100% { box-shadow: 0 0 0 0 color-mix(in srgb, #34C759 0%, transparent); }
+    }
+
+    .hero-cta-row { align-items: center; gap: clamp(14px, 2vw, 22px); }
+    .play-badge {
+      display: inline-flex; line-height: 0;
+      border-radius: 6px;
+      transition: transform .2s var(--ease, ease), box-shadow .2s var(--ease, ease);
+      box-shadow: 0 10px 28px color-mix(in srgb, #000 30%, transparent);
+    }
+    .play-badge img { height: clamp(52px, 6.6vh, 64px); width: auto; }
+    .play-badge:hover { transform: translateY(-2px); box-shadow: 0 16px 34px color-mix(in srgb, #000 38%, transparent); }
+    .play-badge:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 4px; }
+    [data-theme="light"] .play-badge { box-shadow: 0 10px 24px color-mix(in srgb, #0E1D2D 22%, transparent); }
+
+    .qr-wrap { position: relative; }
+    .qr-toggle {
+      display: inline-flex; align-items: center; gap: 10px;
+      height: clamp(52px, 6.6vh, 64px);
+      padding: 0 18px 0 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border-2);
+      background: var(--glass-bg, color-mix(in srgb, var(--bg-2) 70%, transparent));
+      color: var(--ink); text-align: left; cursor: pointer;
+      font: inherit;
+      transition: border-color .2s ease, transform .2s ease;
+    }
+    .qr-toggle:hover, .qr-wrap.open .qr-toggle { border-color: var(--accent-2); transform: translateY(-2px); }
+    .qr-toggle:focus-visible { outline: 3px solid var(--accent-2); outline-offset: 4px; }
+    .qr-toggle svg { width: 24px; height: 24px; color: var(--accent-ink, var(--accent-2)); flex-shrink: 0; }
+    .qr-toggle-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .qr-toggle-text strong { font-size: .9rem; font-weight: 700; }
+    .qr-toggle-text > span { font-size: .76rem; color: var(--ink-3); }
+    .qr-pop {
+      position: absolute; left: 50%; top: calc(100% + 12px); z-index: 60;
+      width: 232px; padding: 14px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      border-radius: 18px;
+      background: var(--bg-1);
+      border: 1px solid var(--border-2);
+      box-shadow: 0 24px 60px color-mix(in srgb, #000 45%, transparent);
+      opacity: 0; visibility: hidden; transform: translate(-50%, -6px);
+      transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s;
+    }
+    .qr-wrap:hover .qr-pop, .qr-wrap:focus-within .qr-pop, .qr-wrap.open .qr-pop {
+      opacity: 1; visibility: visible; transform: translate(-50%, 0);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .qr-frame { display: block; background: #fff; border-radius: 12px; padding: 8px; line-height: 0; }
+    .qr-code { width: 184px; height: 184px; display: block; }
+    .qr-caption { font-size: .78rem; color: var(--ink-3); text-align: center; line-height: 1.35; }
+
+    /* El QR solo tiene sentido en escritorio con ratón */
+    @media (max-width: 900px), (hover: none), (pointer: coarse) { .qr-wrap { display: none; } }
+    /* En escritorio el badge ya lo dice y no sobra altura: el aviso es solo para móvil */
+    @media (min-width: 641px) { .avail-pill { display: none; } }
+    @media (max-width: 640px) and (max-height: 699px) { .avail-pill { display: none; } }
+    @media (max-width: 640px) {
+      .avail-pill { font-size: .76rem; padding: 5px 12px 5px 10px; margin-top: -6px; }
+      .play-badge img { height: 54px; }
+    }
+    @media (max-width: 420px) {
+      .nav-cta-play { width: 12px; height: 12px; }
+      .play-badge img { height: 50px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .avail-dot { animation: none; } }
+    /* ---------- Móvil en vertical: una sola pantalla, como en escritorio (2026-11-09) ----------
+       Planes en carrusel horizontal (Premium centrado al cargar) y la tira de apps fija abajo.
+       Con menos de 600px de alto (o en horizontal) se mantiene el modo con scroll. */
+    @media (max-width: 640px) and (min-height: 600px) and (orientation: portrait) {
+      html, body { height: 100dvh; overflow: hidden; }
+      main.stage {
+        overflow: hidden; min-height: 0;
+        padding: 66px 16px 0;
+        gap: clamp(8px, 1.6vh, 16px);
+      }
+      .hero { margin-bottom: 0; gap: clamp(6px, 1.3vh, 12px); }
+      .brand-lockup { margin-bottom: 0; gap: 12px; }
+      .brand-logo { width: clamp(46px, 6.6vh, 60px); border-radius: 12px; }
+      .brand-name { font-size: clamp(1.45rem, 3.6vh, 1.8rem); }
+      .avail-pill { font-size: .78rem; padding: 4px 12px; }
+      .hero h1 { font-size: clamp(1.3rem, 3.3vh, 1.65rem); }
+      .hero p.lead { font-size: clamp(.82rem, 1.95vh, .9rem); line-height: 1.45; }
+      .play-badge img { height: clamp(44px, 6.6vh, 54px); }
+
+      .pricing-wrap { gap: 6px; }
+      .pricing {
+        display: flex; gap: 10px;
+        max-width: none; width: auto;
+        margin-inline: -16px; padding: 10px 16px 4px;
+        overflow-x: auto; overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory; scroll-padding-inline: 16px;
+        scrollbar-width: none;
+      }
+      .pricing::-webkit-scrollbar { display: none; }
+      .plan { flex: 0 0 74%; scroll-snap-align: center; padding: 11px 14px; }
+      .plan-feats { gap: 4px; font-size: .8rem; }
+      .pricing-note { font-size: .7rem; line-height: 1.4; max-width: 46ch; }
+
+      .apps-strip { margin-top: auto; padding: 10px 0 8px; }
+      .site-footer-slim { padding: 2px 10px env(safe-area-inset-bottom, 0px); gap: 0 14px; font-size: .72rem; flex-wrap: nowrap; }
+      .site-footer-slim .sep, .site-footer-slim > span:first-child { display: none; }
+      .site-footer-slim a { min-height: 36px; white-space: nowrap; }
+      /* (2026-11-10) Con «Guías» no caben seis enlaces en una línea por debajo de ~400 px:
+         «Eliminar cuenta» sigue en el pie de las demás páginas y en Privacidad. */
+      .site-footer-slim .ft-delete { display: none; }
+    }
+    @media (max-width: 640px) and (min-height: 600px) and (max-height: 700px) and (orientation: portrait) {
+      .pricing-note { display: none; }
+      .brand-lockup { flex-direction: row; gap: 10px; }
+      .brand-logo { width: 44px; }
+    }
+  </style>
+  <script>
+    // Feature card spotlight follows cursor
+    document.addEventListener('pointermove', function (e) {
+      var card = e.target.closest('.feature');
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">
+    <span data-lang="es">Saltar al contenido</span>
+    <span data-lang="en">Skip to content</span>
+  </a>
+
+  <div class="float-ui left">
+    <button type="button" class="lang-switch" data-lang-toggle aria-label="Change language / Cambiar idioma">
+      <span class="lang-opt lang-opt--en">EN</span>
+      <span class="lang-sep">/</span>
+      <span class="lang-opt lang-opt--es">ES</span>
+    </button>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Cambiar tema">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+  <div class="float-ui right">
+    <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.zerodopamine&amp;referrer=utm_source%3D0dopamine.com%26utm_medium%3Dweb" target="_blank" rel="noopener" data-play-link>
+      <svg class="nav-cta-play" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 4.6v14.8c0 .8.9 1.3 1.6.9l11.6-7.4c.6-.4.6-1.4 0-1.8L8.6 3.7C7.9 3.3 7 3.8 7 4.6z"/></svg>
+      <span data-lang="es">Descargar gratis</span>
+      <span data-lang="en">Get it free</span>
+    </a>
+  </div>
+
+  <main id="main" class="stage">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="brand-lockup">
+        <img class="brand-logo" src="assets/logo-512.png" alt="" width="88" height="88" decoding="async" fetchpriority="high" />
+        <span class="brand-name">0Dopamine</span>
+      </div>
+      <p class="avail-pill">
+        <span class="avail-dot" aria-hidden="true"></span>
+        <span data-lang="es">Ya disponible en Google Play</span>
+        <span data-lang="en">Now available on Google Play</span>
+      </p>
+      <h1>
+        <span data-lang="es">Elimina las <em>distracciones</em> en cualquier aplicación.</span>
+        <span data-lang="en">Eliminate <em>distractions</em> in any app.</span>
+      </h1>
+      <p class="lead">
+        <span data-lang="es"><strong>Privado por diseño.</strong> Sin anuncios forzados y sin vender tus datos: las apps que usas y lo que ves no salen de tu móvil. Creemos que tu atención no debería ser un negocio.</span>
+        <span data-lang="en"><strong>Private by design.</strong> No forced ads and no selling your data: the apps you use and what you watch never leave your phone. We believe your attention shouldn&rsquo;t be a business.</span>
+      </p>
+      <div class="hero-cta-row">
+        <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.zerodopamine&amp;referrer=utm_source%3D0dopamine.com%26utm_medium%3Dweb" target="_blank" rel="noopener" data-play-link>
+          <img data-lang="es" src="assets/google-play-badge-es.png" width="646" height="192" alt="Disponible en Google Play" decoding="async" />
+          <img data-lang="en" src="assets/google-play-badge-en.png" width="564" height="168" alt="Get it on Google Play" decoding="async" />
+        </a>
+        <div class="qr-wrap">
+          <button type="button" class="qr-toggle" aria-expanded="false" aria-controls="qr-pop">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></svg>
+            <span class="qr-toggle-text">
+              <strong data-lang="es">Enviar al móvil</strong><strong data-lang="en">Send to phone</strong>
+              <span data-lang="es">Escanea el QR</span><span data-lang="en">Scan the QR</span>
+            </span>
+          </button>
+          <div class="qr-pop" id="qr-pop" role="dialog" aria-label="QR Google Play">
+            <span class="qr-frame"><svg class="qr-code" viewBox="-2 -2 41 41" shape-rendering="crispEdges" aria-hidden="true"><path fill="#0B0B0D" d="M0 0h7v1h-7zM9 0h2v1h-2zM12 0h1v1h-1zM14 0h1v1h-1zM16 0h1v1h-1zM18 0h1v1h-1zM21 0h3v1h-3zM25 0h1v1h-1zM28 0h1v1h-1zM30 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h2v1h-2zM17 1h2v1h-2zM25 1h4v1h-4zM30 1h1v1h-1zM36 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM8 2h1v1h-1zM13 2h2v1h-2zM16 2h1v1h-1zM19 2h1v1h-1zM21 2h3v1h-3zM26 2h2v1h-2zM30 2h1v1h-1zM32 2h3v1h-3zM36 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM12 3h2v1h-2zM15 3h4v1h-4zM20 3h1v1h-1zM22 3h2v1h-2zM25 3h3v1h-3zM30 3h1v1h-1zM32 3h3v1h-3zM36 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM8 4h3v1h-3zM12 4h2v1h-2zM16 4h8v1h-8zM25 4h1v1h-1zM28 4h1v1h-1zM30 4h1v1h-1zM32 4h3v1h-3zM36 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h2v1h-2zM11 5h1v1h-1zM14 5h1v1h-1zM17 5h1v1h-1zM26 5h3v1h-3zM30 5h1v1h-1zM36 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM28 6h1v1h-1zM30 6h7v1h-7zM8 7h3v1h-3zM12 7h2v1h-2zM16 7h3v1h-3zM21 7h3v1h-3zM26 7h1v1h-1zM28 7h1v1h-1zM0 8h1v1h-1zM2 8h5v1h-5zM9 8h2v1h-2zM12 8h5v1h-5zM20 8h1v1h-1zM22 8h2v1h-2zM25 8h2v1h-2zM30 8h5v1h-5zM0 9h1v1h-1zM2 9h3v1h-3zM7 9h2v1h-2zM11 9h2v1h-2zM15 9h1v1h-1zM17 9h5v1h-5zM28 9h1v1h-1zM31 9h1v1h-1zM35 9h1v1h-1zM0 10h2v1h-2zM3 10h2v1h-2zM6 10h3v1h-3zM12 10h1v1h-1zM14 10h4v1h-4zM20 10h3v1h-3zM25 10h3v1h-3zM30 10h1v1h-1zM32 10h2v1h-2zM35 10h2v1h-2zM0 11h4v1h-4zM5 11h1v1h-1zM9 11h1v1h-1zM11 11h2v1h-2zM14 11h2v1h-2zM21 11h1v1h-1zM26 11h2v1h-2zM30 11h1v1h-1zM32 11h2v1h-2zM36 11h1v1h-1zM0 12h1v1h-1zM6 12h2v1h-2zM10 12h8v1h-8zM20 12h1v1h-1zM22 12h6v1h-6zM29 12h4v1h-4zM34 12h3v1h-3zM0 13h1v1h-1zM2 13h2v1h-2zM5 13h1v1h-1zM8 13h3v1h-3zM12 13h2v1h-2zM16 13h1v1h-1zM18 13h3v1h-3zM23 13h3v1h-3zM28 13h1v1h-1zM31 13h1v1h-1zM0 14h1v1h-1zM2 14h1v1h-1zM4 14h3v1h-3zM8 14h1v1h-1zM10 14h1v1h-1zM14 14h2v1h-2zM18 14h1v1h-1zM22 14h1v1h-1zM27 14h7v1h-7zM35 14h2v1h-2zM1 15h1v1h-1zM3 15h1v1h-1zM5 15h1v1h-1zM7 15h2v1h-2zM10 15h3v1h-3zM15 15h2v1h-2zM21 15h2v1h-2zM26 15h1v1h-1zM28 15h5v1h-5zM35 15h2v1h-2zM2 16h2v1h-2zM6 16h1v1h-1zM9 16h3v1h-3zM14 16h1v1h-1zM18 16h1v1h-1zM20 16h1v1h-1zM22 16h11v1h-11zM34 16h1v1h-1zM0 17h2v1h-2zM3 17h3v1h-3zM11 17h6v1h-6zM19 17h2v1h-2zM22 17h2v1h-2zM25 17h1v1h-1zM28 17h2v1h-2zM31 17h1v1h-1zM34 17h2v1h-2zM0 18h4v1h-4zM5 18h2v1h-2zM8 18h1v1h-1zM10 18h1v1h-1zM12 18h1v1h-1zM20 18h1v1h-1zM22 18h1v1h-1zM24 18h1v1h-1zM26 18h4v1h-4zM32 18h1v1h-1zM35 18h2v1h-2zM1 19h2v1h-2zM5 19h1v1h-1zM7 19h2v1h-2zM10 19h1v1h-1zM12 19h1v1h-1zM16 19h1v1h-1zM18 19h1v1h-1zM20 19h3v1h-3zM28 19h1v1h-1zM30 19h3v1h-3zM36 19h1v1h-1zM0 20h1v1h-1zM3 20h1v1h-1zM6 20h1v1h-1zM9 20h1v1h-1zM13 20h2v1h-2zM17 20h1v1h-1zM19 20h2v1h-2zM22 20h1v1h-1zM24 20h3v1h-3zM29 20h2v1h-2zM32 20h3v1h-3zM0 21h4v1h-4zM5 21h1v1h-1zM10 21h1v1h-1zM12 21h1v1h-1zM14 21h1v1h-1zM16 21h8v1h-8zM25 21h1v1h-1zM28 21h1v1h-1zM33 21h1v1h-1zM1 22h6v1h-6zM8 22h2v1h-2zM12 22h2v1h-2zM15 22h3v1h-3zM20 22h3v1h-3zM25 22h3v1h-3zM30 22h4v1h-4zM35 22h2v1h-2zM0 23h1v1h-1zM7 23h4v1h-4zM12 23h4v1h-4zM17 23h2v1h-2zM21 23h3v1h-3zM28 23h1v1h-1zM31 23h2v1h-2zM35 23h1v1h-1zM1 24h2v1h-2zM4 24h3v1h-3zM14 24h1v1h-1zM16 24h1v1h-1zM20 24h1v1h-1zM22 24h2v1h-2zM25 24h2v1h-2zM29 24h2v1h-2zM32 24h1v1h-1zM34 24h2v1h-2zM0 25h2v1h-2zM4 25h1v1h-1zM7 25h3v1h-3zM13 25h1v1h-1zM15 25h1v1h-1zM18 25h2v1h-2zM21 25h3v1h-3zM28 25h1v1h-1zM33 25h1v1h-1zM0 26h1v1h-1zM6 26h1v1h-1zM11 26h3v1h-3zM15 26h2v1h-2zM20 26h1v1h-1zM26 26h2v1h-2zM30 26h2v1h-2zM34 26h3v1h-3zM0 27h1v1h-1zM2 27h1v1h-1zM7 27h1v1h-1zM9 27h4v1h-4zM15 27h1v1h-1zM20 27h2v1h-2zM26 27h7v1h-7zM36 27h1v1h-1zM0 28h1v1h-1zM2 28h1v1h-1zM4 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM10 28h1v1h-1zM13 28h3v1h-3zM17 28h1v1h-1zM22 28h1v1h-1zM24 28h2v1h-2zM27 28h9v1h-9zM8 29h1v1h-1zM13 29h1v1h-1zM16 29h1v1h-1zM19 29h3v1h-3zM23 29h1v1h-1zM27 29h2v1h-2zM32 29h2v1h-2zM35 29h1v1h-1zM0 30h7v1h-7zM10 30h1v1h-1zM13 30h4v1h-4zM18 30h1v1h-1zM20 30h1v1h-1zM26 30h1v1h-1zM28 30h1v1h-1zM30 30h1v1h-1zM32 30h1v1h-1zM34 30h1v1h-1zM36 30h1v1h-1zM0 31h1v1h-1zM6 31h1v1h-1zM8 31h8v1h-8zM19 31h3v1h-3zM23 31h2v1h-2zM26 31h3v1h-3zM32 31h2v1h-2zM35 31h1v1h-1zM0 32h1v1h-1zM2 32h3v1h-3zM6 32h1v1h-1zM8 32h2v1h-2zM11 32h1v1h-1zM13 32h1v1h-1zM15 32h1v1h-1zM18 32h2v1h-2zM22 32h1v1h-1zM25 32h1v1h-1zM27 32h6v1h-6zM34 32h1v1h-1zM36 32h1v1h-1zM0 33h1v1h-1zM2 33h3v1h-3zM6 33h1v1h-1zM8 33h1v1h-1zM10 33h2v1h-2zM14 33h3v1h-3zM19 33h3v1h-3zM23 33h1v1h-1zM25 33h1v1h-1zM29 33h2v1h-2zM32 33h1v1h-1zM34 33h1v1h-1zM36 33h1v1h-1zM0 34h1v1h-1zM2 34h3v1h-3zM6 34h1v1h-1zM8 34h2v1h-2zM11 34h4v1h-4zM20 34h3v1h-3zM24 34h6v1h-6zM34 34h3v1h-3zM0 35h1v1h-1zM6 35h1v1h-1zM10 35h1v1h-1zM13 35h2v1h-2zM16 35h1v1h-1zM18 35h2v1h-2zM21 35h3v1h-3zM27 35h3v1h-3zM32 35h1v1h-1zM36 35h1v1h-1zM0 36h7v1h-7zM8 36h1v1h-1zM12 36h1v1h-1zM17 36h1v1h-1zM24 36h3v1h-3zM29 36h1v1h-1zM32 36h5v1h-5z"/></svg></span>
+            <span class="qr-caption"><span data-lang="es">Apunta con la cámara de tu Android y se abre Google Play.</span><span data-lang="en">Point your Android camera here to open Google Play.</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="trust">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>
+          <span data-lang="es">Sin anuncios forzados</span><span data-lang="en">No forced ads</span>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-8-4-8-10V5l8-3 8 3v7c0 6-8 10-8 10z"/></svg>
+          <span data-lang="es">Sin vender datos</span><span data-lang="en">No data selling</span>
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M11 18h2"/></svg>
+          <span data-lang="es">Todo en tu móvil</span><span data-lang="en">All on your phone</span>
+        </span>
+      </div>
+    </section>
+
+
+    <!-- PRICING STRIP (sales-funnel look) -->
+    <section class="pricing-wrap" aria-label="Pricing">
+      <div class="pricing">
+      <article class="plan">
+        <div class="plan-head">
+          <span class="plan-name">Free</span>
+          <span class="plan-price">0&euro;<span class="per" data-lang="es">/ siempre</span><span class="per" data-lang="en">/ forever</span></span>
+        </div>
+        <ul class="plan-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">1 app bloqueada</span><span data-lang="en">1 app blocked</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">2 h al día</span><span data-lang="en">2 h per day</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">Todos los modos</span><span data-lang="en">All modes</span></li>
+        </ul>
+      </article>
+
+      <article class="plan featured">
+        <span class="plan-badge" data-lang="es">Más popular</span>
+        <span class="plan-badge" data-lang="en">Most popular</span>
+        <div class="plan-head">
+          <span class="plan-name">Premium</span>
+          <span class="plan-price">1&euro;<span class="per" data-lang="es">/ mes</span><span class="per" data-lang="en">/ month</span></span>
+        </div>
+        <ul class="plan-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">Apps ilimitadas</span><span data-lang="en">Unlimited apps</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">Shorts, Reels, Watch One</span><span data-lang="en">Shorts, Reels, Watch One</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">7 días de prueba</span><span data-lang="en">7-day trial</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">Soporte prioritario</span><span data-lang="en">Priority support</span></li>
+        </ul>
+      </article>
+
+      <article class="plan gold">
+        <div class="plan-head">
+          <span class="plan-name">Lifetime</span>
+          <span class="plan-price">59,99&euro;<span class="per" data-lang="es">/ único</span><span class="per" data-lang="en">/ one-time</span></span>
+        </div>
+        <ul class="plan-feats">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">Todo de Premium</span><span data-lang="en">All of Premium</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">Sin renovaciones</span><span data-lang="en">No renewals</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><span data-lang="es">Apoya al proyecto</span><span data-lang="en">Support the project</span></li>
+        </ul>
+      </article>
+      </div>
+      <p class="pricing-note">
+        <span data-lang="es"><strong>Premium cubre los servicios, no son beneficios.</strong> Free seguirá siendo gratis para siempre. Los anuncios son voluntarios: solo si eliges ver uno para tener Premium un día.</span>
+        <span data-lang="en"><strong>Premium covers our service costs, not profit.</strong> Free will stay free forever. Ads are opt-in: only if you choose to watch one for a day of Premium.</span>
+      </p>
+    </section>
+
+    <!-- APPS CAROUSEL (color on cursor spotlight) -->
+    <section class="apps-strip" aria-label="Supported apps" data-color-spotlight>
+      <div class="apps-track">
+        <!-- Set 1 -->
+        <div class="app-chip"><div class="logo" style="background:#FF0000"><svg viewBox="0 0 24 24" fill="#fff"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div><span>YouTube</span></div>
+        <div class="app-chip"><div class="logo" style="background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4)"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span>Instagram</span></div>
+        <div class="app-chip"><div class="logo" style="background:#000"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></div><span>TikTok</span></div>
+        <div class="app-chip"><div class="logo" style="background:#000"><svg viewBox="0 0 24 24" fill="#fff"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></div><span>X</span></div>
+        <div class="app-chip"><div class="logo" style="background:#25D366"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></div><span>WhatsApp</span></div>
+        <div class="app-chip"><div class="logo" style="background:#1877F2"><svg viewBox="0 0 24 24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div><span>Facebook</span></div>
+        <div class="app-chip"><div class="logo" style="background:#FFFC00"><svg viewBox="0 0 24 24" fill="#000"><path d="M12.166.053c.68-.01 3.55-.001 5.924 2.508 2.19 2.313 2.26 5.356 2.268 5.67v3.01c0 .02.006.033.017.04.03.016.178.002.325-.01.145-.013.295-.025.456-.025.16 0 .324.022.499.063.298.075.548.224.713.43.144.176.202.392.17.594-.057.35-.473.622-1.234.81-.087.022-.2.044-.324.066-.298.058-.711.138-.83.384a.982.982 0 0 0 .047.85c.245.467.728 1.198 1.435 1.818.78.686 1.79 1.243 2.984 1.659.176.057.316.136.416.233a.558.558 0 0 1 .154.318c.046.247-.127.5-.414.694-.76.528-2.192.725-2.842.818-.32.046-.492.17-.531.427-.056.37-.06.426-.09.66-.028.236-.089.373-.22.46-.151.1-.393.122-.645.074-.295-.057-.543-.125-1.01-.125-.345 0-.691.034-1.023.1-.69.126-1.27.537-1.84.94-.78.55-1.52 1.075-2.58 1.08h-.1c-1.06-.005-1.8-.53-2.58-1.08-.57-.403-1.15-.814-1.84-.94-.332-.066-.678-.1-1.023-.1-.467 0-.715.068-1.01.125-.252.048-.494.025-.646-.074-.13-.087-.191-.224-.22-.46-.03-.234-.034-.29-.09-.66-.04-.257-.21-.381-.53-.427-.65-.093-2.082-.29-2.842-.818-.287-.195-.46-.447-.414-.694a.558.558 0 0 1 .154-.318c.1-.097.24-.176.416-.233 1.194-.416 2.204-.973 2.984-1.659.707-.62 1.19-1.351 1.435-1.818a.982.982 0 0 0 .047-.85c-.119-.246-.532-.326-.83-.384-.124-.022-.237-.044-.324-.066-.761-.188-1.177-.46-1.234-.81-.032-.202.026-.418.17-.594.165-.206.415-.355.713-.43.175-.041.339-.063.499-.063.161 0 .311.012.456.025.147.012.295.026.325.01.011-.007.017-.02.017-.04V8.23c.008-.313.078-3.356 2.268-5.67C8.626.053 11.486.043 12.166.053z"/></svg></div><span>Snapchat</span></div>
+        <div class="app-chip"><div class="logo" style="background:#0A66C2"><svg viewBox="0 0 24 24" fill="#fff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div><span>LinkedIn</span></div>
+        <div class="app-chip"><div class="logo" style="background:#E60023"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.098.119.112.224.083.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001 12.017.001z"/></svg></div><span>Pinterest</span></div>
+
+        <!-- Set 2 (duplicate for seamless loop) -->
+        <div class="app-chip" aria-hidden="true"><div class="logo" style="background:#FF0000"><svg viewBox="0 0 24 24" fill="#fff"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div><span>YouTube</span></div>
+        <div class="app-chip" aria-hidden="true"><div class="logo" style="background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF,#515BD4)"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></div><span>Instagram</span></div>
+        <div class="app-chip" aria-hidden="true"><div class="logo" style="background:#000"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></div><span>TikTok</span></div>
+        <div class="app-chip" aria-hidden="true"><div class="logo" style="background:#000"><svg viewBox="0 0 24 24" fill="#fff"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></div><span>X</span></div>
+        <div class="app-chip" aria-hidden="true"><div class="logo" style="background:#25D366"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></div><span>WhatsApp</span></div>
+        <div class="app-chip" aria-hidden="true"><div class="logo" style="background:#1877F2"><svg viewBox="0 0 24 24" fill="#fff"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></div><span>Facebook</span></div>
+        <div class="app-chip" aria-hidden="true"><div class="logo" style="background:#FFFC00"><svg viewBox="0 0 24 24" fill="#000"><path d="M12.166.053c.68-.01 3.55-.001 5.924 2.508 2.19 2.313 2.26 5.356 2.268 5.67v3.01c0 .02.006.033.017.04.03.016.178.002.325-.01.145-.013.295-.025.456-.025.16 0 .324.022.499.063.298.075.548.224.713.43.144.176.202.392.17.594-.057.35-.473.622-1.234.81-.087.022-.2.044-.324.066-.298.058-.711.138-.83.384a.982.982 0 0 0 .047.85c.245.467.728 1.198 1.435 1.818.78.686 1.79 1.243 2.984 1.659.176.057.316.136.416.233a.558.558 0 0 1 .154.318c.046.247-.127.5-.414.694-.76.528-2.192.725-2.842.818-.32.046-.492.17-.531.427-.056.37-.06.426-.09.66-.028.236-.089.373-.22.46-.151.1-.393.122-.645.074-.295-.057-.543-.125-1.01-.125-.345 0-.691.034-1.023.1-.69.126-1.27.537-1.84.94-.78.55-1.52 1.075-2.58 1.08h-.1c-1.06-.005-1.8-.53-2.58-1.08-.57-.403-1.15-.814-1.84-.94-.332-.066-.678-.1-1.023-.1-.467 0-.715.068-1.01.125-.252.048-.494.025-.646-.074-.13-.087-.191-.224-.22-.46-.03-.234-.034-.29-.09-.66-.04-.257-.21-.381-.53-.427-.65-.093-2.082-.29-2.842-.818-.287-.195-.46-.447-.414-.694a.558.558 0 0 1 .154-.318c.1-.097.24-.176.416-.233 1.194-.416 2.204-.973 2.984-1.659.707-.62 1.19-1.351 1.435-1.818a.982.982 0 0 0 .047-.85c-.119-.246-.532-.326-.83-.384-.124-.022-.237-.044-.324-.066-.761-.188-1.177-.46-1.234-.81-.032-.202.026-.418.17-.594.165-.206.415-.355.713-.43.175-.041.339-.063.499-.063.161 0 .311.012.456.025.147.012.295.026.325.01.011-.007.017-.02.017-.04V8.23c.008-.313.078-3.356 2.268-5.67C8.626.053 11.486.043 12.166.053z"/></svg></div><span>Snapchat</span></div>
+        <div class="app-chip" aria-hidden="true"><div class="logo" style="background:#0A66C2"><svg viewBox="0 0 24 24" fill="#fff"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div><span>LinkedIn</span></div>
+        <div class="app-chip" aria-hidden="true"><div class="logo" style="background:#E60023"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.098.119.112.224.083.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12.017 24c6.624 0 11.99-5.367 11.99-11.987C24.007 5.367 18.641.001 12.017.001z"/></svg></div><span>Pinterest</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer-slim">
+    <span>&copy; 2026 0Dopamine</span>
+    <span class="sep">·</span>
+    <a href="guias.html"><span data-lang="es">Guías</span><span data-lang="en">Guides</span></a>
+    <span class="sep">·</span>
+    <a href="faq.html">FAQ</a>
+    <span class="sep">·</span>
+    <a href="mailto:hola@0dopamine.com"><span data-lang="es">Contacto</span><span data-lang="en">Contact</span></a>
+    <span class="sep">·</span>
+    <a href="privacy.html"><span data-lang="es">Privacidad</span><span data-lang="en">Privacy</span></a>
+    <span class="sep">·</span>
+    <a href="terms.html"><span data-lang="es">Términos</span><span data-lang="en">Terms</span></a>
+    <span class="sep">·</span>
+    <a class="ft-delete" href="delete-account.html"><span data-lang="es">Eliminar cuenta</span><span data-lang="en">Delete account</span></a>
+  </footer>
+
+  <script>
+    // QR de escritorio: se abre con hover/foco (CSS) y también con clic; Esc lo cierra.
+    (function () {
+      var w = document.querySelector('.qr-wrap'); if (!w) return;
+      var btn = w.querySelector('.qr-toggle');
+      function set(open) { w.classList.toggle('open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+      btn.addEventListener('click', function () { set(!w.classList.contains('open')); });
+      document.addEventListener('click', function (e) { if (!w.contains(e.target)) set(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { set(false); if (w.contains(document.activeElement)) document.activeElement.blur(); } });
+    })();
+    // Móvil: el carrusel de planes arranca con Premium centrado (Free y Lifetime asoman a los lados).
+    (function () {
+      var p = document.querySelector('.pricing'), f = p && p.querySelector('.plan.featured');
+      function center() { if (p.scrollWidth > p.clientWidth + 4) p.scrollLeft += f.getBoundingClientRect().left - p.getBoundingClientRect().left - (p.clientWidth - f.offsetWidth) / 2; }
+      if (f) { center(); window.addEventListener('load', center); }
+    })();
+  </script>
+  <script src="assets/site.js" defer></script>
+</body>
+</html>
