@@ -35,11 +35,11 @@ html[data-theme="dark"] {
   /* Ink */
   --ink:         #F2F2F7;
   --ink-2:       #9A95A6;
-  --ink-3:       #8C8898;   /* AA (2026-11-10) */
-  --ink-4:       #858190;   /* AA (2026-11-10) */
+  --ink-3:       #898592 /* contraste AA (2026-11-10); antes #76727F */;
+  --ink-4:       #6E6976 /* contraste AA (2026-11-10); antes #5A5660 */;
 
   /* Acento — azul de la app (logo). Aclarado en oscuro para que resalte. */
-  --accent:      #4577AA;   /* azul app; AA con texto blanco (2026-11-10) */
+  --accent:      #5C93C9;   /* azul de la app un punto más claro sobre negro */
   --on-accent:   #FFFFFF;
   --accent-2:    #93BCE2;   /* aclarado para texto/enlaces sobre oscuro */
   --accent-3:    #3C6A99;
@@ -91,11 +91,11 @@ html[data-theme="light"] {
   --border-3:    #D7CFC3;
 
   --ink:         #1C1C1E;
-  --ink-2:       #6B6578;   /* AA (2026-11-10) */
-  --ink-3:       #716B7E;   /* AA (2026-11-10) */
-  --ink-4:       #726C7F;   /* AA (2026-11-10) */
+  --ink-2:       #6B6578 /* contraste AA (2026-11-10); antes #857F92 */;
+  --ink-3:       #776F85 /* contraste AA (2026-11-10); antes #9A93A6 */;
+  --ink-4:       #9289A2 /* contraste AA (2026-11-10); antes #B3ADBE */;
 
-  --accent:      #4577AA;   /* azul app; AA con texto blanco (2026-11-10) */
+  --accent:      #4A7FB8;   /* azul de la app (logo) — exacto sobre marfil */
   --on-accent:   #FFFFFF;
   --accent-2:    #3A6698;   /* oscurecido para texto/enlaces sobre claro */
   --accent-3:    #2E5279;
