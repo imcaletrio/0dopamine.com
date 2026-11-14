@@ -171,8 +171,8 @@
         <span data-lang="en">Privacy policy</span>
       </h1>
       <p class="date">
-        <span data-lang="es">Última actualización: 10 de noviembre de 2026</span>
-        <span data-lang="en">Last updated: November 10, 2026</span>
+        <span data-lang="es">Última actualización: 14 de noviembre de 2026</span>
+        <span data-lang="en">Last updated: November 14, 2026</span>
       </p>
 
       <div class="manifesto">
@@ -233,6 +233,9 @@
         <p data-lang="es"><strong>Registro al programa beta (formulario de 0dopamine.com, ya cerrado):</strong> mientras duró la beta, la web recogía tu email, la fecha del registro y el idioma, con tu consentimiento (RGPD art. 6.1.a), solo para enviarte información del programa. La beta terminó con la publicación de la app en Google Play el 8 de noviembre de 2026; el formulario se retiró y <strong>la hoja con esos registros se eliminó el 9 de noviembre de 2026</strong>. La web ya no recoge ningún dato. Si tienes cualquier duda sobre esos datos, escribe a <a href="mailto:hola@0dopamine.com">hola@0dopamine.com</a>.</p>
         <p data-lang="en"><strong>Beta program signup (0dopamine.com web form, now closed):</strong> while the beta ran, the website collected your email, signup date and language, with your consent (GDPR Art. 6.1.a), solely to send you information about the program. The beta ended when the app was released on Google Play on November 8, 2026; the form was removed and <strong>the sheet holding those signups was deleted on November 9, 2026</strong>. The website no longer collects any data. If you have any question about that data, write to <a href="mailto:hola@0dopamine.com">hola@0dopamine.com</a>.</p>
 
+        <p data-lang="es"><strong>Protección con tutor (opcional, Premium, requiere cuenta):</strong> puedes pedir a una persona de confianza que guarde un PIN para que aflojar o quitar tus bloqueos necesite su permiso. Si la activas, guardamos en nuestro servidor (Firestore, con cifrado AES-256): <strong>el correo de tu tutor</strong>, que se verifica con un código, y <strong>el nombre con el que te presentas</strong>, para que tu tutor sepa de quién es cada aviso (puede tutelar a varias personas). El PIN no sale de tu móvil: solo se guarda en él, resumido con una función hash. A tu tutor le enviamos únicamente correos de la propia protección: el código de verificación, el código para recuperar el PIN, las solicitudes de desbloqueo y los avisos si alguien intenta desactivar la protección, la desinstalación o el servicio de 0D. <strong>Nunca le enviamos qué apps usas, cuánto tiempo ni qué ves.</strong> Base legal: tu consentimiento y la ejecución del servicio que pides (RGPD art. 6.1.a y 6.1.b). Estos datos se borran al quitar la protección o al eliminar tu cuenta.</p>
+        <p data-lang="en"><strong>Guardian protection (optional, Premium, requires an account):</strong> you can ask a trusted person to hold a PIN so that loosening or removing your blocks needs their permission. If you turn it on, we store on our server (Firestore, AES-256 encrypted): <strong>your guardian&rsquo;s email</strong>, verified with a code, and <strong>the name you introduce yourself with</strong>, so your guardian knows who each notice is about (they may be the guardian of several people). The PIN never leaves your phone: it is only stored there, as a hash. We only send your guardian emails about the protection itself: the verification code, the PIN recovery code, unlock requests and notices if someone tries to turn off the protection, the uninstall protection or the 0D service. <strong>We never send them which apps you use, for how long or what you watch.</strong> Legal basis: your consent and performing the service you request (GDPR Art. 6.1.a and 6.1.b). This data is deleted when you remove the protection or delete your account.</p>
+
         <h2>
           <span data-lang="es">3. Servicio de Accesibilidad</span>
           <span data-lang="en">3. Accessibility Service</span>
@@ -261,12 +264,14 @@
           <li><strong>Mostrar sobre otras apps (SYSTEM_ALERT_WINDOW)</strong> &mdash; mostrar la pantalla de bloqueo o pausa encima de la app bloqueada.</li>
           <li><strong>Acceso al uso de apps (PACKAGE_USAGE_STATS)</strong> &mdash; consultar el tiempo de uso para el modo de límite diario.</li>
           <li><strong>Consultar apps instaladas (QUERY_ALL_PACKAGES)</strong> &mdash; mostrar la lista de apps instaladas para que el usuario pueda seleccionar cuáles bloquear.</li>
+          <li><strong>Administrador de dispositivo (opcional, solo con la protección con tutor)</strong> &mdash; hace que para desinstalar 0D haya que quitar antes ese permiso en Ajustes, y permite avisar a tu tutor si se quita. No se usa para nada más: ni bloquear el móvil ni borrar datos.</li>
         </ul>
         <ul data-lang="en">
           <li><strong>Accessibility Service</strong> &mdash; detect the foreground app and short-form video content.</li>
           <li><strong>Display over other apps (SYSTEM_ALERT_WINDOW)</strong> &mdash; show the block or pause screen over the blocked app.</li>
           <li><strong>Usage access (PACKAGE_USAGE_STATS)</strong> &mdash; query usage time for daily limit mode.</li>
           <li><strong>Query installed apps (QUERY_ALL_PACKAGES)</strong> &mdash; display the list of installed apps so the user can select which ones to block.</li>
+          <li><strong>Device administrator (optional, only with guardian protection)</strong> &mdash; makes uninstalling 0D require removing that permission in Settings first, and lets us notify your guardian if it is removed. It is not used for anything else: it never locks the phone or wipes data.</li>
         </ul>
 
         <h2>
@@ -274,13 +279,13 @@
           <span data-lang="en">5. Data we do NOT collect</span>
         </h2>
         <ul data-lang="es">
-          <li>No recopilamos tu nombre, número de teléfono ni otros datos personales más allá del email (solo si verificas tu cuenta voluntariamente).</li>
+          <li>No recopilamos tu número de teléfono ni otros datos personales más allá del email de tu cuenta (solo si la creas) y, si activas la protección con tutor, el correo de tu tutor y el nombre que tú escribas (sección 2).</li>
           <li>No compartimos datos con terceros (salvo lo indicado en la sección 6).</li>
           <li>No rastreamos tu actividad entre apps ni webs de otras empresas, y no vendemos datos. Solo usamos estadísticas de uso de la propia app e informes de fallos (sección 6).</li>
           <li>No leemos ni almacenamos el contenido de otras apps (mensajes, fotos, contraseñas).</li>
         </ul>
         <ul data-lang="en">
-          <li>We do not collect your name, phone number, or personal data beyond your email (only if you voluntarily verify your account).</li>
+          <li>We do not collect your phone number or personal data beyond your account email (only if you create one) and, if you turn on guardian protection, your guardian&rsquo;s email and the name you type (section 2).</li>
           <li>We do not share data with third parties (except as noted in section 6).</li>
           <li>We do not track your activity across other companies&rsquo; apps or websites, and we do not sell data. We only use in-app usage statistics and crash reports (section 6).</li>
           <li>We do not read or store the content of other apps (messages, photos, passwords).</li>
@@ -312,8 +317,10 @@
           <span data-lang="en">7. Storage and deletion</span>
         </h2>
         <p data-lang="es">La configuración de bloqueo, las preferencias y las estadísticas se guardan solo en tu dispositivo: <strong>desinstalar la app las elimina</strong>, igual que Ajustes del sistema &gt; Aplicaciones &gt; 0Dopamine &gt; Almacenamiento &gt; Borrar datos.</p>
+        <p data-lang="es">Los datos de la protección con tutor (correo del tutor y tu nombre) se borran de nuestro servidor al quitar la protección o al eliminar la cuenta.</p>
         <p data-lang="es">Si creaste una cuenta, puedes <strong>borrarla junto con sus datos</strong> desde la app (Ajustes &gt; Eliminar cuenta, al final de la pantalla) o pidiéndolo por correo. Todos los pasos están en <a href="/delete-account.html">0dopamine.com/delete-account</a>.</p>
         <p data-lang="en">Block settings, preferences and statistics are stored only on your device: <strong>uninstalling the app deletes them</strong>, as does System Settings &gt; Apps &gt; 0Dopamine &gt; Storage &gt; Clear data.</p>
+        <p data-lang="en">Guardian protection data (your guardian&rsquo;s email and your name) is deleted from our server when you remove the protection or delete your account.</p>
         <p data-lang="en">If you created an account, you can <strong>delete it together with its data</strong> from the app (Settings &gt; Delete account, at the bottom of the screen) or by email. All the steps are at <a href="/delete-account.html">0dopamine.com/delete-account</a>.</p>
 
         <h2>

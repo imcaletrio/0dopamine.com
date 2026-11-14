@@ -184,7 +184,7 @@
         <span data-lang="en">Privacy policy</span>
       </h1>
       <p class="date">
-        <span data-lang="en">Last updated: November 10, 2026</span>
+        <span data-lang="en">Last updated: November 14, 2026</span>
       </p>
 
       <div class="manifesto">
@@ -223,6 +223,8 @@
 
         <p data-lang="en"><strong>Beta program signup (0dopamine.com web form, now closed):</strong> while the beta ran, the website collected your email, signup date and language, with your consent (GDPR Art. 6.1.a), solely to send you information about the program. The beta ended when the app was released on Google Play on November 8, 2026; the form was removed and <strong>the sheet holding those signups was deleted on November 9, 2026</strong>. The website no longer collects any data. If you have any question about that data, write to <a href="mailto:hola@0dopamine.com">hola@0dopamine.com</a>.</p>
 
+        <p data-lang="en"><strong>Guardian protection (optional, Premium, requires an account):</strong> you can ask a trusted person to hold a PIN so that loosening or removing your blocks needs their permission. If you turn it on, we store on our server (Firestore, AES-256 encrypted): <strong>your guardian&rsquo;s email</strong>, verified with a code, and <strong>the name you introduce yourself with</strong>, so your guardian knows who each notice is about (they may be the guardian of several people). The PIN never leaves your phone: it is only stored there, as a hash. We only send your guardian emails about the protection itself: the verification code, the PIN recovery code, unlock requests and notices if someone tries to turn off the protection, the uninstall protection or the 0D service. <strong>We never send them which apps you use, for how long or what you watch.</strong> Legal basis: your consent and performing the service you request (GDPR Art. 6.1.a and 6.1.b). This data is deleted when you remove the protection or delete your account.</p>
+
         <h2>
           <span data-lang="en">3. Accessibility Service</span>
         </h2>
@@ -242,13 +244,14 @@
           <li><strong>Display over other apps (SYSTEM_ALERT_WINDOW)</strong> &mdash; show the block or pause screen over the blocked app.</li>
           <li><strong>Usage access (PACKAGE_USAGE_STATS)</strong> &mdash; query usage time for daily limit mode.</li>
           <li><strong>Query installed apps (QUERY_ALL_PACKAGES)</strong> &mdash; display the list of installed apps so the user can select which ones to block.</li>
+          <li><strong>Device administrator (optional, only with guardian protection)</strong> &mdash; makes uninstalling 0D require removing that permission in Settings first, and lets us notify your guardian if it is removed. It is not used for anything else: it never locks the phone or wipes data.</li>
         </ul>
 
         <h2>
           <span data-lang="en">5. Data we do NOT collect</span>
         </h2>
         <ul data-lang="en">
-          <li>We do not collect your name, phone number, or personal data beyond your email (only if you voluntarily verify your account).</li>
+          <li>We do not collect your phone number or personal data beyond your account email (only if you create one) and, if you turn on guardian protection, your guardian&rsquo;s email and the name you type (section 2).</li>
           <li>We do not share data with third parties (except as noted in section 6).</li>
           <li>We do not track your activity across other companies&rsquo; apps or websites, and we do not sell data. We only use in-app usage statistics and crash reports (section 6).</li>
           <li>We do not read or store the content of other apps (messages, photos, passwords).</li>
@@ -271,6 +274,7 @@
         </h2>
         
         <p data-lang="en">Block settings, preferences and statistics are stored only on your device: <strong>uninstalling the app deletes them</strong>, as does System Settings &gt; Apps &gt; 0Dopamine &gt; Storage &gt; Clear data.</p>
+        <p data-lang="en">Guardian protection data (your guardian&rsquo;s email and your name) is deleted from our server when you remove the protection or delete your account.</p>
         <p data-lang="en">If you created an account, you can <strong>delete it together with its data</strong> from the app (Settings &gt; Delete account, at the bottom of the screen) or by email. All the steps are at <a href="/en/delete-account.html">0dopamine.com/delete-account</a>.</p>
 
         <h2>

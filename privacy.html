@@ -184,7 +184,7 @@
         <span data-lang="es">Política de privacidad</span>
       </h1>
       <p class="date">
-        <span data-lang="es">Última actualización: 10 de noviembre de 2026</span>
+        <span data-lang="es">Última actualización: 14 de noviembre de 2026</span>
       </p>
 
       <div class="manifesto">
@@ -223,6 +223,8 @@
 
         <p data-lang="es"><strong>Registro al programa beta (formulario de 0dopamine.com, ya cerrado):</strong> mientras duró la beta, la web recogía tu email, la fecha del registro y el idioma, con tu consentimiento (RGPD art. 6.1.a), solo para enviarte información del programa. La beta terminó con la publicación de la app en Google Play el 8 de noviembre de 2026; el formulario se retiró y <strong>la hoja con esos registros se eliminó el 9 de noviembre de 2026</strong>. La web ya no recoge ningún dato. Si tienes cualquier duda sobre esos datos, escribe a <a href="mailto:hola@0dopamine.com">hola@0dopamine.com</a>.</p>
 
+        <p data-lang="es"><strong>Protección con tutor (opcional, Premium, requiere cuenta):</strong> puedes pedir a una persona de confianza que guarde un PIN para que aflojar o quitar tus bloqueos necesite su permiso. Si la activas, guardamos en nuestro servidor (Firestore, con cifrado AES-256): <strong>el correo de tu tutor</strong>, que se verifica con un código, y <strong>el nombre con el que te presentas</strong>, para que tu tutor sepa de quién es cada aviso (puede tutelar a varias personas). El PIN no sale de tu móvil: solo se guarda en él, resumido con una función hash. A tu tutor le enviamos únicamente correos de la propia protección: el código de verificación, el código para recuperar el PIN, las solicitudes de desbloqueo y los avisos si alguien intenta desactivar la protección, la desinstalación o el servicio de 0D. <strong>Nunca le enviamos qué apps usas, cuánto tiempo ni qué ves.</strong> Base legal: tu consentimiento y la ejecución del servicio que pides (RGPD art. 6.1.a y 6.1.b). Estos datos se borran al quitar la protección o al eliminar tu cuenta.</p>
+
         <h2>
           <span data-lang="es">3. Servicio de Accesibilidad</span>
         </h2>
@@ -242,13 +244,14 @@
           <li><strong>Mostrar sobre otras apps (SYSTEM_ALERT_WINDOW)</strong> &mdash; mostrar la pantalla de bloqueo o pausa encima de la app bloqueada.</li>
           <li><strong>Acceso al uso de apps (PACKAGE_USAGE_STATS)</strong> &mdash; consultar el tiempo de uso para el modo de límite diario.</li>
           <li><strong>Consultar apps instaladas (QUERY_ALL_PACKAGES)</strong> &mdash; mostrar la lista de apps instaladas para que el usuario pueda seleccionar cuáles bloquear.</li>
+          <li><strong>Administrador de dispositivo (opcional, solo con la protección con tutor)</strong> &mdash; hace que para desinstalar 0D haya que quitar antes ese permiso en Ajustes, y permite avisar a tu tutor si se quita. No se usa para nada más: ni bloquear el móvil ni borrar datos.</li>
         </ul>
 
         <h2>
           <span data-lang="es">5. Datos que NO recopilamos</span>
         </h2>
         <ul data-lang="es">
-          <li>No recopilamos tu nombre, número de teléfono ni otros datos personales más allá del email (solo si verificas tu cuenta voluntariamente).</li>
+          <li>No recopilamos tu número de teléfono ni otros datos personales más allá del email de tu cuenta (solo si la creas) y, si activas la protección con tutor, el correo de tu tutor y el nombre que tú escribas (sección 2).</li>
           <li>No compartimos datos con terceros (salvo lo indicado en la sección 6).</li>
           <li>No rastreamos tu actividad entre apps ni webs de otras empresas, y no vendemos datos. Solo usamos estadísticas de uso de la propia app e informes de fallos (sección 6).</li>
           <li>No leemos ni almacenamos el contenido de otras apps (mensajes, fotos, contraseñas).</li>
@@ -270,6 +273,7 @@
           <span data-lang="es">7. Almacenamiento y eliminación</span>
         </h2>
         <p data-lang="es">La configuración de bloqueo, las preferencias y las estadísticas se guardan solo en tu dispositivo: <strong>desinstalar la app las elimina</strong>, igual que Ajustes del sistema &gt; Aplicaciones &gt; 0Dopamine &gt; Almacenamiento &gt; Borrar datos.</p>
+        <p data-lang="es">Los datos de la protección con tutor (correo del tutor y tu nombre) se borran de nuestro servidor al quitar la protección o al eliminar la cuenta.</p>
         <p data-lang="es">Si creaste una cuenta, puedes <strong>borrarla junto con sus datos</strong> desde la app (Ajustes &gt; Eliminar cuenta, al final de la pantalla) o pidiéndolo por correo. Todos los pasos están en <a href="/delete-account.html">0dopamine.com/delete-account</a>.</p>
         
 
