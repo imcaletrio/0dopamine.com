@@ -63,6 +63,9 @@
 
     .callout { margin: var(--s-4) 0; padding: 16px 18px; border-radius: var(--r-md); background: var(--bg-1); border: 1px solid var(--border); }
     .callout p { margin: 0; }
+    .ios-callout { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: var(--s-6, 28px); }
+    .ios-callout .appstore-badge { display: inline-flex; line-height: 0; border-radius: 8px; }
+    .ios-callout .appstore-badge img { height: 44px; width: auto; }
 
     .compare { width: 100%; border-collapse: collapse; margin: var(--s-4) 0; font-size: var(--fs-sm); }
     .compare th, .compare td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--ink-2); }
@@ -101,7 +104,7 @@
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
-        <a class="nav-cta" href="{{PLAY}}" target="_blank" rel="noopener">
+        <a class="nav-cta" href="{{PLAY}}" target="_blank" rel="noopener" data-store-auto>
           <span data-lang="es">Descargar gratis</span>
           <span data-lang="en">Get it free</span>
         </a>
@@ -112,6 +115,14 @@
   <main id="main">
     <article class="doc">
 {{CONTENT}}
+      <aside class="callout ios-callout" data-ios="si">
+        <p data-lang="es"><strong>¿Tienes iPhone?</strong> 0D también está en la App Store (iOS 16 o superior). En iPhone frena apps enteras con pausa, respiración, horario, límite diario o bloqueo total; quitar solo los Shorts o los Reels es exclusivo de Android, porque iOS no deja a ninguna app ver lo que pasa dentro de otra.</p>
+        <p data-lang="en"><strong>On iPhone?</strong> 0D is on the App Store too (iOS 16 or later). On iPhone it slows down whole apps with a pause, breathing, a schedule, a daily limit or a full block; removing just Shorts or Reels is Android only, because iOS doesn&rsquo;t let any app see inside another one.</p>
+        <a class="play-badge appstore-badge" href="{{APPSTORE}}" target="_blank" rel="noopener">
+          <img data-lang="es" src="assets/app-store-badge-es.svg" width="120" height="40" alt="Descárgalo en el App Store" loading="lazy" decoding="async" />
+          <img data-lang="en" src="assets/app-store-badge-en.svg" width="120" height="40" alt="Download on the App Store" loading="lazy" decoding="async" />
+        </a>
+      </aside>
     </article>
   </main>
 

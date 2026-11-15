@@ -90,6 +90,9 @@
 
     .callout { margin: var(--s-4) 0; padding: 16px 18px; border-radius: var(--r-md); background: var(--bg-1); border: 1px solid var(--border); }
     .callout p { margin: 0; }
+    .ios-callout { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; margin-top: var(--s-6, 28px); }
+    .ios-callout .appstore-badge { display: inline-flex; line-height: 0; border-radius: 8px; }
+    .ios-callout .appstore-badge img { height: 44px; width: auto; }
 
     .compare { width: 100%; border-collapse: collapse; margin: var(--s-4) 0; font-size: var(--fs-sm); }
     .compare th, .compare td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--ink-2); }
@@ -189,7 +192,7 @@
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
-        <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.zerodopamine&referrer=utm_source%3D0dopamine.com%26utm_medium%3Dguia" target="_blank" rel="noopener">
+        <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.zerodopamine&referrer=utm_source%3D0dopamine.com%26utm_medium%3Dguia" target="_blank" rel="noopener" data-store-auto>
           <span data-lang="es">Descargar gratis</span>
         </a>
       </div>

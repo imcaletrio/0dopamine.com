@@ -184,7 +184,7 @@
         <span data-lang="en">Privacy policy</span>
       </h1>
       <p class="date">
-        <span data-lang="en">Last updated: November 14, 2026</span>
+        <span data-lang="en">Last updated: November 15, 2026</span>
       </p>
 
       <div class="manifesto">
@@ -196,8 +196,8 @@
         <h2>
           <span data-lang="en">1. Overview</span>
         </h2>
-        <p data-lang="en"><strong>0Dopamine</strong> (hereinafter &ldquo;0D&rdquo;, &ldquo;the app&rdquo; or &ldquo;we&rdquo;) is a digital wellbeing application for Android developed by 0Dopamine. This policy explains what data the app collects, how it uses it, and what rights you have over it.</p>
-        <p data-lang="en">Package name: <code>com.zerodopamine</code></p>
+        <p data-lang="en"><strong>0Dopamine</strong> (hereinafter &ldquo;0D&rdquo;, &ldquo;the app&rdquo; or &ldquo;we&rdquo;) is a digital wellbeing application for Android and iPhone developed by 0Dopamine. This policy explains what data the app collects, how it uses it, and what rights you have over it.</p>
+        <p data-lang="en">App identifiers: <code>com.zerodopamine</code> (Android, Google Play) and <code>com.zerodopamine.ios</code> (iPhone, App Store). Unless stated otherwise, this policy applies equally to both versions.</p>
 
         <h2>
           <span data-lang="en">2. Data we collect</span>
@@ -210,6 +210,7 @@
           <li><strong>Preferences:</strong> theme, accent color, language and general settings. Stored in DataStore (local preference storage).</li>
           <li><strong>Usage statistics:</strong> the app queries the usage time of blocked apps through the Android system (UsageStatsManager) to calculate daily limits. This information is read on demand and is not permanently stored.</li>
         </ul>
+        <p data-lang="en"><strong>On iPhone</strong>, 0D&rsquo;s rules, preferences and statistics are stored in the app&rsquo;s storage on your iPhone. The apps you choose are picked with Apple&rsquo;s selector, which only gives 0D <strong>opaque identifiers</strong>: 0D doesn&rsquo;t even know those apps&rsquo; names. Usage time for daily limits is counted by Apple&rsquo;s <strong>Screen Time</strong> on your iPhone, which only tells 0D when the limit is reached.</p>
 
         <p data-lang="en"><strong>User account (optional):</strong> if you choose to verify your email, 0D uses <strong>Firebase Authentication</strong> (a Google service) to manage passwordless sign-in via a magic link sent to your email. Data stored in Firebase includes:</p>
         <ul data-lang="en">
@@ -219,6 +220,8 @@
           <li>Creation and last login timestamps.</li>
         </ul>
 
+        <p data-lang="en"><strong>On iPhone</strong> you can also use <strong>Sign in with Apple</strong>. Apple gives us an identifier for your Apple account and, only the first time and if you allow it, your email (which may be an Apple relay address that hides your real one) and your name. On our server we store the identifier and the email; the name stays on your iPhone.</p>
+
         <p data-lang="en">This data is stored in <strong>Firebase Firestore</strong> (Google infrastructure) and is subject to the <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase privacy policy</a>. Email verification is entirely optional and the app works without it.</p>
 
         <p data-lang="en"><strong>Beta program signup (0dopamine.com web form, now closed):</strong> while the beta ran, the website collected your email, signup date and language, with your consent (GDPR Art. 6.1.a), solely to send you information about the program. The beta ended when the app was released on Google Play on November 8, 2026; the form was removed and <strong>the sheet holding those signups was deleted on November 9, 2026</strong>. The website no longer collects any data. If you have any question about that data, write to <a href="mailto:hola@0dopamine.com">hola@0dopamine.com</a>.</p>
@@ -226,7 +229,7 @@
         <p data-lang="en"><strong>Guardian protection (optional, Premium, requires an account):</strong> you can ask a trusted person to hold a PIN so that loosening or removing your blocks needs their permission. If you turn it on, we store on our server (Firestore, AES-256 encrypted): <strong>your guardian&rsquo;s email</strong>, verified with a code, and <strong>the name you introduce yourself with</strong>, so your guardian knows who each notice is about (they may be the guardian of several people). The PIN never leaves your phone: it is only stored there, as a hash. We only send your guardian emails about the protection itself: the verification code, the PIN recovery code, unlock requests and notices if someone tries to turn off the protection, the uninstall protection or the 0D service. <strong>We never send them which apps you use, for how long or what you watch.</strong> Legal basis: your consent and performing the service you request (GDPR Art. 6.1.a and 6.1.b). This data is deleted when you remove the protection or delete your account.</p>
 
         <h2>
-          <span data-lang="en">3. Accessibility Service</span>
+          <span data-lang="en">3. Accessibility Service (Android) and Screen Time (iPhone)</span>
         </h2>
         <p data-lang="en">0D uses an Android <strong>Accessibility Service</strong> to detect which app is in the foreground and, within supported apps, identify short-form video content sections (Shorts, Reels, Stories). This service:</p>
         <ul data-lang="en">
@@ -234,17 +237,23 @@
           <li><strong>Does not read, store, or transmit</strong> the content of other apps (messages, photos, text, passwords, etc.).</li>
           <li>Is used exclusively for digital wellbeing purposes: determining whether the user is accessing content they have chosen to block.</li>
         </ul>
+        <p data-lang="en"><strong>On iPhone</strong> there is no Accessibility Service: 0D uses Apple&rsquo;s <strong>Screen Time</strong> (the Family Controls API). With it, iOS puts a block screen over the apps you choose, at the times you set. 0D cannot see which app you have open or anything that happens inside any app; that is why, on iPhone, 0D works on whole apps and cannot remove just Shorts or Reels.</p>
 
         <h2>
           <span data-lang="en">4. Permissions</span>
         </h2>
-        <p data-lang="en">The app requests the following system permissions:</p>
+        <p data-lang="en">On Android, the app requests the following system permissions:</p>
         <ul data-lang="en">
           <li><strong>Accessibility Service</strong> &mdash; detect the foreground app and short-form video content.</li>
           <li><strong>Display over other apps (SYSTEM_ALERT_WINDOW)</strong> &mdash; show the block or pause screen over the blocked app.</li>
           <li><strong>Usage access (PACKAGE_USAGE_STATS)</strong> &mdash; query usage time for daily limit mode.</li>
           <li><strong>Query installed apps (QUERY_ALL_PACKAGES)</strong> &mdash; display the list of installed apps so the user can select which ones to block.</li>
           <li><strong>Device administrator (optional, only with guardian protection)</strong> &mdash; makes uninstalling 0D require removing that permission in Settings first, and lets us notify your guardian if it is removed. It is not used for anything else: it never locks the phone or wipes data.</li>
+        </ul>
+        <p data-lang="en">On iPhone it only asks for two:</p>
+        <ul data-lang="en">
+          <li><strong>Screen Time</strong> &mdash; put the iOS block screen over the apps you choose (section 3).</li>
+          <li><strong>Notifications</strong> &mdash; notify you during a pause, for example to continue the countdown or when the time you gave yourself is up.</li>
         </ul>
 
         <h2>
@@ -253,7 +262,7 @@
         <ul data-lang="en">
           <li>We do not collect your phone number or personal data beyond your account email (only if you create one) and, if you turn on guardian protection, your guardian&rsquo;s email and the name you type (section 2).</li>
           <li>We do not share data with third parties (except as noted in section 6).</li>
-          <li>We do not track your activity across other companies&rsquo; apps or websites, and we do not sell data. We only use in-app usage statistics and crash reports (section 6).</li>
+          <li>We do not track your activity across other companies&rsquo; apps or websites, and we do not sell data. On Android we only use in-app usage statistics and crash reports; on iPhone, neither (section 6).</li>
           <li>We do not read or store the content of other apps (messages, photos, passwords).</li>
         </ul>
 
@@ -263,10 +272,12 @@
         <p data-lang="en">The app integrates the following SDKs that may collect data according to their own privacy policies:</p>
         <ul data-lang="en">
           <li><strong>Firebase Authentication and Firestore</strong> &mdash; manage passwordless sign-in and user profile storage (email, active device, referral code). Data processed per the <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Firebase Privacy Policy</a>.</li>
-          <li><strong>Google AdMob</strong> &mdash; serves the rewarded ads you choose to watch (for example, to get Premium for a day). This SDK may collect the device advertising ID, IP address (approximate location), ad interaction data and diagnostics, per <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google&rsquo;s Privacy Policy</a>. If you are in the European Economic Area, the United Kingdom or Switzerland, the app first shows you a Google consent message (Consent, Do not consent or Manage options) and does not request ads without your consent. You can change your choice at any time from <em>Settings › Privacy options</em> in the app.</li>
-          <li><strong>Google Play Billing</strong> &mdash; handles in-app purchases and subscriptions. Payment data is processed by Google Play under its own policies. To unlock Premium, our server verifies the purchase receipt with Google and links it to your account.</li>
-          <li><strong>Firebase Analytics</strong> &mdash; usage statistics of the app itself (for example, which setup steps are completed or which plan is of interest) with an app instance identifier. It does not include which apps you use or the content you see.</li>
-          <li><strong>Firebase Crashlytics</strong> &mdash; crash reports (error trace, device model and Android version) to fix bugs.</li>
+          <li><strong>Google AdMob</strong> &mdash; serves the rewarded ads you choose to watch (for example, to get Premium for a day). This SDK may collect the device advertising ID, IP address (approximate location), ad interaction data and diagnostics, per <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google&rsquo;s Privacy Policy</a>. If you are in the European Economic Area, the United Kingdom or Switzerland, the app first shows you a Google consent message (Consent, Do not consent or Manage options) and does not request ads without your consent. You can change your choice at any time from <em>Settings › Privacy options</em> in the app. <strong>On iPhone</strong>, the app always requests non-personalized ads and never asks for permission to track you, so it does not access Apple&rsquo;s advertising identifier.</li>
+          <li><strong>Firebase App Check (iPhone)</strong> &mdash; uses Apple&rsquo;s DeviceCheck/App Attest to check that requests to our server come from the genuine app. It does not identify the person.</li>
+          <li><strong>Apple: Sign in with Apple and App Store purchases (iPhone)</strong> &mdash; sign-in is handled by Apple (section 2) and payments and subscriptions are processed by Apple under its own terms; the app verifies the purchase on the iPhone itself with StoreKit. We never see your payment details.</li>
+          <li><strong>Google Play Billing (Android)</strong> &mdash; handles in-app purchases and subscriptions. Payment data is processed by Google Play under its own policies. To unlock Premium, our server verifies the purchase receipt with Google and links it to your account.</li>
+          <li><strong>Firebase Analytics (Android only)</strong> &mdash; usage statistics of the app itself (for example, which setup steps are completed or which plan is of interest) with an app instance identifier. It does not include which apps you use or the content you see.</li>
+          <li><strong>Firebase Crashlytics (Android only)</strong> &mdash; crash reports (error trace, device model and Android version) to fix bugs.</li>
         </ul>
 
         <h2>
@@ -276,6 +287,7 @@
         <p data-lang="en">Block settings, preferences and statistics are stored only on your device: <strong>uninstalling the app deletes them</strong>, as does System Settings &gt; Apps &gt; 0Dopamine &gt; Storage &gt; Clear data.</p>
         <p data-lang="en">Guardian protection data (your guardian&rsquo;s email and your name) is deleted from our server when you remove the protection or delete your account.</p>
         <p data-lang="en">If you created an account, you can <strong>delete it together with its data</strong> from the app (Settings &gt; Delete account, at the bottom of the screen) or by email. All the steps are at <a href="/en/delete-account.html">0dopamine.com/delete-account</a>.</p>
+        <p data-lang="en"><strong>On iPhone</strong>, uninstalling the app deletes everything it stores on the phone. Today, <em>Settings &gt; Delete account</em> signs you out and removes the account from the iPhone; to also delete the data on our server, ask by email as explained at <a href="/en/delete-account.html">0dopamine.com/delete-account</a>.</p>
 
         <h2>
           <span data-lang="en">8. Children</span>

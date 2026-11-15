@@ -15,6 +15,21 @@ convertido en enlace a la otra URL, y además sitemap.xml, robots.txt y 404.html
 
 Los .html de la raíz y de /en/ son GENERADOS: se editan las fuentes de _src/.
 Jekyll (GitHub Pages) no publica las carpetas que empiezan por «_».
+
+iPhone (App Store)
+------------------
+Todo lo que habla de la versión de iPhone está en las fuentes marcado con
+`data-ios="si"` (solo cuando la app ya está en la App Store) o `data-ios="no"`
+(solo mientras no lo está), y los títulos/descripciones con iPhone van en la
+clave "ios" de cada página. Lo decide IOS_LIVE:
+
+    python3 -I _tools/build.py                       # web publicada (según IOS_LIVE)
+    python3 -I _tools/build.py --preview-ios DIR     # copia COMPLETA con iPhone en DIR,
+                                                     # sin tocar los archivos del repo
+
+El día que Apple apruebe la app: comprobar los precios de iPhone en App Store
+Connect (IOS_LIFETIME_PRICE), poner IOS_LIVE = True e IOS_RELEASED = "AAAA-MM-DD",
+generar, revisar y publicar.
 """
 from __future__ import annotations
 
@@ -23,23 +38,50 @@ import html
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "_src")
+OUT = ROOT  # --preview-ios lo cambia por otra carpeta
 SITE = "https://0dopamine.com"
 LANGS = ("es", "en")
 PLAY = "https://play.google.com/store/apps/details?id=com.zerodopamine"
 PLAY_WEB = PLAY + "&referrer=utm_source%3D0dopamine.com%26utm_medium%3Dweb"
 PLAY_GUIDE = PLAY + "&referrer=utm_source%3D0dopamine.com%26utm_medium%3Dguia"
+PLAY_QR = PLAY + "&referrer=utm_source%3Dqr"
 IG = "https://www.instagram.com/0dopamine_app/"
 TT = "https://www.tiktok.com/@0dopamine_app"
-OG_IMG = {"es": "/assets/og/og-es.png", "en": "/assets/og/og-en.png"}
-OG_ALT = {
+
+# --- iPhone ---------------------------------------------------------------
+IOS_LIVE = False            # True cuando la app esté publicada en la App Store
+IOS_RELEASED = None         # fecha de publicación en la App Store, "AAAA-MM-DD"
+APP_STORE_ID = "6787190463"  # App Store Connect › App Information › Apple ID
+APP_STORE = f"https://apps.apple.com/app/id{APP_STORE_ID}"
+IOS_MIN = "16.0"
+# Pago único en iPhone: se creó buscando el precio de Apple más cercano a 50 €
+# (_deploy/asc_setup_iap.py del repo iOS). VERIFICAR en App Store Connect antes
+# de activar IOS_LIVE; con None no se publica ningún precio de pago único.
+IOS_LIFETIME_PRICE = None   # p. ej. "49.99"
+
+OG_IMG_BASE = {"es": "/assets/og/og-es", "en": "/assets/og/og-en"}
+OG_ALT_ANDROID = {
     "es": "0Dopamine: bloquea Shorts, Reels y TikTok en Android",
     "en": "0Dopamine: block Shorts, Reels and TikTok on Android",
 }
+OG_ALT_IOS = {
+    "es": "0Dopamine: frena Shorts, Reels y TikTok en Android y iPhone",
+    "en": "0Dopamine: curb Shorts, Reels and TikTok on Android and iPhone",
+}
+
+
+def og_img(lang: str) -> str:
+    return OG_IMG_BASE[lang] + ("-ios" if IOS_LIVE else "") + ".png"
+
+
+def og_alt(lang: str) -> str:
+    return (OG_ALT_IOS if IOS_LIVE else OG_ALT_ANDROID)[lang]
 OG_LOCALE = {"es": "es_ES", "en": "en_US"}
 HOME_NAME = {"es": "Inicio", "en": "Home"}
 GUIDES_NAME = {"es": "Guías", "en": "Guides"}
@@ -60,6 +102,16 @@ PAGES = [
             "en": "Free Android app that blocks YouTube Shorts, Instagram Reels, TikTok or any app, with a 4-7-8 breath before you open it. Schedules, daily limits and full blocks. We never sell your data.",
         },
         "robots": "index, follow, max-image-preview:large, max-snippet:-1",
+        "ios": {
+            "title": {
+                "es": "0Dopamine: frena Shorts, Reels y TikTok en Android y iPhone | Gratis",
+                "en": "0Dopamine: Curb Shorts, Reels & TikTok on Android and iPhone",
+            },
+            "desc": {
+                "es": "App gratis para Android y iPhone que frena TikTok, Instagram, YouTube o cualquier app con una pausa o una respiración 4-7-8 antes de abrirla. Horarios, límites diarios y bloqueo total. Sin vender tus datos.",
+                "en": "Free app for Android and iPhone that slows down TikTok, Instagram, YouTube or any app with a pause or a 4-7-8 breath before it opens. Schedules, daily limits and full blocks. We never sell your data.",
+            },
+        },
     },
     {
         "id": "guides", "src": "guias.html", "kind": "hub",
@@ -151,6 +203,16 @@ PAGES = [
             "es": "Preguntas frecuentes — 0Dopamine (0D) para Android",
             "en": "FAQ — 0Dopamine (0D) for Android",
         },
+        "ios": {
+            "title": {
+                "es": "Preguntas frecuentes — 0Dopamine (0D) para Android y iPhone",
+                "en": "FAQ — 0Dopamine (0D) for Android and iPhone",
+            },
+            "desc": {
+                "es": "Preguntas frecuentes sobre 0D: bloquear Shorts, Reels y TikTok en Android, qué hace en iPhone, permisos, privacidad, root y diferencias con Bienestar Digital.",
+                "en": "Frequently asked questions about 0D: blocking Shorts, Reels and TikTok on Android, what it does on iPhone, permissions, privacy, root and how it differs from Digital Wellbeing.",
+            },
+        },
         "desc": {
             "es": "Preguntas frecuentes sobre 0D: cómo bloquear Shorts en YouTube, Reels en Instagram y TikTok en Android. Permisos, privacidad, root y diferencias con Bienestar Digital.",
             "en": "Frequently asked questions about 0D: how to block YouTube Shorts, Instagram Reels and TikTok on Android. Permissions, privacy, root and how it differs from Digital Wellbeing.",
@@ -167,6 +229,16 @@ PAGES = [
         "desc": {
             "es": "Descarga 0Dopamine gratis desde Google Play y déjalo listo en un minuto: instala, activa el permiso de accesibilidad y elige qué apps frenar.",
             "en": "Download 0Dopamine free from Google Play and set it up in a minute: install, turn on the accessibility permission and choose which apps to slow down.",
+        },
+        "ios": {
+            "title": {
+                "es": "Descargar 0Dopamine gratis para Android y iPhone",
+                "en": "Download 0Dopamine free for Android and iPhone",
+            },
+            "desc": {
+                "es": "Descarga 0Dopamine gratis en Google Play o en la App Store y déjalo listo en un minuto: instala, da el permiso que te pide y elige qué apps frenar.",
+                "en": "Download 0Dopamine free on Google Play or the App Store and set it up in a minute: install, grant the permission it asks for and choose which apps to slow down.",
+            },
         },
         "crumb": {"es": "Descargar", "en": "Download"},
     },
@@ -192,8 +264,8 @@ PAGES = [
             "en": "Terms of use — 0Dopamine (0D)",
         },
         "desc": {
-            "es": "Términos y condiciones de uso de 0Dopamine (0D), app Android de bienestar digital: disponible en Google Play, pago a través de Google Play, legislación española.",
-            "en": "Terms and conditions of use of 0Dopamine (0D), a digital wellbeing app for Android: available on Google Play, payments through Google Play, Spanish law.",
+            "es": "Términos y condiciones de uso de 0Dopamine (0D), app de bienestar digital para Android y iPhone: compras a través de Google Play o de la App Store, legislación española.",
+            "en": "Terms and conditions of use of 0Dopamine (0D), a digital wellbeing app for Android and iPhone: purchases through Google Play or the App Store, Spanish law.",
         },
         "crumb": {"es": "Términos", "en": "Terms"},
         "og_type": "article",
@@ -221,6 +293,86 @@ for _p in PAGES:
     if _p["id"] != "home":
         HREF_TO_ID[_p["paths"]["es"].lstrip("/")] = _p["id"]
 
+# Respuesta de la FAQ «¿Hay versión para iPhone?». Se define una sola vez y va
+# igual al texto visible ({{FAQ_IOS_Q}} / {{FAQ_IOS_A}}) y al FAQPage de JSON-LD
+# ({{FAQ_IOS_LD}}), que Google exige idénticos. Sin comillas dobles en el texto.
+FAQ_IOS = {
+    "q": {
+        "es": "¿Hay versión para iPhone?",
+        "en": "Is there an iPhone version?",
+    },
+    "a_live": {
+        "es": ("Sí. 0D está en la App Store para iPhone con iOS 16 o superior. En iPhone usa Tiempo de uso, "
+               "la función de Apple: frena apps enteras con pausa, respiración 4-7-8, horario, límite diario o "
+               "bloqueo total. Lo que no puede es quitar solo los Shorts o los Reels dejando el resto de la app, "
+               "porque iOS no deja a ninguna app ver lo que pasa dentro de otra: eso es exclusivo de Android. "
+               "El plan gratis de iPhone incluye 1 app con el modo pausa."),
+        "en": ("Yes. 0D is on the App Store for iPhone with iOS 16 or later. On iPhone it uses Screen Time, "
+               "Apple's own feature: it slows down whole apps with a pause, a 4-7-8 breath, a schedule, a daily "
+               "limit or a full block. What it can't do is remove just Shorts or Reels and leave the rest of the "
+               "app, because iOS doesn't let any app see inside another one: that is Android only. The free plan "
+               "on iPhone covers 1 app with pause mode."),
+    },
+    "a_soon": {
+        "es": ("Sí, ya está hecha: la versión para iPhone (iOS 16 o superior) está en revisión de Apple y saldrá "
+               "en la App Store en cuanto la aprueben. En iPhone frena apps enteras con Tiempo de uso, la función "
+               "de Apple; quitar solo los Shorts o los Reels seguirá siendo exclusivo de Android, porque iOS no "
+               "deja a ninguna app ver lo que pasa dentro de otra."),
+        "en": ("Yes, it's built: the iPhone version (iOS 16 or later) is in Apple's review and will be on the "
+               "App Store as soon as it's approved. On iPhone it slows down whole apps with Screen Time, Apple's "
+               "own feature; removing just Shorts or Reels will stay Android only, because iOS doesn't let any "
+               "app see inside another one."),
+    },
+}
+
+
+def faq_ios(doc: str, lang: str) -> str:
+    q = FAQ_IOS["q"][lang]
+    a = FAQ_IOS["a_live" if IOS_LIVE else "a_soon"][lang]
+    ld_entry = json.dumps({"@type": "Question", "name": q,
+                           "acceptedAnswer": {"@type": "Answer", "text": a}}, ensure_ascii=False)
+    return (doc.replace("{{FAQ_IOS_LD}}", ld_entry)
+               .replace("{{FAQ_IOS_Q}}", esc(q))
+               .replace("{{FAQ_IOS_A}}", esc(a)))
+
+
+# Página /app/ (destino del QR): manda a la tienda del móvil que la abre.
+ROUTER = """<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Descargar 0Dopamine</title>
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://0dopamine.com/install.html" />
+  <link rel="icon" href="/favicon.ico" />
+  <script>
+    (function () {
+      var ua = navigator.userAgent || '';
+      var ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+      var android = /Android/i.test(ua);
+      if (ios) location.replace('%(appstore)s');
+      else if (android) location.replace('%(play)s');
+    })();
+  </script>
+  <style>
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; font-family: system-ui, sans-serif;
+           background: #0E1D2D; color: #EAF1F8; text-align: center; padding: 16px; box-sizing: border-box; }
+    a { color: #8CB8E4; display: block; margin: 12px 0; font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <p>0Dopamine</p>
+    <a href="%(play)s">Google Play (Android)</a>
+    <a href="%(appstore)s">App Store (iPhone)</a>
+    <a href="/install.html">0dopamine.com</a>
+  </main>
+</body>
+</html>
+"""
+
+
 MESES_ES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
             "septiembre", "octubre", "noviembre", "diciembre"]
 MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August",
@@ -239,8 +391,19 @@ def url(page_id: str, lang: str) -> str:
 # ---------------------------------------------------------------------------
 def strip_lang(src: str, drop: str) -> str:
     """Elimina todo elemento con data-lang="<drop>" (con su contenido)."""
+    return strip_attr(src, "data-lang", drop)
+
+
+def strip_ios(src: str) -> str:
+    """Quita lo que no toca según IOS_LIVE y la marca data-ios de lo que queda."""
+    src = strip_attr(src, "data-ios", "no" if IOS_LIVE else "si")
+    return re.sub(r'\sdata-ios="(?:si|no)"', "", src)
+
+
+def strip_attr(src: str, attr: str, drop: str) -> str:
+    """Elimina todo elemento con <attr>="<drop>" (con su contenido)."""
     out, i, n = [], 0, len(src)
-    attr_re = re.compile(r'\sdata-lang\s*=\s*["\']' + drop + r'["\']')
+    attr_re = re.compile(r'\s' + attr + r'\s*=\s*["\']' + drop + r'["\']')
     while True:
         m = TAG_RE.search(src, i)
         if not m:
@@ -311,13 +474,20 @@ def esc(s: str) -> str:
     return html.escape(s, quote=True)
 
 
+def txt(page: dict, key: str, lang: str) -> str:
+    """Título o descripción: la variante con iPhone si la hay y la app está publicada."""
+    if IOS_LIVE and key in page.get("ios", {}):
+        return page["ios"][key][lang]
+    return page[key][lang]
+
+
 def seo_head(page: dict, lang: str) -> str:
     other = "en" if lang == "es" else "es"
-    t, d = page["title"][lang], page["desc"][lang]
+    t, d = txt(page, "title", lang), txt(page, "desc", lang)
     can = url(page["id"], lang)
     og_type = page.get("og_type", "article" if page["kind"] == "guide" else "website")
     robots = page.get("robots", "index, follow, max-image-preview:large")
-    img = SITE + OG_IMG[lang]
+    img = SITE + og_img(lang)
     lines = [
         f"<title>{esc(t)}</title>",
         f'<meta name="description" content="{esc(d)}" />',
@@ -334,18 +504,25 @@ def seo_head(page: dict, lang: str) -> str:
         f'<meta property="og:image" content="{img}" />',
         '<meta property="og:image:width" content="1200" />',
         '<meta property="og:image:height" content="630" />',
-        f'<meta property="og:image:alt" content="{esc(OG_ALT[lang])}" />',
+        f'<meta property="og:image:alt" content="{esc(og_alt(lang))}" />',
         f'<meta property="og:locale" content="{OG_LOCALE[lang]}" />',
         f'<meta property="og:locale:alternate" content="{OG_LOCALE[other]}" />',
         '<meta name="twitter:card" content="summary_large_image" />',
         f'<meta name="twitter:title" content="{esc(t)}" />',
         f'<meta name="twitter:description" content="{esc(d)}" />',
         f'<meta name="twitter:image" content="{img}" />',
-        f'<meta name="twitter:image:alt" content="{esc(OG_ALT[lang])}" />',
+        f'<meta name="twitter:image:alt" content="{esc(og_alt(lang))}" />',
         '<link rel="preload" href="/assets/fonts/baloo2-latin.woff2" as="font" type="font/woff2" crossorigin />',
         '<link rel="preload" href="/assets/fonts/quicksand-latin.woff2" as="font" type="font/woff2" crossorigin />',
         '<link rel="stylesheet" href="/assets/fonts.css" />',
     ]
+    if IOS_LIVE:
+        # Banner de Safari en iPhone: «Abrir / Ver» en la App Store
+        lines.append(f'<meta name="apple-itunes-app" content="app-id={APP_STORE_ID}" />')
+        # Antes de pintar: qué tienda es la del móvil (ver site.js y el CSS de la portada)
+        lines.append("<script>(function(){var r=document.documentElement,u=navigator.userAgent||'';"
+                     "if(/iPhone|iPad|iPod/.test(u)||(/Macintosh/.test(u)&&navigator.maxTouchPoints>1))r.classList.add('is-ios');"
+                     "else if(/Android/i.test(u))r.classList.add('is-android');})();</script>")
     return "\n  " + "\n  ".join(lines)
 
 
@@ -359,8 +536,37 @@ def org_node():
         "name": "0Dopamine", "alternateName": ["0D", "Zero Dopamine"],
         "url": SITE + "/", "logo": SITE + "/assets/logo-512.png",
         "email": "hola@0dopamine.com",
-        "sameAs": [PLAY, IG, TT],
+        "sameAs": [PLAY] + ([APP_STORE] if IOS_LIVE else []) + [IG, TT],
     }
+
+
+def ios_app_node(lang: str) -> dict:
+    offers = [
+        {"@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "EUR"},
+        {"@type": "Offer", "name": "Premium", "price": "1", "priceCurrency": "EUR",
+         "priceSpecification": {"@type": "UnitPriceSpecification", "price": "1", "priceCurrency": "EUR",
+                                "billingDuration": "P1M", "unitCode": "MON"}},
+    ]
+    if IOS_LIFETIME_PRICE:
+        offers.append({"@type": "Offer", "name": "Lifetime", "price": IOS_LIFETIME_PRICE, "priceCurrency": "EUR"})
+    for o in offers:
+        o["availability"] = "https://schema.org/InStock"
+    node = {
+        "@type": "MobileApplication", "@id": SITE + "/#app-ios",
+        "name": "0Dopamine", "alternateName": ["0D", "Zero Dopamine"],
+        "description": BY_ID["home"]["ios"]["desc"][lang],
+        "url": url("home", lang), "inLanguage": lang,
+        "operatingSystem": "iOS " + IOS_MIN + "+",
+        "applicationCategory": "UtilitiesApplication",
+        "applicationSubCategory": "Digital wellbeing",
+        "downloadUrl": APP_STORE, "installUrl": APP_STORE,
+        "image": SITE + "/assets/logo-512.png",
+        "publisher": {"@id": SITE + "/#org"}, "author": {"@id": SITE + "/#org"},
+        "offers": offers,
+    }
+    if IOS_RELEASED:
+        node["datePublished"] = IOS_RELEASED
+    return node
 
 
 def jsonld(page: dict, lang: str, lastmod: str) -> str:
@@ -387,7 +593,7 @@ def jsonld(page: dict, lang: str, lastmod: str) -> str:
                 {
                     "@type": "MobileApplication", "@id": SITE + "/#app",
                     "name": "0Dopamine", "alternateName": ["0D", "Zero Dopamine"],
-                    "description": page["desc"][lang],
+                    "description": txt(page, "desc", lang),
                     "url": url("home", lang), "inLanguage": lang,
                     "operatingSystem": "Android 8.0+",
                     "applicationCategory": "UtilitiesApplication",
@@ -399,7 +605,7 @@ def jsonld(page: dict, lang: str, lastmod: str) -> str:
                     "publisher": {"@id": SITE + "/#org"}, "author": {"@id": SITE + "/#org"},
                     "offers": offers,
                 },
-            ],
+            ] + ([ios_app_node(lang)] if IOS_LIVE else []),
         }))
         return "\n  ".join(blocks)
 
@@ -417,7 +623,7 @@ def jsonld(page: dict, lang: str, lastmod: str) -> str:
             "headline": page["title"][lang].split(" — ")[0],
             "description": page["desc"][lang], "inLanguage": lang,
             "mainEntityOfPage": url(page["id"], lang),
-            "image": [SITE + OG_IMG[lang], SITE + "/assets/img/app-inicio-oscuro.webp"],
+            "image": [SITE + og_img(lang), SITE + "/assets/img/app-inicio-oscuro.webp"],
             "datePublished": page["published"], "dateModified": max(lastmod, page["published"]),
             "author": {"@type": "Organization", "name": "0Dopamine", "url": SITE + "/"},
             "publisher": {"@type": "Organization", "name": "0Dopamine", "logo": {"@type": "ImageObject", "url": SITE + "/assets/logo-512.png"}},
@@ -436,6 +642,8 @@ def rewrite_links(doc: str, lang: str) -> str:
             return f'{attr}="/{val}"'
         if val in ("{{PLAY}}",):
             return f'{attr}="{PLAY_GUIDE}"'
+        if val == "{{APPSTORE}}":
+            return f'{attr}="{APP_STORE}"'
         base, frag = (val.split("#", 1) + [""])[:2]
         key = base.lstrip("/")
         if base.startswith(("http", "mailto:", "{{")) or (base and key not in HREF_TO_ID):
@@ -499,7 +707,9 @@ def render(page: dict, lang: str, lastmod: str) -> str:
     doc = load_source(page)
     doc = lang_switch(doc, page, lang)
     doc = strip_lang(doc, other)
-    doc = re.sub(r'<html lang="[a-z]+"', f'<html lang="{lang}"', doc, count=1)
+    doc = strip_ios(doc)
+    html_attrs = f'<html lang="{lang}"' + (f' data-app-store="{APP_STORE}"' if IOS_LIVE else "")
+    doc = re.sub(r'<html lang="[a-z]+"', html_attrs, doc, count=1)
 
     head_end = doc.index("</head>")
     head, body = doc[:head_end], doc[head_end:]
@@ -516,6 +726,7 @@ def render(page: dict, lang: str, lastmod: str) -> str:
     head = re.sub(r'(<meta name="viewport"[^>]*>)', lambda m: m.group(1) + seo_head(page, lang), head, count=1)
     head = head.rstrip() + "\n  " + jsonld(page, lang, lastmod) + "\n"
     doc = head + body
+    doc = faq_ios(doc, lang)
     doc = rewrite_links(doc, lang)
     doc = re.sub(r"\{\{ABS:([^}]*)\}\}", r"\1", doc)
     y, mo, d = (int(x) for x in lastmod.split("-"))
@@ -532,7 +743,7 @@ def out_path(public: str) -> str:
     p = public.lstrip("/")
     if p == "" or p.endswith("/"):
         p += "index.html"
-    return os.path.join(ROOT, p)
+    return os.path.join(OUT, p)
 
 
 def build_sitemap(lastmods: dict) -> str:
@@ -548,14 +759,30 @@ def build_sitemap(lastmods: dict) -> str:
             + "\n".join(rows) + "\n</urlset>\n")
 
 
+def prepare_preview(dest: str) -> None:
+    """Copia la web (sin git ni fuentes) a `dest` para generar ahí la versión con iPhone."""
+    global OUT, IOS_LIVE
+    dest = os.path.abspath(dest)
+    if os.path.commonpath([dest, ROOT]) == ROOT:
+        sys.exit("--preview-ios: la carpeta tiene que estar FUERA del repo")
+    if os.path.exists(dest):
+        shutil.rmtree(dest)
+    shutil.copytree(ROOT, dest, ignore=shutil.ignore_patterns(".git", "_src", "_tools", "apps-script"))
+    OUT, IOS_LIVE = dest, True
+
+
 def main() -> int:
+    if len(sys.argv) == 3 and sys.argv[1] == "--preview-ios":
+        prepare_preview(sys.argv[2])
+    elif len(sys.argv) > 1:
+        sys.exit(__doc__)
     written = []
     lastmods = {}
     for page in PAGES:
-        srcs = ["_src/" + page["src"]]
-        if page["kind"] in ("guide", "hub"):
-            srcs.append("_src/_layout-guia.html")
-        lastmods[page["id"]] = git_lastmod(*srcs)
+        # La fecha es la del TEXTO de la página: la plantilla común de las guías
+        # (_layout-guia.html) no cuenta, para no «actualizar» guías sin cambiar
+        # su contenido (Google lo nota y no aporta nada).
+        lastmods[page["id"]] = git_lastmod("_src/" + page["src"])
         for lang in LANGS:
             html_out = render(page, lang, lastmods[page["id"]])
             path = out_path(page["paths"][lang])
@@ -563,14 +790,22 @@ def main() -> int:
             with open(path, "w", encoding="utf-8") as f:
                 f.write(html_out)
             written.append(os.path.relpath(path, ROOT))
-    with open(os.path.join(ROOT, "sitemap.xml"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUT, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write(build_sitemap(lastmods))
-    with open(os.path.join(ROOT, "robots.txt"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUT, "robots.txt"), "w", encoding="utf-8") as f:
         f.write("User-agent: *\nAllow: /\n\nSitemap: https://0dopamine.com/sitemap.xml\n")
     p404 = open(os.path.join(SRC, "404.html"), encoding="utf-8").read()
-    with open(os.path.join(ROOT, "404.html"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUT, "404.html"), "w", encoding="utf-8") as f:
         f.write(p404.replace('href="assets/', 'href="/assets/').replace('src="assets/', 'src="/assets/'))
     written += ["sitemap.xml", "robots.txt", "404.html"]
+    router = os.path.join(OUT, "app", "index.html")
+    if IOS_LIVE:
+        os.makedirs(os.path.dirname(router), exist_ok=True)
+        with open(router, "w", encoding="utf-8") as f:
+            f.write(ROUTER % {"appstore": APP_STORE, "play": PLAY_QR})
+        written.append("app/index.html")
+    elif os.path.exists(router):
+        os.remove(router)
     print("\n".join(written))
     return 0
 

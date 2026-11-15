@@ -23,6 +23,19 @@
     } catch (_) {}
   })();
 
+  // ---------- Tienda según el móvil (2026-11-15) ----------
+  // Con la app de iPhone publicada, build.py pone data-app-store en <html> y
+  // un script en <head> que marca .is-ios / .is-android antes de pintar (el
+  // CSS enseña en el móvil solo el badge de su tienda). Aquí, en iPhone/iPad,
+  // los enlaces con data-store-auto («Descargar gratis») van a la App Store.
+  (function storeByDevice() {
+    var root = document.documentElement;
+    var appStore = root.getAttribute('data-app-store');
+    if (!appStore || !root.classList.contains('is-ios')) return;
+    var links = document.querySelectorAll('[data-store-auto]');
+    for (var i = 0; i < links.length; i++) links[i].href = appStore;
+  })();
+
   // ---------- Apps carousel: spotlight + drag/flick to steer ----------
   function initAppsInteraction() {
     var strip = document.querySelector('[data-color-spotlight]');

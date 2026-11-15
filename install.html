@@ -116,6 +116,13 @@
     .qr-code { width: 92px; height: auto; display: block; }
     .qr-col { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: .76rem; color: var(--ink-3); }
     @media (max-width: 900px), (hover: none), (pointer: coarse) { .qr-col { display: none; } }
+    /* iPhone (2026-11-15): en el móvil, solo el badge de su tienda (clases de <head>) */
+    .appstore-badge { border-radius: 9px; }
+    @media (max-width: 900px), (hover: none), (pointer: coarse) {
+      html.is-ios .play-badge:not(.appstore-badge) { display: none; }
+      html.is-android .appstore-badge { display: none; }
+    }
+    .setup h3 { font-size: .95rem; margin: var(--s-4, 16px) 0 var(--s-2, 8px); color: var(--ink-2); }
     .setup { text-align: left; margin-top: var(--s-6, 28px); padding-top: var(--s-5, 22px); border-top: 1px solid var(--border-2); }
     .setup h2 { font-size: 1.05rem; margin-bottom: var(--s-3); }
     .setup .step-list { margin-top: 0; }
