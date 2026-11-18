@@ -53,6 +53,8 @@ PLAY_GUIDE = PLAY + "&referrer=utm_source%3D0dopamine.com%26utm_medium%3Dguia"
 PLAY_QR = PLAY + "&referrer=utm_source%3Dqr"
 IG = "https://www.instagram.com/0dopamine_app/"
 TT = "https://www.tiktok.com/@0dopamine_app"
+# Otras formas de escribir la marca (Google confunde «0dopamine» con «dopamine»).
+BRAND_ALT = ["0D", "Zero Dopamine", "0 Dopamine"]
 
 # --- iPhone ---------------------------------------------------------------
 IOS_LIVE = False            # True cuando la app esté publicada en la App Store
@@ -533,7 +535,7 @@ def ld(obj) -> str:
 def org_node():
     return {
         "@type": "Organization", "@id": SITE + "/#org",
-        "name": "0Dopamine", "alternateName": ["0D", "Zero Dopamine"],
+        "name": "0Dopamine", "alternateName": BRAND_ALT,
         "url": SITE + "/", "logo": SITE + "/assets/logo-512.png",
         "email": "hola@0dopamine.com",
         "sameAs": [PLAY] + ([APP_STORE] if IOS_LIVE else []) + [IG, TT],
@@ -553,7 +555,7 @@ def ios_app_node(lang: str) -> dict:
         o["availability"] = "https://schema.org/InStock"
     node = {
         "@type": "MobileApplication", "@id": SITE + "/#app-ios",
-        "name": "0Dopamine", "alternateName": ["0D", "Zero Dopamine"],
+        "name": "0Dopamine", "alternateName": BRAND_ALT,
         "description": BY_ID["home"]["ios"]["desc"][lang],
         "url": url("home", lang), "inLanguage": lang,
         "operatingSystem": "iOS " + IOS_MIN + "+",
@@ -587,12 +589,12 @@ def jsonld(page: dict, lang: str, lastmod: str) -> str:
                 org_node(),
                 {
                     "@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/",
-                    "name": "0Dopamine", "alternateName": ["0D", "Zero Dopamine"],
+                    "name": "0Dopamine", "alternateName": BRAND_ALT,
                     "inLanguage": ["es", "en"], "publisher": {"@id": SITE + "/#org"},
                 },
                 {
                     "@type": "MobileApplication", "@id": SITE + "/#app",
-                    "name": "0Dopamine", "alternateName": ["0D", "Zero Dopamine"],
+                    "name": "0Dopamine", "alternateName": BRAND_ALT,
                     "description": txt(page, "desc", lang),
                     "url": url("home", lang), "inLanguage": lang,
                     "operatingSystem": "Android 8.0+",
