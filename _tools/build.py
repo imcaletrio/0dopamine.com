@@ -532,12 +532,23 @@ def ld(obj) -> str:
     return '<script type="application/ld+json">\n' + json.dumps(obj, ensure_ascii=False, indent=2) + "\n</script>"
 
 
+# 0Dopamine es un producto de Yeli (yeli.es). Mismo @id que el JSON-LD de yeli.es,
+# para que los buscadores unan las dos webs en la misma entidad.
+YELI_ID = "https://yeli.es/#organization"
+YELI_REF = {"@type": "Organization", "@id": YELI_ID, "name": "Yeli", "url": "https://yeli.es/"}
+
+
+def yeli_node():
+    return dict(YELI_REF, sameAs=["https://yeli.es/"])
+
+
 def org_node():
     return {
         "@type": "Organization", "@id": SITE + "/#org",
         "name": "0Dopamine", "alternateName": BRAND_ALT,
         "url": SITE + "/", "logo": SITE + "/assets/logo-512.png",
         "email": "hola@0dopamine.com",
+        "parentOrganization": {"@id": YELI_ID},
         "sameAs": [PLAY] + ([APP_STORE] if IOS_LIVE else []) + [IG, TT],
     }
 
@@ -563,7 +574,7 @@ def ios_app_node(lang: str) -> dict:
         "applicationSubCategory": "Digital wellbeing",
         "downloadUrl": APP_STORE, "installUrl": APP_STORE,
         "image": SITE + "/assets/logo-512.png",
-        "publisher": {"@id": SITE + "/#org"}, "author": {"@id": SITE + "/#org"},
+        "publisher": {"@id": YELI_ID}, "author": {"@id": YELI_ID},
         "offers": offers,
     }
     if IOS_RELEASED:
@@ -587,6 +598,7 @@ def jsonld(page: dict, lang: str, lastmod: str) -> str:
             "@context": "https://schema.org",
             "@graph": [
                 org_node(),
+                yeli_node(),
                 {
                     "@type": "WebSite", "@id": SITE + "/#website", "url": SITE + "/",
                     "name": "0Dopamine", "alternateName": BRAND_ALT,
@@ -604,7 +616,7 @@ def jsonld(page: dict, lang: str, lastmod: str) -> str:
                     "datePublished": "2026-11-08",
                     "image": SITE + "/assets/logo-512.png",
                     "screenshot": [SITE + "/assets/img/app-inicio-oscuro.webp", SITE + "/assets/img/app-inicio-claro.webp"],
-                    "publisher": {"@id": SITE + "/#org"}, "author": {"@id": SITE + "/#org"},
+                    "publisher": {"@id": YELI_ID}, "author": {"@id": YELI_ID},
                     "offers": offers,
                 },
             ] + ([ios_app_node(lang)] if IOS_LIVE else []),
@@ -627,8 +639,8 @@ def jsonld(page: dict, lang: str, lastmod: str) -> str:
             "mainEntityOfPage": url(page["id"], lang),
             "image": [SITE + og_img(lang), SITE + "/assets/img/app-inicio-oscuro.webp"],
             "datePublished": page["published"], "dateModified": max(lastmod, page["published"]),
-            "author": {"@type": "Organization", "name": "0Dopamine", "url": SITE + "/"},
-            "publisher": {"@type": "Organization", "name": "0Dopamine", "logo": {"@type": "ImageObject", "url": SITE + "/assets/logo-512.png"}},
+            "author": YELI_REF,
+            "publisher": YELI_REF,
             "about": {"@type": "MobileApplication", "name": "0Dopamine", "operatingSystem": "Android", "applicationCategory": "UtilitiesApplication", "url": url("home", lang)},
         }))
     return "\n  ".join(blocks)
