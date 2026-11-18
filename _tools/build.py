@@ -633,6 +633,48 @@ def jsonld(page: dict, lang: str, lastmod: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Firma de Yeli («Deeped in Yeli · © AAAA»), la misma del pie de yeli.es
+# (Yeli/componentes/pie.html, clase pie__fina). Se define AQUÍ una sola vez y se mete en
+# el pie de todas las páginas al generar: así no hay 8 copias en _src/ y no
+# cambia el lastmod de las páginas (no es contenido). Estilo: .firma-yeli en
+# assets/base.css. La 404 no tiene pie y se queda como está.
+FIRMA_NUEVA_PESTANA = {"es": "web hecha por Yeli, se abre en una pestaña nueva",
+                       "en": "website made by Yeli, opens in a new tab"}
+
+
+def firma_yeli(lang: str) -> str:
+    # Texto IGUAL que el pie de yeli.es («Deeped», con «ee», a propósito).
+    # El año es el del build; el script de al lado lo sube en el navegador si
+    # ya es un año posterior (nunca lo baja: un reloj mal puesto no lo estropea).
+    anio = _dt.date.today().year
+    return ('<a class="firma-yeli" href="https://yeli.es" target="_blank" rel="noopener" lang="en">'
+            f'Deeped in Yeli&nbsp;·&nbsp;©&nbsp;<span class="firma-yeli__anio">{anio}</span>'
+            f'<span class="sr-only" lang="{lang}"> ({FIRMA_NUEVA_PESTANA[lang]})</span></a>'
+            '<script>(function(){var y=new Date().getFullYear(),e=document.querySelectorAll(".firma-yeli__anio"),i;'
+            'for(i=0;i<e.length;i++)if(y>+e[i].textContent)e[i].textContent=y})()</script>')
+
+
+def add_firma(doc: str, lang: str) -> str:
+    if "firma-yeli" in doc:
+        return doc
+    if 'class="site-footer-slim"' in doc:
+        # Portada: una entrada más de la fila del pie, al final.
+        new, n = re.subn(r'(\n\s*)</footer>',
+                         lambda m: (m.group(1) + '  <span class="sep" aria-hidden="true">·</span>'
+                                    + m.group(1) + '  ' + firma_yeli(lang) + m.group(1) + '</footer>'),
+                         doc, count=1)
+    else:
+        # Resto: tercera pieza de .footer-bottom, en su propia línea centrada.
+        new, n = re.subn(r'(\n(\s*)</div>\s*</div>\s*</footer>)',
+                         lambda m: ('\n' + m.group(2) + '  <p class="firma-yeli-fila">'
+                                    + firma_yeli(lang) + '</p>' + m.group(1)),
+                         doc, count=1)
+    if n != 1:
+        sys.exit("build.py: no encuentro el pie para poner la firma de Yeli")
+    return new
+
+
+# ---------------------------------------------------------------------------
 # Enlaces y selector de idioma
 # ---------------------------------------------------------------------------
 def rewrite_links(doc: str, lang: str) -> str:
@@ -728,6 +770,7 @@ def render(page: dict, lang: str, lastmod: str) -> str:
     doc = head + body
     doc = faq_ios(doc, lang)
     doc = rewrite_links(doc, lang)
+    doc = add_firma(doc, lang)
     doc = re.sub(r"\{\{ABS:([^}]*)\}\}", r"\1", doc)
     y, mo, d = (int(x) for x in lastmod.split("-"))
     human = (f"{d} de {MESES_ES[mo - 1]} de {y}" if lang == "es"

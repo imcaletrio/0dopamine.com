@@ -816,7 +816,7 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
     display: inline-flex; align-items: center;
     min-height: 44px; padding: 0 2px;
   }
-  .footer-bottom > span:last-child {
+  .footer-bottom > span:last-of-type {  /* last-of-type: la firma de Yeli (<a>/<p>) va detrás */
     display: flex; flex-wrap: wrap;
     justify-content: center; align-items: center;
     gap: 0 2px;
@@ -907,3 +907,38 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
   .lang-toggle a, .lang-toggle button { min-height: 44px; display: inline-flex; align-items: center; }
   .theme-toggle { width: 44px; height: 44px; }
 }
+
+/* (2026-11-18) Firma de Yeli en el pie: «Deeped in Yeli · © AAAA», igual que
+   el pie de yeli.es. La mete _tools/build.py en todas las páginas. Discreta:
+   más pequeña que el pie y en el gris AA del tema. Foco: el :focus-visible
+   global (azul). */
+.firma-yeli {
+  font-size: .72rem;
+  letter-spacing: .02em;
+  color: var(--ink-3);
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: var(--r-xs);
+  transition: color .15s;
+}
+.firma-yeli:hover { color: var(--ink); }
+.firma-yeli:hover { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+.footer-bottom .firma-yeli-fila { flex-basis: 100%; margin: calc(-1 * var(--s-2)) 0 0; text-align: center; line-height: 1.5; }
+.footer-bottom .firma-yeli,
+.site-footer-slim .firma-yeli { color: var(--ink-3); }
+@media (max-width: 640px) {
+  .footer-bottom .firma-yeli-fila { margin-top: 0; }
+  .footer-bottom .firma-yeli { min-height: 44px; padding: 0 6px; }
+}
+/* Portada en móvil vertical: su pie va en una sola línea (nowrap) y con la
+   firma ya no cabe por debajo de ~400 px. La firma baja a una segunda línea
+   propia, centrada y más baja (24 px de objetivo táctil, WCAG 2.5.8). `html`
+   delante para ganar a los estilos de la propia portada, que van después. */
+@media (max-width: 640px) and (min-height: 600px) and (orientation: portrait) {
+  html .site-footer-slim { flex-wrap: wrap; row-gap: 0; }
+  html .site-footer-slim .firma-yeli {
+    flex-basis: 100%; justify-content: center;
+    min-height: 24px; margin-top: -6px; padding-bottom: 2px;
+  }
+}
+@media (prefers-reduced-motion: reduce) { .firma-yeli { transition: none; } }
