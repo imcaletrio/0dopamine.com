@@ -908,7 +908,7 @@ html[data-theme="light"] .theme-toggle .icon-sun  { display: none; }
   .theme-toggle { width: 44px; height: 44px; }
 }
 
-/* (2026-11-18) Firma de Yeli en el pie: «Deeped in Yeli · © AAAA», igual que
+/* (2026-11-18) Firma de Yeli en el pie: «Dipped in Yeli · © AAAA», igual que
    el pie de yeli.es. La mete _tools/build.py en todas las páginas. Discreta:
    más pequeña que el pie y en el gris AA del tema. Foco: el :focus-visible
    global (azul). */

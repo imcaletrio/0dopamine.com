@@ -633,7 +633,7 @@ def jsonld(page: dict, lang: str, lastmod: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Firma de Yeli («Deeped in Yeli · © AAAA»), la misma del pie de yeli.es
+# Firma de Yeli («Dipped in Yeli · © AAAA»), la misma del pie de yeli.es
 # (Yeli/componentes/pie.html, clase pie__fina). Se define AQUÍ una sola vez y se mete en
 # el pie de todas las páginas al generar: así no hay 8 copias en _src/ y no
 # cambia el lastmod de las páginas (no es contenido). Estilo: .firma-yeli en
@@ -643,12 +643,12 @@ FIRMA_NUEVA_PESTANA = {"es": "web hecha por Yeli, se abre en una pestaña nueva"
 
 
 def firma_yeli(lang: str) -> str:
-    # Texto IGUAL que el pie de yeli.es («Deeped», con «ee», a propósito).
+    # Texto IGUAL que el pie de yeli.es: «Dipped in Yeli» (decisión de Iván, 18-nov).
     # El año es el del build; el script de al lado lo sube en el navegador si
     # ya es un año posterior (nunca lo baja: un reloj mal puesto no lo estropea).
     anio = _dt.date.today().year
     return ('<a class="firma-yeli" href="https://yeli.es" target="_blank" rel="noopener" lang="en">'
-            f'Deeped in Yeli&nbsp;·&nbsp;©&nbsp;<span class="firma-yeli__anio">{anio}</span>'
+            f'Dipped in Yeli&nbsp;·&nbsp;©&nbsp;<span class="firma-yeli__anio">{anio}</span>'
             f'<span class="sr-only" lang="{lang}"> ({FIRMA_NUEVA_PESTANA[lang]})</span></a>'
             '<script>(function(){var y=new Date().getFullYear(),e=document.querySelectorAll(".firma-yeli__anio"),i;'
             'for(i=0;i<e.length;i++)if(y>+e[i].textContent)e[i].textContent=y})()</script>')
